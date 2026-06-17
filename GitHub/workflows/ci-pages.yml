@@ -1,0 +1,72 @@
+name: CI + Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ تحميل الكود
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2️⃣ تثبيت Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # 3️⃣ تثبيت الأدوات (Linting)
+      - name: Install dependencies
+        run: |
+          npm install eslint stylelint htmlhint --save-dev
+
+      # 4️⃣ فحص JavaScript
+      - name: Run ESLint
+        run: npx eslint "**/*.js"
+
+      # 5️⃣ فحص CSS
+      - name: Run Stylelint
+        run: npx stylelint "**/*.css"
+
+      # 6️⃣ فحص HTML
+      - name: Run HTMLHint
+        run: npx htmlhint "**/*.html"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build   # النشر يبدأ بعد نجاح الفحص
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # لو عندك build (مثلاً React أو Vue)
+      # لو موقعك HTML/CSS/JS عادي ممكن تتجاهل الخطوة دي
+      - name: Build site
+        run: |
+          npm install
+          npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./dist   # غيّرها للمجلد اللي فيه ملفات الموقع
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
