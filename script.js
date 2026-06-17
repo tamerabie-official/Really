@@ -77,7 +77,7 @@ function applyChanges() {
 
   // صورة البروفايل
   let img = document.querySelector(".profile-pic");
-  img.src = "profile.png"; // ضع هنا رابط صورتك
+  img.src = "profile.jpg"; // ضع هنا رابط صورتك
   img.style.display = "block";
 }
 
