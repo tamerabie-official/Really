@@ -70,3 +70,23 @@ document.addEventListener('DOMContentLoaded', () => {
   switchLang(savedLang);
 });
 
+// زر التعديل
+function applyChanges() {
+  // النص تحت الاسم
+  document.getElementById("subtitle").innerHTML = "صانع محتوى تعليمي و PRO";
+
+  // صورة البروفايل
+  let img = document.querySelector(".profile-pic");
+  img.src = "profile.png"; // ضع هنا رابط صورتك
+  img.style.display = "block";
+}
+
+// زر تبديل اللغة
+function toggleLanguage() {
+  let text = document.getElementById("subtitle");
+  if (text.innerHTML === "صانع محتوى تعليمي و PRO") {
+    text.innerHTML = "Educational Content Creator & PRO";
+  } else {
+    text.innerHTML = "صانع محتوى تعليمي و PRO";
+  }
+}
