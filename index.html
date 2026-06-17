@@ -33,6 +33,8 @@
   }
 </script>
 <style>
+
+<style>
   :root {
     --bg-primary: #0a0a0f;
     --bg-secondary: #11111a;
@@ -41,11 +43,11 @@
     --gold-light: #e8c987;
     --gold-dark: #8a6f3d;
     --cream: #f5f1e8;
-    --tp: #ede8d8;
-    --ts: #9a948a;
-    --tm: #6b6660;
-    --border: rgba(201, 169, 97, 0.18);
-    --border-h: rgba(201, 169, 97, 0.4);
+    --tp: #ffffff; /* تم تحويله لأبيض ناصع لتبدو العناوين براقة */
+    --ts: #cbc6bc; /* تم تفتيح الرمادي الثانوي ليكون مقروءاً بنسبة 100% */
+    --tm: #9a948a;
+    --border: rgba(201, 169, 97, 0.35); /* رفع التباين ليظهر الكرت بوضوح فوق السواد */
+    --border-h: rgba(201, 169, 97, 0.7);  /* توهج ذهبي فخم عند التمرير بالماوس */
   }
   * { -webkit-font-smoothing: antialiased; }
   html { scroll-behavior: smooth; }
@@ -56,12 +58,12 @@
     overflow-x: hidden;
   }
 
-  /* Background orbs */
+  /* إحياء الوهج الخلفي (Orbs) ليعطي عمقاً سينمائياً للموقع */
   .bg-orbs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-  .orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.35; animation: float 22s infinite ease-in-out; }
-  .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(201,169,97,0.5), transparent 70%); top: -10%; right: -10%; }
-  .orb-2 { width: 450px; height: 450px; background: radial-gradient(circle, rgba(180,90,60,0.3), transparent 70%); top: 40%; left: -10%; animation-delay: -7s; }
-  .orb-3 { width: 380px; height: 380px; background: radial-gradient(circle, rgba(201,169,97,0.4), transparent 70%); bottom: -5%; right: 25%; animation-delay: -14s; }
+  .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.55; animation: float 22s infinite ease-in-out; }
+  .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(201,169,97,0.55), transparent 70%); top: -10%; right: -10%; }
+  .orb-2 { width: 450px; height: 450px; background: radial-gradient(circle, rgba(180,90,60,0.4), transparent 70%); top: 40%; left: -10%; animation-delay: -7s; }
+  .orb-3 { width: 380px; height: 380px; background: radial-gradient(circle, rgba(201,169,97,0.45), transparent 70%); bottom: -5%; right: 25%; animation-delay: -14s; }
   @keyframes float {
     0%, 100% { transform: translate(0,0) scale(1); }
     33% { transform: translate(40px,-60px) scale(1.1); }
@@ -100,25 +102,27 @@
 
   /* Card */
   .card {
-    background: linear-gradient(145deg, rgba(22,22,31,0.9) 0%, rgba(17,17,26,0.9) 100%);
+    background: linear-gradient(145deg, rgba(22,22,31,0.95) 0%, rgba(17,17,26,0.95) 100%);
     border: 1px solid var(--border);
     border-radius: 1.25rem;
     transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
     position: relative; overflow: hidden;
     backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px -15px rgba(201,169,97,0.2);
   }
   .card::before {
     content: ''; position: absolute; top: 0; left: -100%;
     width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(201,169,97,0.08), transparent);
+    background: linear-gradient(90deg, transparent, rgba(201,169,97,0.12), transparent);
     transition: left 0.7s ease;
   }
   .card:hover::before { left: 100%; }
   .card:hover {
     border-color: var(--border-h);
     transform: translateY(-6px);
-    box-shadow: 0 25px 50px -12px rgba(201,169,97,0.18), 0 0 0 1px rgba(201,169,97,0.08);
+    box-shadow: 0 25px 50px -12px rgba(201,169,97,0.3), 0 0 15px 1px rgba(201,169,97,0.1);
   }
+</style>
 
   .btn-gold {
     background: linear-gradient(135deg, #e8c987 0%, #c9a961 100%);
