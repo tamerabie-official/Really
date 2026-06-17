@@ -1,0 +1,26 @@
+/* النص تحت الاسم */
+#subtitle {
+  font-size: 18px;
+  color: gold;
+  font-weight: bold;
+  margin-top: -10px;
+}
+
+/* صورة البروفايل */
+.profile-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid gold;
+  margin-top: 10px;
+}
+
+/* الأزرار */
+button {
+  background-color: black;
+  color: gold;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 5px;
+}
