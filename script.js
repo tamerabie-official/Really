@@ -1,3 +1,28 @@
+const translations = {
+  ar: {
+    dir: 'rtl',
+    subtitle: 'مرحباً بكم في موقعي الشخصي وصناعة المحتوى الإبداعي البروجرافي والتعليمي.',
+    aboutTitle: 'من أنا؟',
+    aboutText: 'أنا تامر ربيع، صانع محتوى تعليمي ومدرس لغة إنجليزية شغوف بتطوير المهارات واستخدام أحدث التقنيات البرمجية لتسهيل التعليم.',
+    hobbyTitle: 'هواياتي واهتماماتي',
+    hobbyText: 'إلى جانب التدريس، أعشق التصوير السينمائي، الطيران بالدرون، وتجربة أحدث الألعاب والأجهزة الإلكترونية.',
+    exp1: '+23 سنة خبرة مهنية',
+    exp2: '7 سنوات مؤسسة مسار الطبية - الدوحة',
+    exp3: 'المقر الحالي - مصر'
+  },
+  en: {
+    dir: 'ltr',
+    subtitle: 'Welcome to my professional hub for creative content and educational tech.',
+    aboutTitle: 'About Me',
+    aboutText: 'I am Tamer Rabie, an English language educator and digital content creator dedicated to building innovative learning experiences.',
+    hobbyTitle: 'Hobbies & Interests',
+    hobbyText: 'Beyond teaching, I am highly passionate about cinematic photography, piloting drones, and diving into tech and gaming.',
+    exp1: '+23 Years Professional Experience',
+    exp2: '7 Years Masar Medical Foundation - Doha',
+    exp3: 'Egypt Current Base'
+  }
+};
+
 function switchLang(lang) {
   const t = translations[lang];
   document.documentElement.lang = lang;
@@ -19,17 +44,29 @@ function switchLang(lang) {
   setText('exp-2', t.exp2);
   setText('exp-3', t.exp3);
   
-  // الكود الكامل والمصلح 100% لإدارة حالة الأزرار بصرياً دون أي نقص:
+  // تحديث ستايل أزرار تبديل اللغة
   const btnAr = document.getElementById('btn-ar');
   const btnEn = document.getElementById('btn-en');
+  if (btnAr && btnEn) {
+    if (lang === 'ar') {
+      btnAr.style.background = '#c9a961';
+      btnAr.style.color = '#0a0a0f';
+      btnEn.style.background = 'transparent';
+      btnEn.style.color = '#c9a961';
+    } else {
+      btnEn.style.background = '#c9a961';
+      btnEn.style.color = '#0a0a0f';
+      btnAr.style.background = 'transparent';
+      btnAr.style.color = '#c9a961';
+    }
+  }
   
-  if (btnAr) {
-    btnAr.style.background = lang === 'ar' ? '#c9a961' : 'transparent';
-    btnAr.style.color = lang === 'ar' ? '#0a0a0f' : '#c9a961';
-  }
-  if (btnEn) {
-    btnEn.style.background = lang === 'en' ? '#c9a961' : 'transparent';
-    btnEn.style.color = lang === 'en' ? '#0a0a0f' : '#c9a961';
-  }
+  localStorage.setItem('preferredLang', lang);
 }
+
+// تشغيل اللغة المحفوظة تلقائياً عند فتح الموقع
+document.addEventListener('DOMContentLoaded', () => {
+  const savedLang = localStorage.getItem('preferredLang') || 'ar';
+  switchLang(savedLang);
+});
 
