@@ -75,3 +75,100 @@ button:last-of-type {
   background-color: #3498db; /* أزرق */
   color: #fff;
 }
+
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #11111a;
+  --bg-card: #16161f;
+  --gold: #c9a961;
+  --gold-light: #e8c987;
+  --gold-dark: #8a6f3d;
+  --cream: #f5f1e8;
+  --tp: #ede8d8;
+  --ts: #9a948a;
+  --tm: #6b6660;
+  --border: rgba(201, 169, 97, 0.18);
+  --border-h: rgba(201, 169, 97, 0.4);
+}
+
+* { -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--tp);
+  font-family: 'Tajawal', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Background orbs */
+.bg-orbs { 
+  position: fixed; 
+  inset: 0; 
+  z-index: 0; 
+  pointer-events: none; 
+  overflow: hidden; 
+}
+
+.orb { 
+  position: absolute; 
+  border-radius: 50%; 
+  filter: blur(90px); 
+  opacity: 0.35; 
+  animation: float 22s infinite ease-in-out; 
+}
+
+.orb-1 { 
+  width: 500px; 
+  height: 500px; 
+  background: radial-gradient(circle, rgba(201,169,97,0.5), transparent 70%); 
+  top: -10%; 
+  right: -10%; 
+}
+
+.orb-2 { 
+  width: 450px; 
+  height: 450px; 
+  background: radial-gradient(circle, rgba(180,90,60,0.3), transparent 70%); 
+  top: 40%; 
+  left: -10%; 
+  animation-delay: -7s; 
+}
+
+.orb-3 { 
+  width: 380px; 
+  height: 380px; 
+  background: radial-gradient(circle, rgba(201,169,97,0.4), transparent 70%); 
+  bottom: -5%; 
+  right: 25%; 
+  animation-delay: -14s; 
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(40px,-60px) scale(1.1); }
+  66% { transform: translate(-30px,40px) scale(0.95); }
+}
+
+.pattern-overlay {
+  position: fixed; 
+  inset: 0; 
+  z-index: 1; 
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none'%3E%3Cg fill='%23c9a961' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+main, header, footer { position: relative; z-index: 2; }
+
+.gold-text {
+  background: linear-gradient(135deg, #e8c987 0%, #c9a961 50%, #8a6f3d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-bg { 
+  background: linear-gradient(135deg, #e8c987 0%, #c9a961 50%, #8a6f3d 100%); 
+}
+
+/* باقي التنسيقات كما هي... */
