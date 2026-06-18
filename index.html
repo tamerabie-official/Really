@@ -12,18 +12,45 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- ملف التنسيقات الخارجي -->
-  <link rel="stylesheet" href="style.css">
+  <!-- التنسيقات المخصصة (داخل <head>) -->
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #11111a;
+      --bg-card: #16161f;
+      --gold: #c9a961;
+      --gold-light: #e8c987;
+      --gold-dark: #8a6f3d;
+      --cream: #f5f1e8;
+      --tp: #ede8d8;
+      --ts: #9a948a;
+      --tm: #6b6660;
+      --border: rgba(201, 169, 97, 0.18);
+      --border-h: rgba(201, 169, 97, 0.4);
+    }
+    
+    * { -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      background-color: var(--bg-primary);
+      color: var(--tp);
+      font-family: 'Tajawal', sans-serif;
+      overflow-x: hidden;
+    }
+    
+    /* باقي التنسيقات هنا... */
+  </style>
 </head>
 <body>
 
-<!-- جميع محتويات الصفحة هنا -->
-<!-- ... (المحتوى الكامل للصفحة) ... -->
+<!-- جميع محتويات الصفحة -->
+<!-- ... المحتوى ... -->
 
-<!-- ربط ملف JavaScript الخارجي -->
+<!-- ربط ملف JavaScript -->
 <script src="script.js"></script>
 
-<!-- إعدادات Tailwind مخصصة -->
+<!-- إعدادات Tailwind المخصصة -->
 <script>
   tailwind.config = {
     theme: {
