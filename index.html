@@ -9,8 +9,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   
+  <!-- ===== CSS داخلي بالكامل ===== -->
   <style>
-    /* ===== جميع التنسيقات هنا ===== */
     :root {
       --bg-primary: #0a0a0f;
       --bg-secondary: #11111a;
@@ -36,6 +36,41 @@
       overflow-x: hidden;
       margin: 0;
       padding: 0;
+    }
+    
+    /* ===== زر تبديل اللغة ===== */
+    .lang-toggle {
+      background: linear-gradient(135deg, #e8c987, #c9a961);
+      color: #0a0a0f;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(201,169,97,0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Tajawal', sans-serif;
+    }
+    .lang-toggle:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(201,169,97,0.5);
+    }
+    .lang-toggle img {
+      width: 20px;
+      height: 20px;
+    }
+    
+    /* ===== صورة البروفايل ===== */
+    .profile-img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 0.75rem;
     }
     
     .bg-orbs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
@@ -288,34 +323,165 @@
     .verse-frame::before { top: -1px; right: -1px; border-bottom: none; border-left: none; border-radius: 0 1rem 0 0; }
     .verse-frame::after { bottom: -1px; left: -1px; border-top: none; border-right: none; border-radius: 0 0 0 1rem; }
     
+    /* ===== تحسينات عرض الموبايل ===== */
     @media (max-width: 768px) {
-      .hero-verse { font-size: 1.1rem; line-height: 2.1; }
-      .back-to-top { bottom: 1rem; left: 1rem; width: 44px; height: 44px; }
-      .toast { bottom: 1rem; right: 1rem; left: 1rem; }
-      section { padding-top: 3rem !important; padding-bottom: 3rem !important; }
-      .hero-section { padding-top: 6rem !important; padding-bottom: 2rem !important; min-height: auto !important; }
-      .py-24 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
-      .lg\:py-32 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
-      .mb-16 { margin-bottom: 2rem !important; }
-      .mb-10 { margin-bottom: 1.5rem !important; }
-      .gap-16 { gap: 2rem !important; }
-      .h-\[500px\] { height: 300px !important; }
-      .text-4xl { font-size: 2.2rem !important; }
-      .text-5xl { font-size: 2.5rem !important; }
-      .hero-name { font-size: clamp(2.8rem, 12vw, 4rem) !important; }
-      .verse-frame { padding: 1.5rem 0.75rem !important; }
-      .card { padding: 1.25rem !important; }
+      /* تقليل الفراغات بين الأقسام */
+      section {
+        padding-top: 2.5rem !important;
+        padding-bottom: 2.5rem !important;
+      }
+      
+      /* تقليل الحشوات الداخلية للبطاقات */
+      .card {
+        padding: 1.25rem !important;
+      }
+      
+      /* تقليل حجم النصوص */
+      .hero-name {
+        font-size: clamp(2.5rem, 10vw, 3.5rem) !important;
+      }
+      .hero-verse {
+        font-size: 1rem !important;
+        line-height: 1.8 !important;
+      }
+      .text-4xl {
+        font-size: 2rem !important;
+      }
+      .text-5xl {
+        font-size: 2.2rem !important;
+      }
+      .shimmer-text {
+        font-size: 1rem !important;
+      }
+      
+      /* تحسين تخطيط الشبكات */
+      .grid {
+        gap: 1rem !important;
+      }
+      .grid-cols-2 {
+        grid-template-columns: 1fr !important;
+      }
+      .lg\\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+      }
+      .md\\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+      }
+      .sm\\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+      }
+      
+      /* تحسين صورة البروفايل */
+      .profile-img {
+        height: 280px !important;
+      }
+      
+      /* تحسين معرض الصور */
+      .gallery-item {
+        aspect-ratio: 1/1 !important;
+      }
+      .gallery-item img {
+        height: 100% !important;
+      }
+      
+      /* تحسين أزرار التواصل */
+      .contact-pill {
+        padding: 0.75rem 1rem !important;
+      }
+      
+      /* تقليل الهوامش */
+      .mb-16 {
+        margin-bottom: 1.5rem !important;
+      }
+      .mb-10 {
+        margin-bottom: 1.25rem !important;
+      }
+      .mb-8 {
+        margin-bottom: 1rem !important;
+      }
+      .mb-6 {
+        margin-bottom: 0.75rem !important;
+      }
+      .gap-16 {
+        gap: 1.5rem !important;
+      }
+      .gap-8 {
+        gap: 1rem !important;
+      }
+      
+      /* تحسين صورة اليوم */
+      .h-\\[400px\\] {
+        height: 250px !important;
+      }
+      .lg\\:h-\\[480px\\] {
+        height: 250px !important;
+      }
+      
+      /* تحسين أيقونات الخدمات */
+      .service-icon {
+        width: 56px !important;
+        height: 56px !important;
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem !important;
+      }
+      
+      /* تحسين القائمة الجانبية */
+      .mobile-menu {
+        width: 280px !important;
+      }
+      
+      /* تحسين زر اللغة */
+      .lang-toggle {
+        font-size: 0.7rem !important;
+        padding: 0.3rem 0.7rem !important;
+      }
+      .lang-toggle img {
+        width: 16px !important;
+        height: 16px !important;
+      }
+      
+      /* تحسين شعار التحدي */
+      .max-w-md {
+        max-width: 100% !important;
+      }
+      
+      /* تحسين زر التحدي */
+      .px-10 {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+      }
+      .py-4 {
+        padding-top: 0.75rem !important;
+        padding-bottom: 0.75rem !important;
+      }
+      .text-lg {
+        font-size: 1rem !important;
+      }
+      
+      /* تقليل حجم الشعار في الهيدر */
+      .w-11 {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+      }
+      
+      /* تحسين زر العودة للأعلى */
+      .back-to-top {
+        width: 40px !important;
+        height: 40px !important;
+        bottom: 1rem !important;
+        left: 1rem !important;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- ===== كل محتوى الصفحة هنا ===== -->
+  <!-- ... -->
 
-<div class="bg-orbs">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-</div>
-<div class="pattern-overlay"></div>
+  <!-- ===== ربط ملف الجافاسكريبت الخارجي ===== -->
+  <script src="script.js"></script>
+</body>
+</html>
 
 <!-- ===== HEADER ===== -->
 <header class="fixed top-0 inset-x-0 z-50 glass">
