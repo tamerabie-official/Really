@@ -640,10 +640,68 @@
         <div class="card p-8 lg:p-10 reveal" style="border: 2px solid rgba(201, 169, 97, 0.3); background: linear-gradient(145deg, rgba(22,22,31,0.95), rgba(10,10,15,0.98)); position: relative; overflow: hidden;">
           <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full" style="background: radial-gradient(circle, rgba(201,169,97,0.06), transparent 70%);"></div>
           <div class="absolute -bottom-20 -left-20 w-64 h-64 rounded-full" style="background: radial-gradient(circle, rgba(201,169,97,0.04), transparent 70%);"></div>
-          <div class="relative z-10 text-center">
-            <div class="flex justify-center mb-6">
-              <img src="EnglishLH.svg" alt="English Learning Hub Challenge" class="w-full max-w-md h-auto" style="filter: drop-shadow(0 0 30px rgba(201,169,97,0.3)); display: block;">
-            </div>
+          <div class="relative z-10 text-center"><div class="flex justify-center mb-6">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" 
+       class="w-full max-w-md h-auto" 
+       style="filter: drop-shadow(0 0 30px rgba(201,169,97,0.3));">
+    <defs>
+      <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1"></stop>
+        <stop offset="50%" style="stop-color:#F9D976;stop-opacity:1"></stop>
+        <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1"></stop>
+      </linearGradient>
+      <linearGradient id="navyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:#1A2A4F;stop-opacity:1"></stop>
+        <stop offset="100%" style="stop-color:#0D1B2A;stop-opacity:1"></stop>
+      </linearGradient>
+      <linearGradient id="goldStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#B8860B;stop-opacity:1"></stop>
+        <stop offset="50%" style="stop-color:#F9D976;stop-opacity:1"></stop>
+        <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1"></stop>
+      </linearGradient>
+      <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0D1B2A" flood-opacity="0.25"></feDropShadow>
+      </filter>
+      <style>
+        .title { font-family: 'Georgia', 'Times New Roman', serif; font-weight: 700; letter-spacing: 0.5px; }
+        .subtitle { font-family: 'Helvetica Neue', 'Arial', sans-serif; font-weight: 400; letter-spacing: 3px; }
+      </style>
+    </defs>
+    
+    <rect width="800" height="400" fill="url(#navyGradient)" rx="8"></rect>
+    <rect x="16" y="16" width="768" height="368" fill="none" stroke="url(#goldStroke)" stroke-width="1.5" rx="4" opacity="0.8"></rect>
+    
+    <!-- Shield Icon -->
+    <g transform="translate(400,115)" filter="url(#softShadow)">
+      <path d="M0 -55 L35 -40 L35 15 C35 40 0 65 0 65 C0 65 -35 40 -35 15 L-35 -40 Z" fill="url(#navyGradient)" stroke="url(#goldGradient)" stroke-width="3"></path>
+      <g transform="translate(0,-10)">
+        <path d="M-42 -5 L42 -5 L0 -25 Z" fill="url(#goldGradient)"></path>
+        <rect x="-12" y="-8" width="24" height="12" rx="3" fill="#0D1B2A"></rect>
+        <line x1="20" y1="-15" x2="22" y2="10" stroke="url(#goldGradient)" stroke-width="2"></line>
+        <circle cx="22" cy="14" r="4" fill="url(#goldGradient)"></circle>
+        <line x1="22" y1="18" x2="22" y2="24" stroke="url(#goldGradient)" stroke-width="1.5"></line>
+        <line x1="20" y1="18" x2="20" y2="23" stroke="url(#goldGradient)" stroke-width="1.5"></line>
+        <line x1="24" y1="18" x2="24" y2="23" stroke="url(#goldGradient)" stroke-width="1.5"></line>
+      </g>
+      <line x1="-25" y1="35" x2="25" y2="35" stroke="url(#goldGradient)" stroke-width="1.5" opacity="0.6"></line>
+      <path d="M0 42 L2.4 49.1 L10 49.1 L3.8 53.6 L6.2 60.7 L0 56.2 L-6.2 60.7 L-3.8 53.6 L-10 49.1 L-2.4 49.1 Z" fill="url(#goldGradient)" opacity="0.9"></path>
+    </g>
+    
+    <!-- Typography -->
+    <text x="400" y="235" text-anchor="middle" class="title" font-size="42" fill="url(#goldGradient)">
+      English Learning Hub
+    </text>
+    <text x="400" y="268" text-anchor="middle" class="subtitle" font-size="14" fill="#F9D976" opacity="0.9">
+      CHALLENGE
+    </text>
+    
+    <!-- Decorative Lines -->
+    <line x1="250" y1="280" x2="340" y2="280" stroke="url(#goldStroke)" stroke-width="1" opacity="0.4"></line>
+    <line x1="460" y1="280" x2="550" y2="280" stroke="url(#goldStroke)" stroke-width="1" opacity="0.4"></line>
+    
+    <!-- Note: Click Here button removed to avoid conflict with the main link -->
+  </svg>
+</div>
             <div class="mt-6">
               <a href="https://tamerrabie8-cmyk.github.io/Professional-placement-test/" target="_blank" rel="noopener" 
                  class="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-full text-lg font-bold gold-bg transition-all duration-300 shadow-2xl hover:scale-105" 
@@ -1540,7 +1598,7 @@
   const currentPuzzle = puzzles[weekNum % puzzles.length];
 
   const puzzleImage = document.getElementById('puzzle-image');
-  const riddleText = document.getElementById('riddle-text');
+  const r<div class="flex justify-center mb-6">iddleText = document.getElementById('riddle-text');
   if (puzzleImage && riddleText) {
     puzzleImage.src = currentPuzzle.img;
     riddleText.textContent = currentPuzzle.text;
