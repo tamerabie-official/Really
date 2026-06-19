@@ -38,6 +38,16 @@
       padding: 0;
     }
     
+    /* ===== تنسيق صورة البروفايل ===== */
+    .profile-img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 0.75rem;
+    }
+    
+    /* ===== باقي التنسيقات ===== */
     .bg-orbs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.35; animation: float 22s infinite ease-in-out; }
     .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(201,169,97,0.5), transparent 70%); top: -10%; right: -10%; }
@@ -54,6 +64,45 @@
       position: fixed; inset: 0; z-index: 1; pointer-events: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none'%3E%3Cg fill='%23c9a961' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
+    
+    main, header, footer { position: relative; z-index: 2; }
+    
+    .gold-text {
+      background: linear-gradient(135deg, #e8c987 0%, #c9a961 50%, #8a6f3d 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-bg { background: linear-gradient(135deg, #e8c987 0%, #c9a961 50%, #8a6f3d 100%); }
+    
+    /* ===== تنسيقات الجوال ===== */
+    @media (max-width: 768px) {
+      .hero-verse { font-size: 1.1rem; line-height: 2.1; }
+      .back-to-top { bottom: 1rem; left: 1rem; width: 44px; height: 44px; }
+      .toast { bottom: 1rem; right: 1rem; left: 1rem; }
+      section { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+      .hero-section { padding-top: 6rem !important; padding-bottom: 2rem !important; min-height: auto !important; }
+      .py-24 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+      .lg\:py-32 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+      .mb-16 { margin-bottom: 2rem !important; }
+      .mb-10 { margin-bottom: 1.5rem !important; }
+      .gap-16 { gap: 2rem !important; }
+      .h-\[500px\] { height: 300px !important; }
+      .text-4xl { font-size: 2.2rem !important; }
+      .text-5xl { font-size: 2.5rem !important; }
+      .hero-name { font-size: clamp(2.8rem, 12vw, 4rem) !important; }
+      .verse-frame { padding: 1.5rem 0.75rem !important; }
+      .card { padding: 1.25rem !important; }
+      
+      /* ===== تنسيق صورة البروفايل في الجوال ===== */
+      .profile-img {
+        height: 300px !important;
+        object-position: top center !important;
+      }
+    }
+  </style>
+</head>
+<body>
     
     main, header, footer { position: relative; z-index: 2; }
     
@@ -423,64 +472,67 @@
     </div>
   </section>
 
-  <!-- ===== ABOUT ===== -->
-  <section id="about" class="py-24 lg:py-32 px-5 lg:px-8">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <div class="reveal order-2 lg:order-1">
-          <div class="relative">
-            <div class="photo-frame">
-              <img src="profile.jpg" alt="تامر ربيع" class="w-full h-[500px] object-cover rounded-xl">
-            </div>
-            <div class="absolute -bottom-6 -left-6 card p-5 max-w-[220px] hidden md:block">
-              <div class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-lg gold-bg flex items-center justify-center" style="color: var(--bg-primary);">
-                  <i class="fa-solid fa-graduation-cap text-xl"></i>
-                </div>
-                <div>
-                  <div class="text-xs mb-0.5" style="color: var(--ts);">خريج</div>
-                  <div class="text-sm font-bold leading-tight" style="color: var(--tp);">جامعة جنوب الوادي<br>قسم اللغة الإنجليزية</div>
-                </div>
+
+<!-- ===== ABOUT SECTION ===== -->
+<section id="about" class="py-24 lg:py-32 px-5 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="reveal order-2 lg:order-1">
+        <div class="relative">
+          <div class="photo-frame">
+            <img src="profile.jpg" alt="تامر ربيع" 
+                 class="w-full h-[500px] object-top rounded-xl"
+                 style="object-position: top center;">
+          </div>
+          <div class="absolute -bottom-6 -left-6 card p-5 max-w-[220px] hidden md:block">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-lg gold-bg flex items-center justify-center" style="color: var(--bg-primary);">
+                <i class="fa-solid fa-graduation-cap text-xl"></i>
+              </div>
+              <div>
+                <div class="text-xs mb-0.5" style="color: var(--ts);">خريج</div>
+                <div class="text-sm font-bold leading-tight" style="color: var(--tp);">جامعة جنوب الوادي<br>قسم اللغة الإنجليزية</div>
               </div>
             </div>
-            <div class="absolute -top-5 -right-5 w-24 h-24 rounded-2xl border opacity-40 hidden md:block" style="border-color: var(--gold);"></div>
+          </div>
+          <div class="absolute -top-5 -right-5 w-24 h-24 rounded-2xl border opacity-40 hidden md:block" style="border-color: var(--gold);"></div>
+        </div>
+      </div>
+
+      <div class="reveal order-1 lg:order-2">
+        <span class="section-label"><span style="font-family: 'Reem Kufi', sans-serif;">عني</span></span>
+        <h2 class="font-kufi text-4xl md:text-5xl font-bold mb-6 leading-tight" style="font-family: 'Reem Kufi', sans-serif;">
+          صانع محتوى <span class="gold-text">تعليمي</span><br>
+          <span class="gold-text">و PRO</span>
+        </h2>
+        <p class="text-lg leading-relaxed mb-6" style="color: var(--ts);">
+          أنا <span style="color: var(--gold-light); font-weight: 700;">تامر ربيع</span>، <span class="gold-text font-bold">صانع محتوى تعليمي و PRO</span>.
+        </p>
+        <p class="text-base leading-relaxed mb-8" style="color: var(--ts);">
+          حاصل على درجة البكالوريوس من <span style="color: var(--tp); font-weight: 500;">جامعة جنوب الوادي – قسم اللغة الإنجليزية</span>، وأؤمن أن التعليم رسالة قبل أن يكون مهنة، وأن كل طالب يستحق فرصة حقيقية لإتقان لغة جديدة.
+        </p>
+        <div class="grid grid-cols-2 gap-4 mb-8">
+          <div class="card p-5">
+            <div class="text-3xl font-bold gold-text stat-num">+5</div>
+            <div class="text-sm mt-1" style="color: var(--ts);">سنوات خبرة</div>
+          </div>
+          <div class="card p-5">
+            <div class="text-3xl font-bold gold-text stat-num">+1000</div>
+            <div class="text-sm mt-1" style="color: var(--ts);">طالب وطالبة</div>
           </div>
         </div>
-
-        <div class="reveal order-1 lg:order-2">
-          <span class="section-label"><span style="font-family: 'Reem Kufi', sans-serif;">عني</span></span>
-          <h2 class="font-kufi text-4xl md:text-5xl font-bold mb-6 leading-tight" style="font-family: 'Reem Kufi', sans-serif;">
-            صانع محتوى <span class="gold-text">تعليمي</span><br>وشغوفٌ بنقل المعرفة
-          </h2>
-          <p class="text-lg leading-relaxed mb-6" style="color: var(--ts);">
-            أنا <span style="color: var(--gold-light); font-weight: 700;">تامر ربيع</span>، صانع محتوى تعليمي متخصص في تعليم اللغة الإنجليزية، وأعمل كمستقل (Freelancer) في تقديم المحتوى التعليمي والخدمات اللغوية.
-          </p>
-          <p class="text-base leading-relaxed mb-8" style="color: var(--ts);">
-            حاصل على درجة البكالوريوس من <span style="color: var(--tp); font-weight: 500;">جامعة جنوب الوادي – قسم اللغة الإنجليزية</span>، وأؤمن أن التعليم رسالة قبل أن يكون مهنة، وأن كل طالب يستحق فرصة حقيقية لإتقان لغة جديدة.
-          </p>
-          <div class="grid grid-cols-2 gap-4 mb-8">
-            <div class="card p-5">
-              <div class="text-3xl font-bold gold-text stat-num">+5</div>
-              <div class="text-sm mt-1" style="color: var(--ts);">سنوات خبرة</div>
-            </div>
-            <div class="card p-5">
-              <div class="text-3xl font-bold gold-text stat-num">+1000</div>
-              <div class="text-sm mt-1" style="color: var(--ts);">طالب وطالبة</div>
-            </div>
-          </div>
-          <div class="flex flex-wrap gap-3">
-            <span class="px-4 py-2 rounded-full text-sm font-medium" style="background: rgba(201,169,97,0.1); border: 1px solid var(--border); color: var(--gold-light);">
-              <i class="fa-solid fa-chalkboard-user ml-1.5"></i> صانع محتوى تعليمي
-            </span>
-            <span class="px-4 py-2 rounded-full text-sm font-medium" style="background: rgba(201,169,97,0.1); border: 1px solid var(--border); color: var(--gold-light);">
-              <i class="fa-solid fa-laptop-code ml-1.5"></i> Freelancer
-            </span>
-          </div>
+        <div class="flex flex-wrap gap-3">
+          <span class="px-4 py-2 rounded-full text-sm font-medium" style="background: rgba(201,169,97,0.1); border: 1px solid var(--border); color: var(--gold-light);">
+            <i class="fa-solid fa-chalkboard-user ml-1.5"></i> صانع محتوى تعليمي و PRO
+          </span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium" style="background: rgba(201,169,97,0.1); border: 1px solid var(--border); color: var(--gold-light);">
+            <i class="fa-solid fa-laptop-code ml-1.5"></i> Freelancer
+          </span>
         </div>
       </div>
     </div>
-  </section>
-
+  </div>
+</section>
   <!-- ===== MISSION ===== -->
   <section id="mission" class="py-24 lg:py-32 px-5 lg:px-8 relative">
     <div class="max-w-4xl mx-auto text-center">
