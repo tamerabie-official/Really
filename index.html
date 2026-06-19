@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -10,7 +11,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <style>
-    /* ===== جميع التنسيقات هنا ===== */
     :root {
       --bg-primary: #0a0a0f;
       --bg-secondary: #11111a;
@@ -38,7 +38,29 @@
       padding: 0;
     }
     
-    /* ===== تنسيق صورة البروفايل ===== */
+    /* ===== زر تبديل اللغة ===== */
+    .lang-toggle {
+      background: linear-gradient(135deg, #e8c987, #c9a961);
+      color: #0a0a0f;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(201,169,97,0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Tajawal', sans-serif;
+    }
+    .lang-toggle:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(201,169,97,0.5);
+    }
+    
+    /* ===== صورة البروفايل ===== */
     .profile-img {
       width: 100%;
       height: 500px;
@@ -47,7 +69,6 @@
       border-radius: 0.75rem;
     }
     
-    /* ===== باقي التنسيقات ===== */
     .bg-orbs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.35; animation: float 22s infinite ease-in-out; }
     .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(201,169,97,0.5), transparent 70%); top: -10%; right: -10%; }
@@ -64,45 +85,6 @@
       position: fixed; inset: 0; z-index: 1; pointer-events: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none'%3E%3Cg fill='%23c9a961' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
-    
-    main, header, footer { position: relative; z-index: 2; }
-    
-    .gold-text {
-      background: linear-gradient(135deg, #e8c987 0%, #c9a961 50%, #8a6f3d 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .gold-bg { background: linear-gradient(135deg, #e8c987 0%, #c9a961 50%, #8a6f3d 100%); }
-    
-    /* ===== تنسيقات الجوال ===== */
-    @media (max-width: 768px) {
-      .hero-verse { font-size: 1.1rem; line-height: 2.1; }
-      .back-to-top { bottom: 1rem; left: 1rem; width: 44px; height: 44px; }
-      .toast { bottom: 1rem; right: 1rem; left: 1rem; }
-      section { padding-top: 3rem !important; padding-bottom: 3rem !important; }
-      .hero-section { padding-top: 6rem !important; padding-bottom: 2rem !important; min-height: auto !important; }
-      .py-24 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
-      .lg\:py-32 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
-      .mb-16 { margin-bottom: 2rem !important; }
-      .mb-10 { margin-bottom: 1.5rem !important; }
-      .gap-16 { gap: 2rem !important; }
-      .h-\[500px\] { height: 300px !important; }
-      .text-4xl { font-size: 2.2rem !important; }
-      .text-5xl { font-size: 2.5rem !important; }
-      .hero-name { font-size: clamp(2.8rem, 12vw, 4rem) !important; }
-      .verse-frame { padding: 1.5rem 0.75rem !important; }
-      .card { padding: 1.25rem !important; }
-      
-      /* ===== تنسيق صورة البروفايل في الجوال ===== */
-      .profile-img {
-        height: 300px !important;
-        object-position: top center !important;
-      }
-    }
-  </style>
-</head>
-<body>
     
     main, header, footer { position: relative; z-index: 2; }
     
@@ -337,6 +319,7 @@
     .verse-frame::before { top: -1px; right: -1px; border-bottom: none; border-left: none; border-radius: 0 1rem 0 0; }
     .verse-frame::after { bottom: -1px; left: -1px; border-top: none; border-right: none; border-radius: 0 0 0 1rem; }
     
+    /* ===== تنسيقات الجوال ===== */
     @media (max-width: 768px) {
       .hero-verse { font-size: 1.1rem; line-height: 2.1; }
       .back-to-top { bottom: 1rem; left: 1rem; width: 44px; height: 44px; }
@@ -354,17 +337,16 @@
       .hero-name { font-size: clamp(2.8rem, 12vw, 4rem) !important; }
       .verse-frame { padding: 1.5rem 0.75rem !important; }
       .card { padding: 1.25rem !important; }
+      
+      /* ===== تنسيق صورة البروفايل في الجوال ===== */
+      .profile-img {
+        height: 300px !important;
+        object-position: top center !important;
+      }
     }
   </style>
 </head>
 <body>
-
-<div class="bg-orbs">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-</div>
-<div class="pattern-overlay"></div>
 
 <!-- ===== HEADER ===== -->
 <header class="fixed top-0 inset-x-0 z-50 glass">
@@ -391,15 +373,22 @@
     </div>
 
     <div class="flex items-center gap-3">
+      <!-- ===== زر تبديل اللغة ===== -->
+      <button id="langToggle" class="lang-toggle" aria-label="تبديل اللغة">
+        <i class="fa-solid fa-globe"></i>
+        <span id="langLabel">English</span>
+      </button>
+      
       <a href="#contact" class="hidden md:inline-flex btn-gold px-5 py-2.5 rounded-lg text-sm">
         <i class="fa-solid fa-paper-plane"></i> تواصل معي
       </a>
+      
       <button id="menu-btn" class="lg:hidden text-2xl" style="color: var(--gold);" aria-label="القائمة">
         <i class="fa-solid fa-bars"></i>
       </button>
     </div>
   </nav>
-  
+
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="mobile-menu lg:hidden fixed top-0 right-0 h-screen w-72 z-50 p-8" style="background: var(--bg-secondary); border-left: 1px solid var(--border);">
     <div class="flex justify-between items-center mb-12">
@@ -424,6 +413,48 @@
     </div>
   </div>
 </header>
+
+<!-- ===== باقي محتوى الصفحة ===== -->
+<!-- ... جميع الأقسام الأخرى ... -->
+
+<!-- ===== جافاسكريبت تبديل اللغة ===== -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const langToggle = document.getElementById('langToggle');
+    const langLabel = document.getElementById('langLabel');
+    let isEnglish = false;
+    
+    // عناصر الترجمة
+    const translations = {
+      'header-title': {
+        ar: 'صانع محتوى تعليمي و PRO',
+        en: 'Educational Content Creator & PRO'
+      },
+      'about-title': {
+        ar: 'صانع محتوى تعليمي<br>و PRO',
+        en: 'Educational Content Creator<br>& PRO'
+      },
+      'about-text': {
+        ar: 'أنا تامر ربيع، صانع محتوى تعليمي و PRO.',
+        en: 'I am Tamer Rabie, Educational Content Creator & PRO.'
+      }
+      // يمكنك إضافة المزيد من الترجمة هنا
+    };
+    
+    langToggle.addEventListener('click', function() {
+      isEnglish = !isEnglish;
+      langLabel.textContent = isEnglish ? 'العربية' : 'English';
+      
+      // تطبيق الترجمة على العناصر
+      document.querySelectorAll('[data-translate]').forEach(el => {
+        const key = el.getAttribute('data-translate');
+        if (translations[key]) {
+          el.innerHTML = isEnglish ? translations[key].en : translations[key].ar;
+        }
+      });
+    });
+  });
+</script>
 
 <main>
 
