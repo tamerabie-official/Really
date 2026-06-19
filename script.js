@@ -1,12 +1,991 @@
-// =============================================
-// الملف: script.js
-// الوصف: جميع الأكواد التفاعلية للصفحة
-// =============================================
-
-// انتظار تحميل الصفحة بالكامل
-document.addEventListener('DOMContentLoaded', function() {
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تامر ربيع | صانع محتوى تعليمي و PRO</title>
   
-  // ===== 1. القائمة الجانبية (Mobile Menu) =====
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- ===== CSS داخلي بالكامل ===== -->
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #11111a;
+      --bg-card: #16161f;
+      --gold: #c9a961;
+      --gold-light: #e8c987;
+      --gold-dark: #8a6f3d;
+      --cream: #f5f1e8;
+      --tp: #ede8d8;
+      --ts: #9a948a;
+      --tm: #6b6660;
+      --border: rgba(201, 169, 97, 0.18);
+      --border-h: rgba(201, 169, 97, 0.4);
+    }
+    
+    * { -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      background-color: var(--bg-primary);
+      color: var(--tp);
+      font-family: 'Tajawal', sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* ===== زر تبديل اللغة ===== */
+    .lang-toggle {
+      background: linear-gradient(135deg, #e8c987, #c9a961);
+      color: #0a0a0f;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(201,169,97,0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Tajawal', sans-serif;
+    }
+    .lang-toggle:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(201,169,97,0.5);
+    }
+    .lang-toggle img {
+      width: 20px;
+      height: 20px;
+    }
+    
+    /* ===== صورة البروفايل ===== */
+    .profile-img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 0.75rem;
+    }
+    
+    .bg-orbs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.35; animation: float 22s infinite ease-in-out; }
+    .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(201,169,97,0.5), transparent 70%); top: -10%; right: -10%; }
+    .orb-2 { width: 450px; height: 450px; background: radial-gradient(circle, rgba(180,90,60,0.3), transparent 70%); top: 40%; left: -10%; animation-delay: -7s; }
+    .orb-3 { width: 380px; height: 380px; background: radial-gradient(circle, rgba(201,169,97,0.4), transparent 70%); bottom: -5%; right: 25%; animation-delay: -14s; }
+    
+    @keyframes float {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      33% { transform: translate(40px,-60px) scale(1.1); }
+      66% { transform: translate(-30px,40px) scale(0.95); }
+    }
+    
+    .pattern-overlay {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none'%3E%3Cg fill='%23c9a961' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    main, header, footer { position: relative; z-index: 2; }
+    
+    .gold-text {
+      background: linear-gradient(135deg, #e8c987 0%, #c9a961 50%, #8a6f3d 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-bg { background: linear-gradient(135deg, #e8c987 0%, #c9a961 50%, #8a6f3d 100%); }
+    
+    .nav-link { position: relative; transition: color 0.3s ease; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -6px; right: 0;
+      width: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .nav-link:hover, .nav-link.active { color: var(--gold-light); }
+    
+    .card {
+      background: linear-gradient(145deg, rgba(22,22,31,0.9) 0%, rgba(17,17,26,0.9) 100%);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+      position: relative; overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+    .card::before {
+      content: ''; position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(201,169,97,0.08), transparent);
+      transition: left 0.7s ease;
+    }
+    .card:hover::before { left: 100%; }
+    .card:hover {
+      border-color: var(--border-h);
+      transform: translateY(-6px);
+      box-shadow: 0 25px 50px -12px rgba(201,169,97,0.18), 0 0 0 1px rgba(201,169,97,0.08);
+    }
+    
+    .btn-gold {
+      background: linear-gradient(135deg, #e8c987 0%, #c9a961 100%);
+      color: #0a0a0f; font-weight: 700;
+      transition: all 0.3s ease;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 15px 35px -5px rgba(201,169,97,0.5); }
+    
+    .btn-outline {
+      border: 1px solid var(--gold); color: var(--gold-light);
+      transition: all 0.3s ease; background: transparent; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-outline:hover { background: var(--gold); color: #0a0a0f; transform: translateY(-2px); }
+    
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      color: var(--gold); font-size: 0.8rem; letter-spacing: 0.3em;
+      font-weight: 500; margin-bottom: 1.25rem;
+    }
+    .section-label::before, .section-label::after {
+      content: ''; width: 30px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .section-label::after { background: linear-gradient(90deg, var(--gold), transparent); }
+    
+    .divider { display: flex; align-items: center; justify-content: center; gap: 1rem; }
+    .divider .line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); max-width: 100px; }
+    
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s ease, transform 0.9s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    
+    .hero-verse {
+      font-family: 'Amiri', serif; color: var(--cream);
+      line-height: 2.3; font-size: clamp(1.15rem, 2.5vw, 1.6rem);
+      font-weight: 400;
+    }
+    .hero-name {
+      font-family: 'Reem Kufi', sans-serif;
+      font-size: clamp(3.5rem, 11vw, 8rem);
+      font-weight: 700; letter-spacing: -0.02em; line-height: 0.95;
+    }
+    
+    .social-icon {
+      width: 60px; height: 60px; border-radius: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(145deg, rgba(22,22,31,0.9), rgba(17,17,26,0.9));
+      border: 1px solid var(--border); color: var(--ts);
+      transition: all 0.3s ease; font-size: 1.35rem;
+      position: relative; overflow: hidden;
+    }
+    .social-icon::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(201,169,97,0.15), transparent);
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .social-icon:hover { transform: translateY(-5px) scale(1.05); border-color: var(--gold); color: var(--gold-light); box-shadow: 0 15px 30px -5px rgba(201,169,97,0.3); }
+    .social-icon:hover::after { opacity: 1; }
+    
+    .service-icon {
+      width: 72px; height: 72px; border-radius: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(201,169,97,0.18), rgba(201,169,97,0.05));
+      border: 1px solid var(--border); color: var(--gold);
+      font-size: 1.85rem; margin-bottom: 1.5rem;
+    }
+    
+    .puzzle-input {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      color: var(--tp); transition: all 0.3s ease;
+    }
+    .puzzle-input:focus {
+      outline: none; border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,169,97,0.15);
+    }
+    
+    .back-to-top {
+      position: fixed; bottom: 2rem; left: 2rem;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: var(--bg-primary);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: all 0.3s ease; z-index: 100;
+      cursor: pointer; border: none;
+      box-shadow: 0 10px 30px -5px rgba(201,169,97,0.5);
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; }
+    .back-to-top:hover { transform: translateY(-3px); }
+    
+    .photo-frame {
+      position: relative; padding: 10px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      border-radius: 1.25rem;
+    }
+    .photo-frame::before {
+      content: ''; position: absolute; inset: 10px;
+      border: 1px solid rgba(0,0,0,0.25);
+      border-radius: 0.9rem; pointer-events: none; z-index: 2;
+    }
+    
+    .glass {
+      background: rgba(10,10,15,0.7);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .mobile-menu { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .mobile-menu.open { transform: translateX(0); }
+    
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .shimmer-text {
+      background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-light) 50%, var(--gold-dark) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 6s linear infinite;
+    }
+    
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--bg-primary);
+      padding: 1rem 1.75rem; border-radius: 0.75rem;
+      font-weight: 700;
+      transform: translateY(150%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      z-index: 1000;
+      box-shadow: 0 15px 35px -5px rgba(201,169,97,0.5);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .toast.show { transform: translateY(0); }
+    
+    .gallery-item {
+      position: relative; overflow: hidden; border-radius: 1rem;
+      border: 1px solid var(--border);
+      transition: all 0.4s ease;
+    }
+    .gallery-item img { transition: transform 0.6s ease; width: 100%; height: 100%; object-fit: cover; }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-item::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(10,10,15,0.85) 100%);
+      opacity: 0; transition: opacity 0.4s ease;
+    }
+    .gallery-item:hover::after { opacity: 1; }
+    .gallery-item:hover { border-color: var(--border-h); transform: translateY(-4px); }
+    
+    .gallery-caption {
+      position: absolute; bottom: 1rem; right: 1rem; left: 1rem;
+      color: var(--cream); font-size: 0.875rem;
+      opacity: 0; transform: translateY(10px);
+      transition: all 0.4s ease; z-index: 3;
+    }
+    .gallery-item:hover .gallery-caption { opacity: 1; transform: translateY(0); }
+    
+    .contact-pill {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.25rem 1.5rem; border-radius: 1rem;
+      background: linear-gradient(145deg, rgba(22,22,31,0.9), rgba(17,17,26,0.9));
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    .contact-pill:hover {
+      border-color: var(--border-h);
+      transform: translateX(-6px);
+      box-shadow: 0 15px 30px -10px rgba(201,169,97,0.2);
+    }
+    .contact-pill .icon-box {
+      width: 52px; height: 52px; border-radius: 0.75rem;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(201,169,97,0.18), rgba(201,169,97,0.05));
+      color: var(--gold); font-size: 1.25rem; flex-shrink: 0;
+    }
+    
+    .stat-num { font-family: 'Reem Kufi', sans-serif; }
+    
+    .verse-frame {
+      position: relative; padding: 2.5rem 2rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .verse-frame::before, .verse-frame::after {
+      content: ''; position: absolute; width: 60px; height: 60px;
+      border: 1px solid var(--gold); opacity: 0.6;
+    }
+    .verse-frame::before { top: -1px; right: -1px; border-bottom: none; border-left: none; border-radius: 0 1rem 0 0; }
+    .verse-frame::after { bottom: -1px; left: -1px; border-top: none; border-right: none; border-radius: 0 0 0 1rem; }
+    
+    /* ===== تحسينات عرض الموبايل ===== */
+    @media (max-width: 768px) {
+      /* تقليل الفراغات بين الأقسام */
+      section {
+        padding-top: 2.5rem !important;
+        padding-bottom: 2.5rem !important;
+      }
+      
+      /* تقليل الحشوات الداخلية للبطاقات */
+      .card {
+        padding: 1.25rem !important;
+      }
+      
+      /* تقليل حجم النصوص */
+      .hero-name {
+        font-size: clamp(2.5rem, 10vw, 3.5rem) !important;
+      }
+      .hero-verse {
+        font-size: 1rem !important;
+        line-height: 1.8 !important;
+      }
+      .text-4xl {
+        font-size: 2rem !important;
+      }
+      .text-5xl {
+        font-size: 2.2rem !important;
+      }
+      .shimmer-text {
+        font-size: 1rem !important;
+      }
+      
+      /* تحسين تخطيط الشبكات */
+      .grid {
+        gap: 1rem !important;
+      }
+      .grid-cols-2 {
+        grid-template-columns: 1fr !important;
+      }
+      .lg\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+      }
+      .md\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+      }
+      .sm\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+      }
+      
+      /* تحسين صورة البروفايل */
+      .profile-img {
+        height: 280px !important;
+      }
+      
+      /* تحسين معرض الصور */
+      .gallery-item {
+        aspect-ratio: 1/1 !important;
+      }
+      .gallery-item img {
+        height: 100% !important;
+      }
+      
+      /* تحسين أزرار التواصل */
+      .contact-pill {
+        padding: 0.75rem 1rem !important;
+      }
+      
+      /* تقليل الهوامش */
+      .mb-16 {
+        margin-bottom: 1.5rem !important;
+      }
+      .mb-10 {
+        margin-bottom: 1.25rem !important;
+      }
+      .mb-8 {
+        margin-bottom: 1rem !important;
+      }
+      .mb-6 {
+        margin-bottom: 0.75rem !important;
+      }
+      .gap-16 {
+        gap: 1.5rem !important;
+      }
+      .gap-8 {
+        gap: 1rem !important;
+      }
+      
+      /* تحسين صورة اليوم */
+      .h-\[400px\] {
+        height: 250px !important;
+      }
+      .lg\:h-\[480px\] {
+        height: 250px !important;
+      }
+      
+      /* تحسين أيقونات الخدمات */
+      .service-icon {
+        width: 56px !important;
+        height: 56px !important;
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem !important;
+      }
+      
+      /* تحسين القائمة الجانبية */
+      .mobile-menu {
+        width: 280px !important;
+      }
+      
+      /* تحسين زر اللغة */
+      .lang-toggle {
+        font-size: 0.7rem !important;
+        padding: 0.3rem 0.7rem !important;
+      }
+      .lang-toggle img {
+        width: 16px !important;
+        height: 16px !important;
+      }
+      
+      /* تحسين شعار التحدي */
+      .max-w-md {
+        max-width: 100% !important;
+      }
+      
+      /* تحسين زر التحدي */
+      .px-10 {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+      }
+      .py-4 {
+        padding-top: 0.75rem !important;
+        padding-bottom: 0.75rem !important;
+      }
+      .text-lg {
+        font-size: 1rem !important;
+      }
+      
+      /* تقليل حجم الشعار في الهيدر */
+      .w-11 {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+      }
+      
+      /* تحسين زر العودة للأعلى */
+      .back-to-top {
+        width: 40px !important;
+        height: 40px !important;
+        bottom: 1rem !important;
+        left: 1rem !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== كل محتوى الصفحة هنا ===== -->
+  <!-- ... -->
+
+  <!-- ===== ربط ملف الجافاسكريبت الخارجي ===== -->
+  <script src="script.js"></script>
+</body>
+</html>
+
+<!-- ===== HEADER ===== -->
+<class="fixed top-0 inset-x-0 z-50 glass">
+  <nav class="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
+    <a href="#home" class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-xl gold-bg flex items-center justify-center font-bold text-lg shadow-lg" style="color: var(--bg-primary);">
+        <span style="font-family: 'Reem Kufi', sans-serif;">ت</span>
+      </div>
+      <div class="hidden sm:block">
+        <div style="font-family: 'Reem Kufi', sans-serif; font-size: 1.125rem; font-weight: 700;" class="gold-text leading-none">تامر ربيع</div>
+        <div class="text-[10px] tracking-widest mt-0.5" style="color: var(--ts);">TAMER RABIE</div>
+        <div class="text-[9px] tracking-wider mt-0.5 gold-text font-bold">صانع محتوى تعليمي و PRO</div>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-9 font-tajawal text-sm font-medium">
+      <a href="#about" class="nav-link" style="color: var(--ts);">عني</a>
+      <a href="#mission" class="nav-link" style="color: var(--ts);">رسالتي</a>
+      <a href="#hobbies" class="nav-link" style="color: var(--ts);">هواياتي</a>
+      <a href="#works" class="nav-link" style="color: var(--ts);">أعمالي</a>
+      <a href="#photo-day" class="nav-link" style="color: var(--ts);">صورة اليوم</a>
+      <a href="#services" class="nav-link" style="color: var(--ts);">خدماتي</a>
+      <a href="#contact" class="nav-link" style="color: var(--ts);">تواصل</a>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <a href="#contact" class="hidden md:inline-flex btn-gold px-5 py-2.5 rounded-lg text-sm">
+        <i class="fa-solid fa-paper-plane"></i> تواصل معي
+      </a>
+      <button id="menu-btn" class="lg:hidden text-2xl" style="color: var(--gold);" aria-label="القائمة">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+  
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu lg:hidden fixed top-0 right-0 h-screen w-72 z-50 p-8" style="background: var(--bg-secondary); border-left: 1px solid var(--border);">
+    <div class="flex justify-between items-center mb-12">
+      <span style="font-family: 'Reem Kufi', sans-serif; font-size: 1.25rem;" class="gold-text">القائمة</span>
+      <button id="close-btn" class="text-2xl" style="color: var(--gold);" aria-label="إغلاق">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="flex flex-col gap-7 font-tajawal text-lg">
+      <a href="#about" class="mobile-link nav-link" style="color: var(--ts);">عني</a>
+      <a href="#mission" class="mobile-link nav-link" style="color: var(--ts);">رسالتي</a>
+      <a href="#hobbies" class="mobile-link nav-link" style="color: var(--ts);">هواياتي</a>
+      <a href="#works" class="mobile-link nav-link" style="color: var(--ts);">أعمالي</a>
+      <a href="#photo-day" class="mobile-link nav-link" style="color: var(--ts);">صورة اليوم</a>
+      <a href="#services" class="mobile-link nav-link" style="color: var(--ts);">خدماتي</a>
+      <a href="#contact" class="mobile-link nav-link" style="color: var(--ts);">تواصل</a>
+    </div>
+    <div class="absolute bottom-8 right-8 left-8">
+      <a href="#contact" class="mobile-link btn-gold w-full justify-center px-5 py-3 rounded-lg">
+        <i class="fa-solid fa-paper-plane"></i> ابدأ التواصل
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== HERO ===== -->
+  <section id="home" class="hero-section min-h-screen flex items-center justify-center px-5 lg:px-8 pt-28 pb-16 relative">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="flex items-center justify-center gap-4 mb-10 reveal">
+        <div class="h-px w-16" style="background: linear-gradient(90deg, transparent, var(--gold));"></div>
+        <i class="fa-solid fa-star-and-crescent text-xl" style="color: var(--gold); opacity: 0.7;"></i>
+        <div class="h-px w-16" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
+      </div>
+
+      <div class="max-w-3xl mx-auto mb-14 reveal">
+        <div class="verse-frame">
+          <p class="hero-verse mb-3">﴿ قَالَ رَبِّ اشْرَحْ لِي صَدْرِي ۝ وَيَسِّرْ لِي أَمْرِي ۝</p>
+          <p class="hero-verse">وَاحْلُلْ عُقْدَةً مِّن لِّسَانِي ۝ يَفْقَهُوا قَوْلِي ﴾</p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <h1 class="hero-name mb-5">
+          <span class="gold-text">تامر</span>
+          <span style="color: var(--tp);">ربيع</span>
+        </h1>
+        <p class="font-tajawal text-base md:text-lg mb-3 tracking-wider" style="color: var(--ts);">TAMER RABIE</p>
+        <div class="divider max-w-xs mx-auto my-6">
+          <div class="line"></div>
+          <i class="fa-solid fa-feather-pointed" style="color: var(--gold);"></i>
+          <div class="line"></div>
+        </div>
+        <p class="font-tajawal text-base md:text-xl shimmer-text font-medium">صانع محتوى تعليمي · مدرّس لغة إنجليزية · مصوّر فوتوغرافي</p>
+        <p class="font-tajawal text-sm md:text-base mt-2 gold-text font-bold">PRO</p>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 mt-12 reveal">
+        <a href="#works" class="btn-gold px-8 py-3.5 rounded-xl"><i class="fa-solid fa-briefcase"></i> استكشف أعمالي</a>
+        <a href="#contact" class="btn-outline px-8 py-3.5 rounded-xl"><i class="fa-solid fa-envelope"></i> تواصل معي</a>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 hidden md:flex">
+      <span class="text-[11px] font-tajawal tracking-widest" style="color: var(--tm);">اكتشف المزيد</span>
+      <div class="w-6 h-10 rounded-full border flex items-start justify-center p-1.5" style="border-color: var(--gold); opacity: 0.5;">
+        <div class="w-1 h-2 rounded-full animate-bounce gold-bg"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="py-24 lg:py-32 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal order-2 lg:order-1">
+          <div class="relative">
+            <div class="photo-frame">
+              <img src="profile.jpg" alt="تامر ربيع" class="w-full h-[500px] object-cover rounded-xl">
+            </div>
+            <div class="absolute -bottom-6 -left-6 card p-5 max-w-[220px] hidden md:block">
+              <div class="flex items-center gap-3"><div class="w-12 h-12 rounded-lg gold-bg flex items-center justify-center" style="color: var(--bg-primary);">
+                  <i class="fa-solid fa-graduation-cap text-xl"></i>
+                </div>
+                <div>
+                  <div class="text-xs mb-0.5" style="color: var(--ts);">خريج</div>
+                  <div class="text-sm font-bold leading-tight" style="color: var(--tp);">جامعة جنوب الوادي<br>قسم اللغة الإنجليزية</div>
+                </div>
+              </div>
+            </div>
+            <div class="absolute -top-5 -right-5 w-24 h-24 rounded-2xl border opacity-40 hidden md:block" style="border-color: var(--gold);"></div>
+          </div>
+        </div>
+
+        <div class="reveal order-1 lg:order-2">
+          <span class="section-label"><span style="font-family: 'Reem Kufi', sans-serif;">عني</span></span>
+          <h2 class="font-kufi text-4xl md:text-5xl font-bold mb-6 leading-tight" style="font-family: 'Reem Kufi', sans-serif;">
+            صانع محتوى <span class="gold-text">تعليمي</span><br>وشغوفٌ بنقل المعرفة
+          </h2>
+          <p class="text-lg leading-relaxed mb-6" style="color: var(--ts);">
+            أنا <span style="color: var(--gold-light); font-weight: 700;">تامر ربيع</span>، صانع محتوى تعليمي متخصص في تعليم اللغة الإنجليزية، وأعمل كمستقل (Freelancer) في تقديم المحتوى التعليمي والخدمات اللغوية.
+          </p>
+          <p class="text-base leading-relaxed mb-8" style="color: var(--ts);">
+            حاصل على درجة البكالوريوس من <span style="color: var(--tp); font-weight: 500;">جامعة جنوب الوادي – قسم اللغة الإنجليزية</span>، وأؤمن أن التعليم رسالة قبل أن يكون مهنة، وأن كل طالب يستحق فرصة حقيقية لإتقان لغة جديدة.
+          </p>
+          <div class="grid grid-cols-2 gap-4 mb-8">
+            <div class="card p-5">
+              <div class="text-3xl font-bold gold-text stat-num">+5</div>
+              <div class="text-sm mt-1" style="color: var(--ts);">سنوات خبرة</div>
+            </div>
+            <div class="card p-5">
+              <div class="text-3xl font-bold gold-text stat-num">+1000</div>
+              <div class="text-sm mt-1" style="color: var(--ts);">طالب وطالبة</div>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <span class="px-4 py-2 rounded-full text-sm font-medium" style="background: rgba(201,169,97,0.1); border: 1px solid var(--border); color: var(--gold-light);">
+              <i class="fa-solid fa-chalkboard-user ml-1.5"></i> صانع محتوى تعليمي
+            </span>
+            <span class="px-4 py-2 rounded-full text-sm font-medium" style="background: rgba(201,169,97,0.1); border: 1px solid var(--border); color: var(--gold-light);">
+              <i class="fa-solid fa-laptop-code ml-1.5"></i> Freelancer
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MISSION ===== -->
+  <section id="mission" class="py-24 lg:py-32 px-5 lg:px-8 relative">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="reveal">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 gold-text" style="font-family: 'Reem Kufi', sans-serif;">رسالتي</h2>
+        <span class="section-label"><span style="font-family: 'Reem Kufi', sans-serif;">رسالتي</span></span>
+        <i class="fa-solid fa-quote-right text-5xl mb-8 block" style="color: var(--gold); opacity: 0.4;"></i>
+        <blockquote class="font-amiri text-2xl md:text-4xl leading-relaxed mb-8" style="color: var(--cream);">
+          اللغة الإنجليزية ليست مجرد <span class="gold-text font-bold">لغة</span>،<br>بل هي <span class="gold-text font-bold">طريقة تفكير</span>.
+        </blockquote>
+        <div class="divider max-w-md mx-auto mb-8">
+          <div class="line"></div>
+          <i class="fa-solid fa-feather-pointed" style="color: var(--gold);"></i>
+          <div class="line"></div>
+        </div>
+        <blockquote class="font-amiri text-xl md:text-3xl leading-relaxed" style="color: var(--ts);">
+          الهوايات هي <span class="gold-text font-bold">مُتنفّس الروح</span> وملاذ الإنسان<br>للهروب من ضغوط الحياة.
+        </blockquote>
+        <div class="mt-12 flex items-center justify-center gap-4">
+          <div class="h-px w-12" style="background: linear-gradient(90deg, transparent, var(--gold));"></div>
+          <span style="font-family: 'Reem Kufi', sans-serif; font-size: 0.875rem; color: var(--gold);">تامر ربيع</span>
+          <div class="h-px w-12" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOBBIES ===== -->
+  <section id="hobbies" class="py-24 lg:py-32 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <span class="section-label"><span style="font-family: 'Reem Kufi', sans-serif;">هواياتي</span></span>
+        <h2 class="font-kufi text-4xl md:text-5xl font-bold mb-5" style="font-family: 'Reem Kufi', sans-serif;">
+          عالَمي عبر <span class="gold-text">عدسة الكاميرا</span>
+        </h2>
+        <p class="max-w-2xl mx-auto text-lg leading-relaxed" style="color: var(--ts);">
+          التصوير الفوتوغرافي هو هوايتي التي أعشقها، وأرى العالم بعدسة كاميرتي. كل لقطة هي قصة، وكل إطار يحمل لحظة لا تتكرر.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 reveal">
+        <div class="gallery-item aspect-square md:row-span-2 md:aspect-auto">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800&auto=format&fit=crop" alt="منظر طبيعي">
+          <div class="gallery-caption"><i class="fa-solid fa-mountain-sun ml-2"></i> الجبال عند الغروب</div>
+        </div>
+        <div class="gallery-item aspect-square">
+          <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=600&auto=format&fit=crop" alt="شارع قديم">
+          <div class="gallery-caption"><i class="fa-solid fa-road ml-2"></i> شوارع تحكي قصصاً</div>
+        </div>
+        <div class="gallery-item aspect-square">
+          <img src="https://images.unsplash.com/photo-1485470733090-0aae1788d5af?q=80&w=600&auto=format&fit=crop" alt="غابة">
+          <div class="gallery-caption"><i class="fa-solid fa-tree ml-2"></i> هدوء الطبيعة</div>
+        </div>
+        <div class="gallery-item aspect-square md:row-span-2 md:aspect-auto">
+          <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=800&auto=format&fit=crop" alt="بحيرة">
+          <div class="gallery-caption"><i class="fa-solid fa-water ml-2"></i> انعكاسات السكون</div>
+        </div>
+        <div class="gallery-item aspect-square">
+          <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=600&auto=format&fit=crop" alt="حقول">
+          <div class="gallery-caption"><i class="fa-solid fa-seedling ml-2"></i> امتداد الأرض</div>
+        </div>
+        <div class="gallery-item aspect-square">
+          <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=600&auto=format&fit=crop" alt="غابة الصنوبر">
+          <div class="gallery-caption"><i class="fa-solid fa-tree ml-2"></i> بين الأشجار</div>
+        </div>
+      </div>
+      <div class="mt-12 text-center reveal">
+        <p class="font-amiri text-xl md:text-2xl italic" style="color: var(--gold-light);">
+          «أرى العالم بعدسة كاميرتي، وألتقط من الحياة أجمل لحظاتها»
+        </p>
+      </div>
+    </div>
+  </section>
+<!-- ===== WORKS ===== -->
+<section id="works" class="py-24 lg:py-32 px-5 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <span class="section-label"><span style="font-family: 'Reem Kufi', sans-serif;" data-translate="works-label">أعمالي</span></span>
+      <h2 class="font-kufi text-4xl md:text-5xl font-bold mb-5" style="font-family: 'Reem Kufi', sans-serif;">
+        <span data-translate="works-title-1">مشاريع</span> <span class="gold-text" data-translate="works-title-2">أفتخر بها</span>
+      </h2>
+      <p class="max-w-2xl mx-auto text-lg leading-relaxed" style="color: var(--ts);" data-translate="works-desc">
+        أعمال تعليمية ورقمية أنجزتها بشغف لمساعدة المتعلمين على إتقان اللغة الإنجليزية.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- ===== YouTube Channel ===== -->
+      <div class="card p-8 reveal">
+        <div class="flex items-start justify-between mb-6">
+          <div class="service-icon"><i class="fa-brands fa-youtube"></i></div>
+          <span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(255,80,80,0.1); color: #ff5050; border: 1px solid rgba(255,80,80,0.3);" data-translate="works-youtube-badge">قناة يوتيوب</span>
+        </div>
+        <h3 class="font-kufi text-2xl font-bold mb-3" style="font-family: 'Reem Kufi', sans-serif;">English Learning Hub</h3>
+        <p class="leading-relaxed mb-6" style="color: var(--ts);" data-translate="works-youtube-desc">
+          قناة تعليمية على اليوتيوب تقدم محتوى متنوعاً لتعلم اللغة الإنجليزية بطريقة مبسطة وممتعة، تشمل دروس قواعد، محادثات، ونصائح عملية.
+        </p>
+        <div class="flex items-center gap-3 mb-6 text-sm">
+          <span class="flex items-center gap-1.5" style="color: var(--ts);"><i class="fa-solid fa-video" style="color: var(--gold);"></i> <span data-translate="works-youtube-tag-1">دروس مرئية</span></span>
+          <span class="flex items-center gap-1.5" style="color: var(--ts);"><i class="fa-solid fa-users" style="color: var(--gold);"></i> <span data-translate="works-youtube-tag-2">للمتعلمين</span></span>
+        </div>
+        <a href="https://youtube.com/@englishhub-f1z?si=EWb90fKYBeJi-S7H" target="_blank" rel="noopener" class="btn-gold px-6 py-3 rounded-lg w-full justify-center" data-translate="works-youtube-btn">
+          <i class="fa-brands fa-youtube"></i> شاهد القناة
+        </a>
+      </div>
+
+      <!-- ===== Challenge Section ===== -->
+      <div class="card p-8 lg:p-10 reveal" style="border: 2px solid rgba(201, 169, 97, 0.3); background: linear-gradient(145deg, rgba(22,22,31,0.95), rgba(10,10,15,0.98)); position: relative; overflow: hidden;">
+        <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full" style="background: radial-gradient(circle, rgba(201,169,97,0.06), transparent 70%);"></div>
+        <div class="absolute -bottom-20 -left-20 w-64 h-64 rounded-full" style="background: radial-gradient(circle, rgba(201,169,97,0.04), transparent 70%);"></div>
+        <div class="relative z-10 text-center">
+          <div class="flex justify-center mb-6">
+            <img src="EnglishLH.svg" alt="English Learning Hub Challenge" class="w-full max-w-md h-auto" style="filter: drop-shadow(0 0 30px rgba(201,169,97,0.3)); display: block;">
+          </div>
+          <div class="mt-6">
+            <a href="https://tamerrabie8-cmyk.github.io/Professional-placement-test/" target="_blank" rel="noopener" 
+               class="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-full text-lg font-bold gold-bg transition-all duration-300 shadow-2xl hover:scale-105" 
+               style="color: var(--bg-primary); box-shadow: 0 0 50px rgba(201,169,97,0.4); min-width: 200px;" data-translate="works-challenge-btn">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>اضغط هنا</span>
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- ===== PHOTO OF THE DAY ===== -->
+  <section id="photo-day" class="py-24 lg:py-32 px-5 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 reveal">
+        <span class="section-label"><span style="font-family: 'Reem Kufi', sans-serif;">صورة اليوم</span></span>
+        <h2 class="font-kufi text-4xl md:text-5xl font-bold mb-5" style="font-family: 'Reem Kufi', sans-serif;">
+          لغز <span class="gold-text">الأسبوع</span>
+        </h2>
+        <p class="max-w-2xl mx-auto text-lg leading-relaxed" style="color: var(--ts);">
+          تأمل الصورة، حلّ اللغز بالإنجليزية، واختبر مهاراتك في الملاحظة واللغة معاً.
+        </p>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-10 items-center reveal">
+        <div class="relative">
+          <div class="photo-frame">
+            <img id="puzzle-image" src="https://images.unsplash.com/photo-1473507539-13eb9b7e8c2e?q=80&w=900&auto=format&fit=crop" alt="صورة الأسبوع" class="w-full h-[400px] lg:h-[480px] object-cover rounded-xl">
+          </div>
+          <div class="absolute -top-4 -right-4 px-4 py-2 rounded-full gold-bg text-sm font-bold shadow-lg" style="color: var(--bg-primary);">
+            <i class="fa-solid fa-camera-retro ml-1.5"></i> صورة الأسبوع
+          </div>
+        </div>
+        <div class="card p-8 lg:p-10">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: rgba(201,169,97,0.15); border: 1px solid var(--border);">
+              <i class="fa-solid fa-puzzle-piece" style="color: var(--gold);"></i>
+            </div>
+            <span class="text-sm font-medium tracking-wider" style="color: var(--gold);">RIDDLE OF THE WEEK</span>
+          </div>
+          <blockquote class="font-amiri italic text-xl md:text-2xl leading-relaxed mb-8" style="color: var(--cream);" id="riddle-text">
+            "I stand tall by the sea, guiding ships through the dark. My light cuts through the fog, yet I never move. What am I?"
+          </blockquote>
+          <div class="mb-6">
+            <label class="block text-sm font-medium mb-3" style="color: var(--ts);">
+              <i class="fa-solid fa-pen ml-1.5" style="color: var(--gold);"></i>
+              اكتب إجابتك بالإنجليزية:
+            </label>
+            <input id="puzzle-answer" type="text" placeholder="Type your answer here..." class="puzzle-input w-full px-5 py-3.5 rounded-xl font-medium" dir="ltr">
+          </div>
+          <button id="submit-answer" class="btn-gold px-6 py-3 rounded-lg w-full justify-center mb-4">
+            <i class="fa-solid fa-paper-plane"></i> إرسال الإجابة
+          </button>
+          <div id="feedback" class="text-sm text-center" style="min-height: 24px;"></div>
+          <div class="mt-6 pt-6 border-t flex items-center justify-between text-xs" style="border-color: var(--border); color: var(--tm);">
+            <span><i class="fa-regular fa-clock ml-1"></i> يتجدد أسبوعياً</span>
+            <span><i class="fa-solid fa-language ml-1"></i> English Only</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services" class="py-24 lg:py-32 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <span class="section-label"><span style="font-family: 'Reem Kufi', sans-serif;">خدماتي</span></span>
+        <h2 class="font-kufi text-4xl md:text-5xl font-bold mb-5" style="font-family: 'Reem Kufi', sans-serif;">
+          كيف يمكنني <span class="gold-text">مساعدتك</span>
+        </h2>
+        <p class="max-w-2xl mx-auto text-lg leading-relaxed" style="color: var(--ts);">
+          خدمات تعليمية مصممة بعناية لتناسب احتياجاتك وتأخذك إلى المستوى التالي في اللغة الإنجليزية.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="card p-7 reveal text-center">
+          <div class="service-icon mx-auto"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h3 class="font-kufi text-xl font-bold mb-3" style="font-family: 'Reem Kufi', sans-serif;">كورسات لغة إنجليزية</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--ts);">كورسات متكاملة لجميع المستويات، من المبتدئ إلى المتقدم، بمنهج عملي وممتع.</p>
+        </div>
+        <div class="card p-7 reveal text-center">
+          <div class="service-icon mx-auto"><i class="fa-solid fa-user-gear"></i></div>
+          <h3 class="font-kufi text-xl font-bold mb-3" style="font-family: 'Reem Kufi', sans-serif;">استشارات فردية</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--ts);">جلسات استشارية خاصة لتقييم مستواك ووضع خطة تعلم تناسب أهدافك الشخصية والمهنية.</p>
+        </div>
+        <div class="card p-7 reveal text-center">
+          <div class="service-icon mx-auto"><i class="fa-solid fa-comments"></i></div>
+          <h3 class="font-kufi text-xl font-bold mb-3" style="font-family: 'Reem Kufi', sans-serif;">جلسات محادثة</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--ts);">تدريب عملي على المحادثة لبناء الثقة وتطوير مهارات التحدث والاستماع بطلاقة.</p>
+        </div>
+        <div class="card p-7 reveal text-center">
+          <div class="service-icon mx-auto"><i class="fa-solid fa-book-open"></i></div>
+          <h3 class="font-kufi text-xl font-bold mb-3" style="font-family: 'Reem Kufi', sans-serif;">دروس المرحلة الإعدادية</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--ts);">دروس خاصة لطلاب المرحلة الإعدادية وفق المنهج الدراسي، مع تبسيط وشرح وافٍ.</p>
+        </div>
+      </div>
+      <div class="text-center mt-12 reveal">
+        <a href="#contact" class="btn-gold px-8 py-4 rounded-xl"><i class="fa-solid fa-handshake"></i> احجز خدمتك الآن</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="py-24 lg:py-32 px-5 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <span class="section-label"><span style="font-family: 'Reem Kufi', sans-serif;">التواصل الرسمي</span></span>
+        <h2 class="font-kufi text-4xl md:text-5xl font-bold mb-5" style="font-family: 'Reem Kufi', sans-serif;">
+          لنبادر <span class="gold-text">بالتواصل</span>
+        </h2>
+        <p class="max-w-2xl mx-auto text-lg leading-relaxed" style="color: var(--ts);">
+          سواء كنت طالباً، أولياء أمور، أو صاحب مشروع، أنا هنا للإجابة على استفساراتك.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-5 mb-12">
+        <a href="mailto:Mr.tamer2026@outlook.com" class="contact-pill reveal">
+          <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
+          <div class="flex-1 min-w-0">
+            <div class="text-xs mb-1" style="color: var(--tm);">البريد الإلكتروني</div>
+            <div class="font-medium truncate" style="color: var(--tp);" dir="ltr">Mr.tamer2026@outlook.com</div>
+          </div>
+          <i class="fa-solid fa-arrow-left" style="color: var(--gold);"></i>
+        </a>
+        <a href="tel:+201131413209" class="contact-pill reveal">
+          <div class="icon-box"><i class="fa-solid fa-phone"></i></div>
+          <div class="flex-1 min-w-0">
+            <div class="text-xs mb-1" style="color: var(--tm);">الهاتف المحمول</div>
+            <div class="font-medium" style="color: var(--tp);" dir="ltr">+20 113 141 3209</div>
+          </div>
+          <i class="fa-solid fa-arrow-left" style="color: var(--gold);"></i>
+        </a>
+        <a href="https://wa.me/201131413209" target="_blank" rel="noopener" class="contact-pill reveal">
+          <div class="icon-box"><i class="fa-brands fa-whatsapp"></i></div>
+          <div class="flex-1 min-w-0">
+            <div class="text-xs mb-1" style="color: var(--tm);">واتساب</div>
+            <div class="font-medium" style="color: var(--tp);" dir="ltr">+20 113 141 3209</div>
+          </div>
+          <i class="fa-solid fa-arrow-left" style="color: var(--gold);"></i>
+        </a>
+        <a href="https://t.me/Tamerelnoby" target="_blank" rel="noopener" class="contact-pill reveal">
+          <div class="icon-box"><i class="fa-brands fa-telegram"></i></div>
+          <div class="flex-1 min-w-0">
+            <div class="text-xs mb-1" style="color: var(--tm);">تليجرام</div>
+            <div class="font-medium" style="color: var(--tp);" dir="ltr">@Tamerelnoby</div>
+          </div>
+          <i class="fa-solid fa-arrow-left" style="color: var(--gold);"></i>
+        </a>
+      </div>
+      <div class="card p-8 lg:p-10 reveal">
+        <div class="text-center mb-8">
+          <h3 class="font-kufi text-2xl font-bold mb-2" style="font-family: 'Reem Kufi', sans-serif;">
+            تابعني على <span class="gold-text">منصات التواصل</span>
+          </h3>
+          <p class="text-sm" style="color: var(--ts);">محتوى تعليمي يومي، نصائح، ولحظات من عالمي</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href="https://www.tiktok.com/@mr.rabie50?_r=1&_t=ZS-979RJTzIqkp" target="_blank" rel="noopener" class="social-icon group" title="TikTok"><i class="fa-brands fa-tiktok relative z-10"></i></a>
+          <a href="https://www.linkedin.com/in/tamerrabie62" target="_blank" rel="noopener" class="social-icon group" title="LinkedIn"><i class="fa-brands fa-linkedin-in relative z-10"></i></a>
+          <a href="https://www.facebook.com/share/196NNPq4QS/" target="_blank" rel="noopener" class="social-icon group" title="Facebook"><i class="fa-brands fa-facebook-f relative z-10"></i></a>
+          <a href="https://www.reddit.com/u/Happy-Alternative188/s/KvqAQadX5oX" target="_blank" rel="noopener" class="social-icon group" title="Reddit"><i class="fa-brands fa-reddit-alien relative z-10"></i></a>
+          <a href="https://x.com/TamerRabie62" target="_blank" rel="noopener" class="social-icon group" title="X (Twitter)"><i class="fa-brands fa-x-twitter relative z-10"></i></a>
+          <a href="https://www.instagram.com/tamer50523?igsh=MTBpaGZrNDk2ZHRpYg==" target="_blank" rel="noopener" class="social-icon group" title="Instagram"><i class="fa-brands fa-instagram relative z-10"></i></a>
+          <a href="https://youtube.com/@englishhub-f1z?si=EWb90fKYBeJi-S7H" target="_blank" rel="noopener" class="social-icon group" title="YouTube"><i class="fa-brands fa-youtube relative z-10"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="py-16 px-5 lg:px-8 border-t" style="border-color: var(--border);">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-10">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <div class="h-px w-16" style="background: linear-gradient(90deg, transparent, var(--gold));"></div>
+        <i class="fa-solid fa-star-and-crescent text-lg" style="color: var(--gold); opacity: 0.7;"></i>
+        <div class="h-px w-16" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
+      </div>
+      <div class="font-kufi text-2xl font-bold gold-text mb-3" style="font-family: 'Reem Kufi', sans-serif;">تامر ربيع</div>
+      <p class="text-sm mb-6" style="color: var(--ts);">صانع محتوى تعليمي · مدرّس لغة إنجليزية · مصور فوتوغرافي</p>
+      <div class="font-amiri text-lg mb-8" style="color: var(--cream);">﴿ وَقُل رَّبِّ زِدْنِي عِلْمًا ﴾</div>
+    </div>
+    <div class="pt-8 border-t flex flex-col md:flex-row items-center justify-between gap-4 text-sm" style="border-color: var(--border); color: var(--tm);">
+      <p>© 2025 تامر ربيع. جميع الحقوق محفوظة.</p>
+      <p class="flex items-center gap-2">صُنع بـ <i class="fa-solid fa-heart" style="color: var(--gold);"></i> وشغفٍ بالتعليم</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== BACK TO TOP ===== -->
+<button id="back-to-top" class="back-to-top" aria-label="العودة للأعلى">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- ===== TOAST ===== -->
+<div id="toast" class="toast">
+  <i class="fa-solid fa-check-circle"></i>
+  <span id="toast-msg">تم!</span>
+</div>
+
+<!-- =================================================== -->
+<!-- ===== JAVASCRIPT (داخلي بالكامل) ===== -->
+<!-- =================================================== -->
+<script>
+  // ===================================================
+  // 1. TOAST FUNCTION
+  // ===================================================
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toast-msg');
+    if (!toast || !toastMsg) return;
+    toastMsg.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(function() {
+      toast.classList.remove('show');
+    }, 3000);
+  }
+
+  // ===================================================
+  // 2. MOBILE MENU
+  // ===================================================
   const menuBtn = document.getElementById('menu-btn');
   const closeBtn = document.getElementById('close-btn');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -17,22 +996,21 @@ document.addEventListener('DOMContentLoaded', function() {
       mobileMenu.classList.add('open');
     });
   }
-
   if (closeBtn) {
     closeBtn.addEventListener('click', function() {
       mobileMenu.classList.remove('open');
     });
   }
-
   mobileLinks.forEach(function(link) {
     link.addEventListener('click', function() {
       mobileMenu.classList.remove('open');
     });
   });
 
-  // ===== 2. زر العودة للأعلى (Back to Top) =====
+  // ===================================================
+  // 3. BACK TO TOP
+  // ===================================================
   const backToTop = document.getElementById('back-to-top');
-
   window.addEventListener('scroll', function() {
     if (window.scrollY > 400) {
       backToTop.classList.add('visible');
@@ -40,16 +1018,17 @@ document.addEventListener('DOMContentLoaded', function() {
       backToTop.classList.remove('visible');
     }
   });
-
   if (backToTop) {
     backToTop.addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
-  // ===== 3. تأثير الظهور عند التمرير (Reveal on Scroll) =====
-  const revealEls = document.querySelectorAll('.reveal');
+  // ===================================================
   
+  // 4. REVEAL ON SCROLL
+  // ===================================================
+  const revealEls = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
@@ -57,19 +1036,16 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.unobserve(entry.target);
       }
     });
-  }, { 
-    threshold: 0.12, 
-    rootMargin: '0px 0px -60px 0px' 
-  });
-
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
   revealEls.forEach(function(el) {
     observer.observe(el);
   });
 
-  // ===== 4. تفعيل الروابط النشطة في شريط التنقل =====
+  // ===================================================
+  // 5. ACTIVE NAV LINKS
+  // ===================================================
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
-
   const navObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
@@ -79,18 +1055,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
     });
-  }, { 
-    threshold: 0.3 
-  });
-
+  }, { threshold: 0.3 });
   sections.forEach(function(s) {
     navObserver.observe(s);
   });
 
-  // ===== 5. نظام الألغاز الأسبوعي =====
+  // ===================================================
+  // 6. WEEKLY RIDDLE
+  // ===================================================
   const puzzles = [
     {
-      img: 'https://images.unsplash.com/photo-1473507539-13eb9b7e8c2e?q=80&w=900&auto=format&fit=crop',
+      img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=900&auto=format&fit=crop',
       text: '"I stand tall by the sea, guiding ships through the dark. My light cuts through the fog, yet I never move. What am I?"',
       answers: ['lighthouse', 'a lighthouse', 'light house']
     },
@@ -103,17 +1078,30 @@ document.addEventListener('DOMContentLoaded', function() {
       img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=900&auto=format&fit=crop',
       text: '"I drink without a mouth, I run without feet. I begin in the mountains and end in the sea. What am I?"',
       answers: ['river', 'a river']
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=900&auto=format&fit=crop',
+      text: '"I have keys but no locks, I have space but no room. You can enter but can\'t go outside. What am I?"',
+      answers: ['keyboard', 'a keyboard']
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=900&auto=format&fit=crop',
+      text: '"I have cities but no houses, forests but no trees, and water but no fish. What am I?"',
+      answers: ['map', 'a map']
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=900&auto=format&fit=crop',
+      text: '"The more you take, the more you leave behind. What am I?"',
+      answers: ['footsteps', 'footstep']
     }
   ];
 
-  // اختيار لغز بناءً على رقم الأسبوع
   const now = new Date();
   const weekNum = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24 * 7));
   const currentPuzzle = puzzles[weekNum % puzzles.length];
 
   const puzzleImage = document.getElementById('puzzle-image');
   const riddleText = document.getElementById('riddle-text');
-  
   if (puzzleImage && riddleText) {
     puzzleImage.src = currentPuzzle.img;
     riddleText.textContent = currentPuzzle.text;
@@ -126,404 +1114,135 @@ document.addEventListener('DOMContentLoaded', function() {
   if (submitBtn && answerInput && feedback) {
     submitBtn.addEventListener('click', function() {
       const userAnswer = answerInput.value.trim().toLowerCase();
-      
       if (!userAnswer) {
-        showFeedback('من فضلك اكتب إجابتك أولاً.', 'warn');
+        feedback.textContent = 'من فضلك اكتب إجابتك أولاً.';
+        feedback.style.color = '#fcd34d';
         return;
       }
-      
       const correct = currentPuzzle.answers.some(function(a) {
         return userAnswer.includes(a);
       });
-      
       if (correct) {
-        showFeedback('🎉 إجابة صحيحة! أحسنت، أنت ملاحظ جيد.', 'success');
+        feedback.textContent = '🎉 إجابة صحيحة! أحسنت!';
+        feedback.style.color = '#86efac';
         showToast('إجابة صحيحة! أحسنت');
       } else {
         const hint = currentPuzzle.answers[0];
-        showFeedback('إجابة غير صحيحة. فكّر مرة أخرى... (تلميح: ' + hint.length + ' أحرف)', 'error');
+        feedback.textContent = 'إجابة غير صحيحة. فكّر مرة أخرى... (تلميح: ' + hint.length + ' أحرف)';
+        feedback.style.color = '#fca5a5';
       }
     });
-
     answerInput.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        submitBtn.click();
-      }
+      if (e.key === 'Enter') submitBtn.click();
     });
   }
 
-  // ===== 6. دوال مساعدة =====
-  function showFeedback(msg, type) {
-    const feedbackEl = document.getElementById('feedback');
-    if (!feedbackEl) return;
-    
-    feedbackEl.textContent = msg;
-    
-    const colors = {
-      success: '#86efac',
-      error: '#fca5a5',
-      warn: '#fcd34d'
-    };
-    
-    feedbackEl.style.color = colors[type] || 'var(--ts)';
-  }
-
-  function showToast(msg) {
-    const toast = document.getElementById('toast');
-    const toastMsg = document.getElementById('toast-msg');
-    
-    if (!toast || !toastMsg) return;
-    
-    toastMsg.textContent = msg;
-    toast.classList.add('show');
-    
-    setTimeout(function() {
-      toast.classList.remove('show');
-    }, 3000);
-  }
-
-  // ===== 7. تأثير البارالاكس على الخلفيات =====
+  // ===================================================
+  // 7. PARALLAX EFFECT ON ORBS
+  // ===================================================
   document.addEventListener('mousemove', function(e) {
     const x = (e.clientX / window.innerWidth - 0.5) * 20;
     const y = (e.clientY / window.innerHeight - 0.5) * 20;
-    
     document.querySelectorAll('.orb').forEach(function(orb, i) {
       const factor = (i + 1) * 0.5;
       orb.style.transform = 'translate(' + (x * factor) + 'px, ' + (y * factor) + 'px)';
     });
   });
 
-}); // نهاية DOMContentLoaded
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}// ===================================================
-// TOAST FUNCTION
-// ===================================================
-function showToast(msg) {
-  const toast = document.getElementById('toast');
-  const toastMsg = document.getElementById('toast-msg');
-  if (!toast || !toastMsg) return;
-  toastMsg.textContent = msg;
-  toast.classList.add('show');
-  setTimeout(function() {
-    toast.classList.remove('show');
-  }, 3000);
-}
 
-// ===================================================
-// LANGUAGE TOGGLE
-// ===================================================
-(function() {
-  const langToggle = document.getElementById('langToggle');
-  const langLabel = document.getElementById('langLabel');
-  let isEnglish = false;
+  // ===================================================
+  // 8. CHALLENGE REGISTRATION FORM
+  // ===================================================
+  (function() {
+    const form = document.getElementById('challenge-form');
+    if (!form) return;
 
-  // قاموس الترجمة الكامل
-  const translations = {
-    'header-title': { ar: 'صانع محتوى تعليمي و PRO', en: 'Educational Content Creator & PRO' },
-    'nav-about': { ar: 'عني', en: 'About' },
-    'nav-mission': { ar: 'رسالتي', en: 'My Mission' },
-    'nav-hobbies': { ar: 'هواياتي', en: 'Hobbies' },
-    'nav-works': { ar: 'أعمالي', en: 'My Work' },
-    'nav-photo': { ar: 'صورة اليوم', en: 'Photo of the Day' },
-    'nav-services': { ar: 'خدماتي', en: 'Services' },
-    'nav-contact': { ar: 'تواصل', en: 'Contact' },
-    'contact-btn': { ar: 'تواصل معي', en: 'Contact Me' },
-    'menu-title': { ar: 'القائمة', en: 'Menu' },
-    'mobile-contact-btn': { ar: 'ابدأ التواصل', en: 'Start Chat' },
-    'hero-subtitle': { ar: 'صانع محتوى تعليمي و PRO', en: 'Educational Content Creator & PRO' },
-    'hero-btn-works-text': { ar: 'استكشف أعمالي', en: 'Explore My Work' },
-    'hero-btn-contact-text': { ar: 'تواصل معي', en: 'Contact Me' },
-    'scroll-hint': { ar: 'اكتشف المزيد', en: 'Discover More' },
-    'about-label': { ar: 'عني', en: 'About' },
-    'about-title-1': { ar: 'صانع محتوى', en: 'Educational Content' },
-    'about-title-2': { ar: 'تعليمي', en: 'Creator' },
-    'about-title-3': { ar: 'و PRO', en: '& PRO' },
-    'about-text-1': { ar: 'أنا', en: 'I am' },
-    'about-text-2': { ar: '، صانع محتوى تعليمي و PRO.', en: ', Educational Content Creator & PRO.' },
-    'about-text-3': { ar: 'حاصل على درجة البكالوريوس من', en: 'Holder of a Bachelor\'s degree from' },
-    'about-text-4': { ar: 'جامعة جنوب الوادي – قسم اللغة الإنجليزية', en: 'South Valley University - English Department' },
-    'about-text-5': { ar: '، وأؤمن أن التعليم رسالة قبل أن يكون مهنة، وأن كل طالب يستحق فرصة حقيقية لإتقان لغة جديدة.', en: ', and I believe that education is a mission before being a profession, and every student deserves a real chance to master a new language.' },
-    'about-badge-grad': { ar: 'خريج', en: 'Graduate' },
-    'about-badge-uni': { ar: 'جامعة جنوب الوادي', en: 'South Valley University' },
-    'about-badge-dept': { ar: 'قسم اللغة الإنجليزية', en: 'English Department' },
-    'about-exp': { ar: 'سنوات خبرة', en: 'Years Experience' },
-    'about-students': { ar: 'طالب وطالبة', en: 'Students' },
-    'about-tag-1': { ar: 'صانع محتوى تعليمي و PRO', en: 'Educational Content Creator & PRO' },
-    'mission-title': { ar: 'رسالتي', en: 'My Mission' },
-    'mission-label': { ar: 'رسالتي', en: 'My Mission' },
-    'mission-quote-1': { ar: 'اللغة الإنجليزية ليست مجرد', en: 'English is not just a' },
-    'mission-quote-2': { ar: 'لغة', en: 'language' },
-    'mission-quote-3': { ar: '،', en: ',' },
-    'mission-quote-4': { ar: 'بل هي', en: 'it is a' },
-    'mission-quote-5': { ar: 'طريقة تفكير', en: 'way of thinking' },
-    'mission-quote-6': { ar: '.', en: '.' },
-    'mission-quote-7': { ar: 'الهوايات هي', en: 'Hobbies are' },
-    'mission-quote-8': { ar: 'مُتنفّس الروح', en: 'the soul\'s breathing space' },
-    'mission-quote-9': { ar: 'وملاذ الإنسان', en: 'and man\'s refuge' },
-    'mission-quote-10': { ar: 'للهروب من ضغوط الحياة.', en: 'to escape life\'s pressures.' },
-    'mission-name': { ar: 'تامر ربيع', en: 'Tamer Rabie' },
-    'hobbies-label': { ar: 'هواياتي', en: 'Hobbies' },
-    'hobbies-title-1': { ar: 'عالَمي عبر', en: 'My World Through' },
-    'hobbies-title-2': { ar: 'عدسة الكاميرا', en: 'the Camera Lens' },
-    'hobbies-desc': { ar: 'التصوير الفوتوغرافي هو هوايتي التي أعشقها، وأرى العالم بعدسة كاميرتي. كل لقطة هي قصة، وكل إطار يحمل لحظة لا تتكرر.', en: 'Photography is my passion, I see the world through my camera lens. Every shot is a story, every frame captures a unique moment.' },
-    'hobbies-caption-1': { ar: 'الجبال عند الغروب', en: 'Mountains at Sunset' },
-    'hobbies-caption-2': { ar: 'شوارع تحكي قصصاً', en: 'Streets Telling Stories' },
-    'hobbies-caption-3': { ar: 'هدوء الطبيعة', en: 'Nature\'s Peace' },
-    'hobbies-caption-4': { ar: 'انعكاسات السكون', en: 'Reflections of Stillness' },
-    'hobbies-caption-5': { ar: 'امتداد الأرض', en: 'Land\'s Expanse' },
-    'hobbies-caption-6': { ar: 'بين الأشجار', en: 'Among the Trees' },
-    'hobbies-quote': { ar: '«أرى العالم بعدسة كاميرتي، وألتقط من الحياة أجمل لحظاتها»', en: '«I see the world through my camera lens, capturing life\'s most beautiful moments»' },
-    'works-label': { ar: 'أعمالي', en: 'My Work' },
-    'works-title-1': { ar: 'مشاريع', en: 'Projects I' },
-    'works-title-2': { ar: 'أفتخر بها', en: 'Am Proud Of' },
-    'works-desc': { ar: 'أعمال تعليمية ورقمية أنجزتها بشغف لمساعدة المتعلمين على إتقان اللغة الإنجليزية.', en: 'Educational and digital projects I\'ve completed with passion to help learners master English.' },
-    'works-youtube-badge': { ar: 'قناة يوتيوب', en: 'YouTube Channel' },
-    'works-youtube-desc': { ar: 'قناة تعليمية على اليوتيوب تقدم محتوى متنوعاً لتعلم اللغة الإنجليزية بطريقة مبسطة وممتعة، تشمل دروس قواعد، محادثات، ونصائح عملية.', en: 'An educational YouTube channel offering diverse content for learning English in a simple and enjoyable way, including grammar lessons, conversations, and practical tips.' },
-    'works-youtube-tag-1': { ar: 'دروس مرئية', en: 'Video Lessons' },
-    'works-youtube-tag-2': { ar: 'للمتعلمين', en: 'For Learners' },
-    'works-youtube-btn': { ar: 'شاهد القناة', en: 'Watch Channel' },
-    'works-challenge-btn': { ar: 'اضغط هنا', en: 'Click Here' },
-    'riddle-label': { ar: 'صورة اليوم', en: 'Photo of the Day' },
-    'riddle-title-1': { ar: 'لغز', en: 'Riddle of' },
-    'riddle-title-2': { ar: 'الأسبوع', en: 'the Week' },
-    'riddle-desc': { ar: 'تأمل الصورة، حلّ اللغز بالإنجليزية، واختبر مهاراتك في الملاحظة واللغة معاً.', en: 'Study the photo, solve the riddle in English, and test your observation and language skills together.' },
-    'riddle-badge': { ar: 'صورة الأسبوع', en: 'Photo of the Week' },
-    'riddle-badge-eng': { ar: 'لغز الأسبوع', en: 'RIDDLE OF THE WEEK' },
-    'riddle-input-label': { ar: 'اكتب إجابتك بالإنجليزية:', en: 'Type your answer in English:' },
-    'riddle-submit-btn': { ar: 'إرسال الإجابة', en: 'Submit Answer' },
-    'riddle-footer-1': { ar: 'يتجدد أسبوعياً', en: 'Renews Weekly' },
-    'services-label': { ar: 'خدماتي', en: 'Services' },
-    'services-title-1': { ar: 'كيف يمكنني', en: 'How Can I' },
-    'services-title-2': { ar: 'مساعدتك', en: 'Help You' },
-    'services-desc': { ar: 'خدمات تعليمية مصممة بعناية لتناسب احتياجاتك وتأخذك إلى المستوى التالي في اللغة الإنجليزية.', en: 'Educational services carefully designed to suit your needs and take you to the next level in English.' },
-    'services-item-1-title': { ar: 'كورسات لغة إنجليزية', en: 'English Courses' },
-    'services-item-1-desc': { ar: 'كورسات متكاملة لجميع المستويات، من المبتدئ إلى المتقدم، بمنهج عملي وممتع.', en: 'Comprehensive courses for all levels, from beginner to advanced, with a practical and enjoyable approach.' },
-    'services-item-2-title': { ar: 'استشارات فردية', en: 'One-to-One Consultations' },
-    'services-item-2-desc': { ar: 'جلسات استشارية خاصة لتقييم مستواك ووضع خطة تعلم تناسب أهدافك الشخصية والمهنية.', en: 'Private consultation sessions to assess your level and create a learning plan tailored to your personal and professional goals.' },
-    'services-item-3-title': { ar: 'جلسات محادثة', en: 'Conversation Sessions' },
-    'services-item-3-desc': { ar: 'تدريب عملي على المحادثة لبناء الثقة وتطوير مهارات التحدث والاستماع بطلاقة.', en: 'Practical conversation training to build confidence and develop speaking and listening skills fluently.' },
-    'services-item-4-title': { ar: 'دروس المرحلة الإعدادية', en: 'Preparatory Stage Lessons' },
-    'services-item-4-desc': { ar: 'دروس خاصة لطلاب المرحلة الإعدادية وفق المنهج الدراسي، مع تبسيط وشرح وافٍ.', en: 'Special lessons for preparatory stage students following the curriculum, with simplification and thorough explanation.' },
-    'services-btn-text': { ar: 'احجز خدمتك الآن', en: 'Book Your Service Now' },
-    'contact-label': { ar: 'التواصل الرسمي', en: 'Official Contact' },
-    'contact-title-1': { ar: 'لنبادر', en: 'Let\'s' },
-    'contact-title-2': { ar: 'بالتواصل', en: 'Get in Touch' },
-    'contact-desc': { ar: 'سواء كنت طالباً، أولياء أمور، أو صاحب مشروع، أنا هنا للإجابة على استفساراتك.', en: 'Whether you are a student, a parent, or a project owner, I am here to answer your queries.' },
-    'contact-email-label': { ar: 'البريد الإلكتروني', en: 'Email' },
-    'contact-phone-label': { ar: 'الهاتف المحمول', en: 'Mobile' },
-    'contact-whatsapp-label': { ar: 'واتساب', en: 'WhatsApp' },
-    'contact-telegram-label': { ar: 'تليجرام', en: 'Telegram' },
-    'social-title-1': { ar: 'تابعني على', en: 'Follow Me On' },
-    'social-title-2': { ar: 'منصات التواصل', en: 'Social Platforms' },
-    'social-desc': { ar: 'محتوى تعليمي يومي، نصائح، ولحظات من عالمي', en: 'Daily educational content, tips, and moments from my world.' },
-    'footer-name': { ar: 'تامر ربيع', en: 'Tamer Rabie' },
-    'footer-title': { ar: 'صانع محتوى تعليمي و PRO', en: 'Educational Content Creator & PRO' },
-    'footer-verse': { ar: '﴿ وَقُل رَّبِّ زِدْنِي عِلْمًا ﴾', en: '﴾ And say, \'My Lord, increase me in knowledge\' ﴿' },
-    'footer-copy': { ar: '© 2025 تامر ربيع. جميع الحقوق محفوظة.', en: '© 2025 Tamer Rabie. All rights reserved.' },
-    'footer-made': { ar: 'صُنع بـ', en: 'Made with' },
-    'footer-passion': { ar: 'وشغفٍ بالتعليم', en: 'and passion for education' }
-  };
+    const nameInput = document.getElementById('student-name');
+    const phoneInput = document.getElementById('student-phone');
+    const emailInput = document.getElementById('student-email');
+    const messageDiv = document.getElementById('registration-message');
+    const testLink = document.getElementById('test-link');
 
-  function setLanguage(lang) {
-    isEnglish = (lang === 'en');
-    langLabel.textContent = isEnglish ? 'العربية' : 'English';
+    // رقم واتساب الخاص بك (بدون +)
+    const YOUR_WHATSAPP = '201131413209';
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+       // جلب القيم
+      const name = nameInput.value.trim();
+      const phone = phoneInput.value.trim();
+      const email = emailInput.value.trim();
 
-    document.querySelectorAll('[data-translate]').forEach(function(el) {
-      const key = el.getAttribute('data-translate');
-      if (translations[key]) {
-        el.textContent = isEnglish ? translations[key].en : translations[key].ar;
+      // التحقق من الحقول
+      if (!name || !phone || !email) {
+        showToast('الرجاء تعبئة جميع الحقول أولاً.');
+        return;
       }
+
+      // ===== 1. إرسال رسالة واتساب إليك =====
+      const whatsappMessage = '📝 *تسجيل جديد في تحدي English Learning Hub*\n\n' +
+        '👤 *الاسم:* ' + name + '\n' +
+        '📱 *الجوال:* ' + phone + '\n' +
+        '📧 *البريد:* ' + email + '\n\n' +
+        '📅 *تاريخ التسجيل:* ' + new Date().toLocaleDateString('ar-EG') + '\n' +
+        '🕐 *الوقت:* ' + new Date().toLocaleTimeString('ar-EG');
+
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      const whatsappURL = 'https://wa.me/' + YOUR_WHATSAPP + '?text=' + encodedMessage;
+      window.open(whatsappURL, '_blank');
+
+      // ===== 2. إرسال بريد إلكتروني للطالب =====
+      const studentEmailSubject = encodeURIComponent('نتيجة تحدي English Learning Hub');
+      const studentEmailBody = encodeURIComponent(
+        'مرحباً ' + name + '،\n\n' +
+        'شكراً لتسجيلك في تحدي English Learning Hub.\n\n' +
+        '📋 بيانات تسجيلك:\n' +
+        '👤 الاسم: ' + name + '\n' +
+        '📱 الجوال: ' + phone + '\n' +
+        '📧 البريد: ' + email + '\n\n' +
+        '🔗 رابط الاختبار:\n' +
+        'https://tamerrabie8-cmyk.github.io/Professional-placement-test/\n\n' +
+        'بعد إنهاء الاختبار، سيتم إرسال نتيجتك إلى هذا البريد الإلكتروني.\n\n' +
+        'مع تمنياتي لك بالتوفيق،\n' +
+        'تامر ربيع\n' +
+        'صانع محتوى تعليمي و PRO'
+      );
+
+      window.open('mailto:' + email + '?subject=' + studentEmailSubject + '&body=' + studentEmailBody, '_blank');
+
+      // ===== 3. عرض رسالة نجاح =====
+      if (messageDiv) messageDiv.style.display = 'block';
+      if (testLink) testLink.style.display = 'block';
+
+      showToast('🎉 تم التسجيل بنجاح! سيتم إرسال النتيجة إلى بريدك.');
+
+      // ===== 4. تسجيل البيانات في وحدة التحكم =====
+      console.log('📝 بيانات التسجيل:');
+      console.log('الاسم:', name);
+      console.log('الجوال:', phone);
+      console.log('البريد:', email);
+      console.log('✅ تم إرسال إشعار واتساب إلى:', YOUR_WHATSAPP);
+
+      // ===== 5. تعطيل الزر بعد التسجيل =====
+      const submitBtnForm = form.querySelector('button[type="submit"]');
+      if (submitBtnForm) {
+        submitBtnForm.disabled = true;
+        submitBtnForm.innerHTML = '<i class="fa-solid fa-check"></i> تم التسجيل بنجاح';
+      }
+
+      // ===== 6. إظهار رسالة تأكيد إضافية =====
+      setTimeout(function() {
+        showToast('📱 تم إرسال إشعار واتساب للمدرب.');
+      }, 1000);
+
     });
 
-    document.documentElement.dir = isEnglish ? 'ltr' : 'rtl';
-    document.documentElement.lang = isEnglish ? 'en' : 'ar';
-  }
+  })();
 
-  langToggle.addEventListener('click', function() {
-    setLanguage(isEnglish ? 'ar' : 'en');
-  });
+  console.log('✅ تم تحميل جميع الأكواد بنجاح!');
+</script>
 
-  setLanguage('ar');
-})();
+</body>
+</html>
 
-// ===================================================
-// MOBILE MENU
-// ===================================================
-const menuBtn = document.getElementById('menu-btn');
-const closeBtn = document.getElementById('close-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileLinks = document.querySelectorAll('.mobile-link');
 
-if (menuBtn) {
-  menuBtn.addEventListener('click', function() {
-    mobileMenu.classList.add('open');
-  });
-}
-if (closeBtn) {
-  closeBtn.addEventListener('click', function() {
-    mobileMenu.classList.remove('open');
-  });
-}
-mobileLinks.forEach(function(link) {
-  link.addEventListener('click', function() {
-    mobileMenu.classList.remove('open');
-  });
-});
-
-// ===================================================
-// BACK TO TOP
-// ===================================================
-const backToTop = document.getElementById('back-to-top');
-window.addEventListener('scroll', function() {
-  if (window.scrollY > 400) {
-    backToTop.classList.add('visible');
-  } else {
-    backToTop.classList.remove('visible');
-  }
-});
-if (backToTop) {
-  backToTop.addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-}
-
-// ===================================================
-// REVEAL ON SCROLL
-// ===================================================
-const revealEls = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('active');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-revealEls.forEach(function(el) {
-  observer.observe(el);
-});
-
-// ===================================================
-// ACTIVE NAV LINKS
-// ===================================================
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-link');
-const navObserver = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      const id = entry.target.getAttribute('id');
-      navLinks.forEach(function(link) {
-        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-      });
-    }
-  });
-}, { threshold: 0.3 });
-sections.forEach(function(s) {
-  navObserver.observe(s);
-});
-
-// ===================================================
-// WEEKLY RIDDLE
-// ===================================================
-const puzzles = [
-  {
-    img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=900&auto=format&fit=crop',
-    text: '"I stand tall by the sea, guiding ships through the dark. My light cuts through the fog, yet I never move. What am I?"',
-    answers: ['lighthouse', 'a lighthouse', 'light house']
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=900&auto=format&fit=crop',
-    text: '"I have a face but no eyes, hands but no arms. I tell you something you cannot live without. What am I?"',
-    answers: ['clock', 'a clock', 'watch', 'a watch']
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=900&auto=format&fit=crop',
-    text: '"I drink without a mouth, I run without feet. I begin in the mountains and end in the sea. What am I?"',
-    answers: ['river', 'a river']
-  }
-];
-
-const now = new Date();
-const weekNum = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24 * 7));
-const currentPuzzle = puzzles[weekNum % puzzles.length];
-
-const puzzleImage = document.getElementById('puzzle-image');
-const riddleText = document.getElementById('riddle-text');
-if (puzzleImage && riddleText) {
-  puzzleImage.src = currentPuzzle.img;
-  riddleText.textContent = currentPuzzle.text;
-}
-
-const submitBtn = document.getElementById('submit-answer');
-const answerInput = document.getElementById('puzzle-answer');
-const feedback = document.getElementById('feedback');
-
-if (submitBtn && answerInput && feedback) {
-  submitBtn.addEventListener('click', function() {
-    const userAnswer = answerInput.value.trim().toLowerCase();
-    if (!userAnswer) {
-      feedback.textContent = 'من فضلك اكتب إجابتك أولاً.';
-      feedback.style.color = '#fcd34d';
-      return;
-    }
-    const correct = currentPuzzle.answers.some(function(a) {
-      return userAnswer.includes(a);
-    });
-    if (correct) {
-      feedback.textContent = '🎉 إجابة صحيحة! أحسنت!';
-      feedback.style.color = '#86efac';
-      showToast('إجابة صحيحة! أحسنت');
-    } else {
-      const hint = currentPuzzle.answers[0];
-      feedback.textContent = 'إجابة غير صحيحة. فكّر مرة أخرى... (تلميح: ' + hint.length + ' أحرف)';
-      feedback.style.color = '#fca5a5';
-    }
-  });
-  answerInput.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') submitBtn.click();
-  });
-}
-
-// ===================================================
-// PARALLAX EFFECT ON ORBS
-// ===================================================
-document.addEventListener('mousemove', function(e) {
-  const x = (e.clientX / window.innerWidth - 0.5) * 20;
-  const y = (e.clientY / window.innerHeight - 0.5) * 20;
-  document.querySelectorAll('.orb').forEach(function(orb, i) {
-    const factor = (i + 1) * 0.5;
-    orb.style.transform = 'translate(' + (x * factor) + 'px, ' + (y * factor) + 'px)';
-  });
-});
-
-console.log('✅ تم تحميل جميع الأكواد بنجاح!');// ===== فتح وإغلاق القائمة الجانبية =====
-const menuBtn = document.getElementById('menu-btn');
-const closeBtn = document.getElementById('close-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-
-if (menuBtn) {
-  menuBtn.addEventListener('click', function() {
-    mobileMenu.style.transform = 'translateX(0)';
-  });
-}
-if (closeBtn) {
-  closeBtn.addEventListener('click', function() {
-    mobileMenu.style.transform = 'translateX(100%)';
-  });
-}
-// إغلاق القائمة عند الضغط على أي رابط داخلها
-document.querySelectorAll('.mobile-link').forEach(function(link) {
-  link.addEventListener('click', function() {
-    mobileMenu.style.transform = 'translateX(100%)';
-  });
-});
-```
+         
