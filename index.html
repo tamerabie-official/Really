@@ -587,139 +587,35 @@
         </div>
 
         <!-- ========================================================= -->
-        <!-- ===== CHALLENGE SECTION - REGISTRATION CARD ===== -->
-        <!-- ========================================================= -->
-        <div class="card p-8 lg:p-10 reveal" style="border: 2px solid rgba(201, 169, 97, 0.3); background: linear-gradient(145deg, rgba(22,22,31,0.95), rgba(10,10,15,0.98)); position: relative; overflow: hidden;">
+<!-- ========================================================= -->
+<!-- ===== CHALLENGE SECTION - NEW DESIGN ===== -->
+<!-- ========================================================= -->
+<div class="card p-8 lg:p-10 reveal" style="border: 2px solid rgba(201, 169, 97, 0.3); background: linear-gradient(145deg, rgba(22,22,31,0.95), rgba(10,10,15,0.98)); position: relative; overflow: hidden;">
 
-          <!-- خلفية زخرفية ذهبية -->
-          <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full" style="background: radial-gradient(circle, rgba(201,169,97,0.06), transparent 70%);"></div>
-          <div class="absolute -bottom-20 -left-20 w-64 h-64 rounded-full" style="background: radial-gradient(circle, rgba(201,169,97,0.04), transparent 70%);"></div>
+  <!-- خلفية زخرفية ذهبية -->
+  <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full" style="background: radial-gradient(circle, rgba(201,169,97,0.06), transparent 70%);"></div>
+  <div class="absolute -bottom-20 -left-20 w-64 h-64 rounded-full" style="background: radial-gradient(circle, rgba(201,169,97,0.04), transparent 70%);"></div>
 
-          <div class="relative z-10">
+  <div class="relative z-10 text-center">
 
-            <!-- ===== رأس البطاقة: الشعار والعنوان ===== -->
-            <div class="flex flex-col md:flex-row items-center gap-6 mb-8">
-
-              <!-- شعار التحدي (بحجم شعار القناة) -->
-              <div class="flex-shrink-0 relative">
-                <div class="w-24 h-24 md:w-28 md:h-28 rounded-2xl gold-bg p-1 shadow-2xl" style="box-shadow: 0 0 40px rgba(201,169,97,0.3);">
-                  <div class="w-full h-full rounded-xl overflow-hidden bg-white flex items-center justify-center">
-                    <img src="logo.jpeg" alt="تحدي English Learning Hub" class="w-full h-full object-cover">
-                  </div>
-                </div>
-                <!-- حلقة ذهبية متوهجة -->
-                <div class="absolute -inset-2 rounded-2xl border-2 animate-pulse" style="border-color: var(--gold); opacity: 0.5;"></div>
-              </div>
-
-              <!-- العنوان -->
-              <div class="text-center md:text-right">
-                <div class="flex items-center gap-3 justify-center md:justify-start">
-                  <h3 class="font-kufi text-2xl md:text-3xl font-bold" style="font-family: 'Reem Kufi', sans-serif;">
-                    <span class="gold-text">تحدي</span>
-                    <span style="color: var(--tp);">English Learning Hub</span>
-                  </h3>
-                  <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider gold-bg" style="color: var(--bg-primary);">
-                    <i class="fa-regular fa-star ml-1"></i> تسجيل
-                  </span>
-                </div>
-                <p class="text-sm md:text-base mt-2" style="color: var(--ts);">
-                  سجل الآن لتبدأ التحدي وتصلك النتيجة على بريدك الإلكتروني
-                </p>
-              </div>
-            </div>
-
-            <!-- ===== زر "سجل وابدأ التحدي" الكبير والأنيق ===== -->
-            <div class="mb-10 text-center">
-              <a href="#registration-form" class="inline-flex items-center justify-center gap-4 px-8 py-5 rounded-2xl text-xl md:text-2xl font-bold gold-bg transition-all duration-300 shadow-2xl hover:scale-105 w-full sm:w-auto" style="color: var(--bg-primary); box-shadow: 0 0 50px rgba(201,169,97,0.4); min-width: 280px;">
-                <i class="fa-solid fa-arrow-right text-2xl"></i>
-                <span>سجل وابدأ التحدي</span>
-                <i class="fa-solid fa-arrow-left text-2xl"></i>
-              </a>
-            </div>
-
-            <!-- ===== بطاقة التسجيل الاحترافية ===== -->
-            <div id="registration-form" class="card p-6 md:p-8" style="background: linear-gradient(145deg, rgba(10,10,15,0.9), rgba(22,22,31,0.9)); border: 1px solid var(--border);">
-
-              <h4 class="text-center font-kufi text-xl font-bold gold-text mb-6" style="font-family: 'Reem Kufi', sans-serif;">
-                <i class="fa-regular fa-pen-to-square ml-2"></i>
-                بيانات التسجيل
-              </h4>
-
-              <form id="challenge-form" class="space-y-5">
-                
-                <!-- الاسم -->
-                <div>
-                  <label class="block text-sm font-medium mb-2" style="color: var(--ts);">
-                    <i class="fa-solid fa-user ml-1.5" style="color: var(--gold);"></i>
-                    الاسم الكامل
-                  </label>
-                  <input type="text" id="student-name" placeholder="أدخل اسمك الكامل..." required
-                         class="w-full px-5 py-4 rounded-xl bg-secondary border font-medium text-base" 
-                         style="background: var(--bg-secondary); border: 1px solid var(--border); color: var(--tp); transition: all 0.3s ease;"
-                         onfocus="this.style.borderColor='var(--gold)'; this.style.boxShadow='0 0 0 3px rgba(201,169,97,0.15)';"
-                         onblur="this.style.borderColor='var(--border)'; this.style.boxShadow='none';">
-                </div>
-
-                <!-- الجوال -->
-                <div>
-                  <label class="block text-sm font-medium mb-2" style="color: var(--ts);">
-                    <i class="fa-solid fa-phone ml-1.5" style="color: var(--gold);"></i>
-                    رقم الجوال
-                  </label>
-                  <input type="tel" id="student-phone" placeholder="مثال: 05XXXXXXXX" required
-                         class="w-full px-5 py-4 rounded-xl bg-secondary border font-medium text-base" 
-                         style="background: var(--bg-secondary); border: 1px solid var(--border); color: var(--tp); transition: all 0.3s ease;"
-                         onfocus="this.style.borderColor='var(--gold)'; this.style.boxShadow='0 0 0 3px rgba(201,169,97,0.15)';"
-                         onblur="this.style.borderColor='var(--border)'; this.style.boxShadow='none';">
-                </div>
-
-                <!-- البريد الإلكتروني -->
-                <div>
-                  <label class="block text-sm font-medium mb-2" style="color: var(--ts);">
-                    <i class="fa-solid fa-envelope ml-1.5" style="color: var(--gold);"></i>
-                    البريد الإلكتروني
-                  </label>
-                  <input type="email" id="student-email" placeholder="أدخل بريدك الإلكتروني..." required
-                         class="w-full px-5 py-4 rounded-xl bg-secondary border font-medium text-base" 
-                         style="background: var(--bg-secondary); border: 1px solid var(--border); color: var(--tp); transition: all 0.3s ease;"
-                         onfocus="this.style.borderColor='var(--gold)'; this.style.boxShadow='0 0 0 3px rgba(201,169,97,0.15)';"
-                         onblur="this.style.borderColor='var(--border)'; this.style.boxShadow='none';">
-                </div>
-
-                <!-- زر الإرسال -->
-                <button type="submit" class="btn-gold w-full py-4 rounded-xl text-lg font-bold flex items-center justify-center gap-3 mt-4" style="box-shadow: 0 0 30px rgba(201,169,97,0.25);">
-                  <i class="fa-solid fa-paper-plane"></i>
-                  <span>إرسال البيانات وبدء التحدي</span>
-                </button>
-
-              </form>
-
-              <!-- رسالة تأكيد التسجيل -->
-              <div id="registration-message" class="mt-6 text-center text-sm" style="display: none; min-height: 24px;">
-                <div class="flex items-center justify-center gap-2 gold-text">
-                  <i class="fa-solid fa-check-circle text-xl"></i>
-                  <span>تم التسجيل بنجاح! سيتم إرسال النتيجة إلى بريدك الإلكتروني.</span>
-                </div>
-              </div>
-
-              <!-- رابط الاختبار (يظهر بعد التسجيل) -->
-              <div id="test-link" class="mt-4 text-center" style="display: none;">
-                <a href="https://tamerrabie8-cmyk.github.io/Professional-placement-test/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 gold-text font-bold hover:underline text-base">
-                  <i class="fa-solid fa-arrow-right"></i>
-                  اضغط هنا لبدء الاختبار
-                  <i class="fa-solid fa-arrow-left"></i>
-                </a>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-        <!-- ===== نهاية بطاقة التحدي ===== -->
-
-      </div>
+    <!-- ===== الشعار الجديد ===== -->
+    <div class="flex justify-center mb-6">
+      <img src="EnglishLH.svg" alt="English Learning Hub Challenge" class="w-full max-w-md h-auto" style="filter: drop-shadow(0 0 30px rgba(201,169,97,0.3));">
     </div>
-  </section>
+
+    <!-- ===== زر "اضغط هنا" ===== -->
+    <div class="mt-6">
+      <a href="https://tamerrabie8-cmyk.github.io/Professional-placement-test/" target="_blank" rel="noopener" 
+         class="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-full text-lg font-bold gold-bg transition-all duration-300 shadow-2xl hover:scale-105" 
+         style="color: var(--bg-primary); box-shadow: 0 0 50px rgba(201,169,97,0.4); min-width: 200px;">
+        <i class="fa-solid fa-arrow-right"></i>
+        <span>اضغط هنا</span>
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+    </div>
+
+  </div>
+</div>
 
   <!-- ===== PHOTO OF THE DAY ===== -->
   <section id="photo-day" class="py-24 lg:py-32 px-5 lg:px-8">
