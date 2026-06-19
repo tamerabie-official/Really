@@ -1,0 +1,297 @@
+<html><head>
+<!-- Playables SDK -->
+<script>// Playables SDK v1.0.0
+// Game lifecycle bridge: rAF-based game-ready detection + event communication
+(function() {
+  'use strict';
+
+  // Idempotency: skip if already initialized (e.g., server-side injection
+  // followed by client-side inject-javascript via the Bloks webview component).
+  if (window.playablesSDK) return;
+
+  var HANDLER_NAME = 'playablesGameEventHandler';
+  var ANDROID_BRIDGE_NAME = '_MetaPlayablesBridge';
+  var RAF_FRAME_THRESHOLD = 3;
+
+  var gameReadySent = false;
+  var firstInteractionSent = false;
+  var errorSent = false;
+  var frameCount = 0;
+  var originalRAF = window.requestAnimationFrame;
+
+  // --- Transport Layer ---
+
+  function hasIOSBridge() {
+    return !!(window.webkit &&
+              window.webkit.messageHandlers &&
+              window.webkit.messageHandlers[HANDLER_NAME]);
+  }
+
+  function hasAndroidBridge() {
+    return !!(window[ANDROID_BRIDGE_NAME] &&
+              typeof window[ANDROID_BRIDGE_NAME].postEvent === 'function');
+  }
+
+  function isInIframe() {
+    return !!(window.parent && window.parent !== window);
+  }
+
+  function sendEvent(eventName, payload) {
+    var message = {
+      type: eventName,
+      payload: payload || {},
+      timestamp: Date.now()
+    };
+
+    if (hasIOSBridge()) {
+      try {
+        window.webkit.messageHandlers[HANDLER_NAME].postMessage(message);
+      } catch (e) { /* ignore */ }
+      return;
+    }
+
+    if (hasAndroidBridge()) {
+    try {
+      var p = payload || {};
+      p.__secureToken = window.__fbAndroidBridgeAuthToken || '';
+      p.timestamp = message.timestamp;
+      window[ANDROID_BRIDGE_NAME].postEvent(
+        eventName,
+        JSON.stringify(p)
+      );
+    } catch (e) { /* ignore */ }
+    return;
+  }
+
+    if (isInIframe()) {
+      try {
+        window.parent.postMessage(message, '*');
+      } catch (e) { /* ignore */ }
+      return;
+    }
+  }
+
+  // --- rAF Game-Ready Detection ---
+
+  function onFrame() {
+    if (gameReadySent) return;
+
+    frameCount++;
+    if (frameCount >= RAF_FRAME_THRESHOLD) {
+      gameReadySent = true;
+      sendEvent('game_ready', {
+        frame_count: frameCount,
+        detected_at: Date.now()
+      });
+      return;
+    }
+
+    originalRAF.call(window, onFrame);
+  }
+
+  if (originalRAF) {
+    window.requestAnimationFrame = function(callback) {
+      if (!gameReadySent) {
+        return originalRAF.call(window, function(timestamp) {
+          frameCount++;
+          if (frameCount >= RAF_FRAME_THRESHOLD && !gameReadySent) {
+            gameReadySent = true;
+            sendEvent('game_ready', {
+              frame_count: frameCount,
+              detected_at: Date.now()
+            });
+          }
+          callback(timestamp);
+        });
+      }
+      return originalRAF.call(window, callback);
+    };
+  }
+
+  // --- First User Interaction Detection ---
+
+  function setupFirstInteractionDetection() {
+    var events = ['touchstart', 'mousedown', 'keydown'];
+
+    function onFirstInteraction() {
+      if (firstInteractionSent) return;
+      firstInteractionSent = true;
+      sendEvent('user_interaction_start', null);
+
+      for (var i = 0; i < events.length; i++) {
+        document.removeEventListener(events[i], onFirstInteraction, true);
+      }
+    }
+
+    for (var i = 0; i < events.length; i++) {
+      document.addEventListener(events[i], onFirstInteraction, true);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupFirstInteractionDetection);
+  } else {
+    setupFirstInteractionDetection();
+  }
+
+  // --- Auto Error Capture ---
+
+  window.addEventListener('error', function(event) {
+    if (errorSent) return;
+    errorSent = true;
+    sendEvent('error', {
+      message: event.message || 'Unknown error',
+      source: event.filename || '',
+      lineno: event.lineno || 0,
+      colno: event.colno || 0,
+      auto_captured: true
+    });
+  });
+
+  window.addEventListener('unhandledrejection', function(event) {
+    if (errorSent) return;
+    errorSent = true;
+    var reason = event.reason;
+    sendEvent('error', {
+      message: (reason instanceof Error) ? reason.message : String(reason),
+      type: 'unhandled_promise_rejection',
+      auto_captured: true
+    });
+  });
+
+  // --- Public API ---
+
+  window.playablesSDK = {
+    complete: function(score) {
+      sendEvent('game_ended', {
+        score: score,
+        completed: true
+      });
+    },
+
+    error: function(message) {
+      if (errorSent) return;
+      errorSent = true;
+      sendEvent('error', {
+        message: message || 'Unknown error',
+        auto_captured: false
+      });
+    },
+
+    sendEvent: function(eventName, payload) {
+      if (!eventName || typeof eventName !== 'string') return;
+      sendEvent(eventName, payload);
+    }
+  };
+
+  // Kick off rAF detection in case no game code calls rAF immediately
+  if (originalRAF) {
+    originalRAF.call(window, onFrame);
+  }
+})();</script>
+<!-- PLAYABLE_TOUCH_PATCH_V1 --><script>
+(function() {
+  if (window.__playableTouchPatchInstalled) return;
+  window.__playableTouchPatchInstalled = true;
+  var origAdd = EventTarget.prototype.addEventListener;
+  var blockedTypes = { touchstart: 1, touchmove: 1, wheel: 1 };
+  EventTarget.prototype.addEventListener = function(type, listener, options) {
+    if (blockedTypes[type]) {
+      if (options === undefined || options === null) {
+        options = { passive: true };
+      } else if (typeof options === 'boolean') {
+        options = { capture: options, passive: true };
+      } else {
+        options = Object.assign({}, options, { passive: true });
+      }
+    }
+    return origAdd.call(this, type, listener, options);
+  };
+})();
+</script><script>window.Intl=window.Intl||{};Intl.t=function(s){return(Intl._locale&&Intl._locale[s])||s;};</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>body{margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;background:#fff}svg{max-width:100%;height:auto}</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1"></stop>
+      <stop offset="50%" style="stop-color:#F9D976;stop-opacity:1"></stop>
+      <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1"></stop>
+    </linearGradient>
+    <linearGradient id="navyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A2A4F;stop-opacity:1"></stop>
+      <stop offset="100%" style="stop-color:#0D1B2A;stop-opacity:1"></stop>
+    </linearGradient>
+    <linearGradient id="goldStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#B8860B;stop-opacity:1"></stop>
+      <stop offset="50%" style="stop-color:#F9D976;stop-opacity:1"></stop>
+      <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1"></stop>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0D1B2A" flood-opacity="0.25"></feDropShadow>
+    </filter>
+    <style>
+      .title { font-family: 'Georgia', 'Times New Roman', serif; font-weight: 700; letter-spacing: 0.5px; }
+      .subtitle { font-family: 'Helvetica Neue', 'Arial', sans-serif; font-weight: 400; letter-spacing: 3px; }
+      .button-text { font-family: 'Helvetica Neue', 'Arial', sans-serif; font-weight: 600; letter-spacing: 1.5px; }
+    </style>
+  </defs>
+  
+  <rect width="800" height="400" fill="url(#navyGradient)" rx="8"></rect>
+  
+  <!-- Gold border frame -->
+  <rect x="16" y="16" width="768" height="368" fill="none" stroke="url(#goldStroke)" stroke-width="1.5" rx="4" opacity="0.8"></rect>
+  
+  <!-- Shield Icon with Graduation Cap -->
+  <g transform="translate(400,115)" filter="url(#softShadow)">
+    <!-- Shield -->
+    <path d="M0 -55 L35 -40 L35 15 C35 40 0 65 0 65 C0 65 -35 40 -35 15 L-35 -40 Z" fill="url(#navyGradient)" stroke="url(#goldGradient)" stroke-width="3"></path>
+    
+    <!-- Graduation Cap -->
+    <g transform="translate(0,-10)">
+      <!-- Cap Board -->
+      <path d="M-42 -5 L42 -5 L0 -25 Z" fill="url(#goldGradient)"></path>
+      <!-- Cap Band -->
+      <rect x="-12" y="-8" width="24" height="12" rx="3" fill="#0D1B2A"></rect>
+      <!-- Tassel String -->
+      <line x1="20" y1="-15" x2="22" y2="10" stroke="url(#goldGradient)" stroke-width="2"></line>
+      <!-- Tassel -->
+      <circle cx="22" cy="14" r="4" fill="url(#goldGradient)"></circle>
+      <line x1="22" y1="18" x2="22" y2="24" stroke="url(#goldGradient)" stroke-width="1.5"></line>
+      <line x1="20" y1="18" x2="20" y2="23" stroke="url(#goldGradient)" stroke-width="1.5"></line>
+      <line x1="24" y1="18" x2="24" y2="23" stroke="url(#goldGradient)" stroke-width="1.5"></line>
+    </g>
+    
+    <!-- Decorative divider -->
+    <line x1="-25" y1="35" x2="25" y2="35" stroke="url(#goldGradient)" stroke-width="1.5" opacity="0.6"></line>
+    
+    <!-- Star accent -->
+    <path d="M0 42 L2.4 49.1 L10 49.1 L3.8 53.6 L6.2 60.7 L0 56.2 L-6.2 60.7 L-3.8 53.6 L-10 49.1 L-2.4 49.1 Z" fill="url(#goldGradient)" opacity="0.9"></path>
+  </g>
+  
+  <!-- Main Typography -->
+  <text x="400" y="235" text-anchor="middle" class="title" font-size="42" fill="url(#goldGradient)">
+    English Learning Hub
+  </text>
+  
+  <text x="400" y="268" text-anchor="middle" class="subtitle" font-size="14" fill="#F9D976" opacity="0.9">
+    CHALLENGE
+  </text>
+  
+  <!-- Gold Decorative Lines -->
+  <line x1="250" y1="280" x2="340" y2="280" stroke="url(#goldStroke)" stroke-width="1" opacity="0.4"></line>
+  <line x1="460" y1="280" x2="550" y2="280" stroke="url(#goldStroke)" stroke-width="1" opacity="0.4"></line>
+  
+  <!-- Click Here Button -->
+  <g transform="translate(400,320)" filter="url(#softShadow)">
+    <rect x="-80" y="-18" width="160" height="36" rx="18" fill="url(#goldGradient)" stroke="#F9D976" stroke-width="1"></rect>
+    <text x="0" y="5" text-anchor="middle" class="button-text" font-size="14" fill="#0D1B2A">
+      CLICK HERE
+    </text>
+  </g>
+</svg>
+
+</body></html>
