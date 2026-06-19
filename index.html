@@ -408,36 +408,29 @@
       <a href="#contact" class="hidden md:inline-flex btn-gold px-5 py-2.5 rounded-lg text-sm" data-translate="contact-btn">
         <i class="fa-solid fa-paper-plane"></i> تواصل معي
       </a>
-      
-      <button id="menu-btn" class="lg:hidden text-2xl" style="color: var(--gold);" aria-label="القائمة">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-    </div>
-  </nav>
-
-  <div id="mobile-menu" class="mobile-menu lg:hidden fixed top-0 right-0 h-screen w-72 z-50 p-8" style="background: var(--bg-secondary); border-left: 1px solid var(--border);">
-    <div class="flex justify-between items-center mb-12">
-      <span style="font-family: 'Reem Kufi', sans-serif; font-size: 1.25rem;" class="gold-text" data-translate="menu-title">القائمة</span>
-      <button id="close-btn" class="text-2xl" style="color: var(--gold);" aria-label="إغلاق">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-    </div>
-    <div class="flex flex-col gap-7 font-tajawal text-lg">
-      <a href="#about" class="mobile-link nav-link" style="color: var(--ts);" data-translate="nav-about">عني</a>
-      <a href="#mission" class="mobile-link nav-link" style="color: var(--ts);" data-translate="nav-mission">رسالتي</a>
-      <a href="#hobbies" class="mobile-link nav-link" style="color: var(--ts);" data-translate="nav-hobbies">هواياتي</a>
-      <a href="#works" class="mobile-link nav-link" style="color: var(--ts);" data-translate="nav-works">أعمالي</a>
-      <a href="#photo-day" class="mobile-link nav-link" style="color: var(--ts);" data-translate="nav-photo">صورة اليوم</a>
-      <a href="#services" class="mobile-link nav-link" style="color: var(--ts);" data-translate="nav-services">خدماتي</a>
-      <a href="#contact" class="mobile-link nav-link" style="color: var(--ts);" data-translate="nav-contact">تواصل</a>
-    </div>
-    <div class="absolute bottom-8 right-8 left-8">
-      <a href="#contact" class="mobile-link btn-gold w-full justify-center px-5 py-3 rounded-lg" data-translate="mobile-contact-btn">
-        <i class="fa-solid fa-paper-plane"></i> ابدأ التواصل
-      </a>
-    </div>
+ <!-- ===== القائمة الجانبية (معدلة) ===== -->
+<div id="mobile-menu" class="mobile-menu lg:hidden fixed top-0 right-0 h-screen w-72 z-50 p-8" style="background: var(--bg-secondary); border-left: 1px solid var(--border); transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);">
+  <div class="flex justify-between items-center mb-12">
+    <span style="font-family: 'Reem Kufi', sans-serif; font-size: 1.25rem;" class="gold-text" data-translate="menu-title">القائمة</span>
+    <button id="close-btn" class="text-2xl" style="color: var(--gold);" aria-label="إغلاق">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
   </div>
-</header>
+  <div class="flex flex-col gap-7 font-tajawal text-lg">
+    <a href="#about" class="mobile-link nav-link" style="color: var(--ts);" data-translate="nav-about">عني</a>
+    <a href="#mission" class="mobile-link nav-link" style="color: var(--ts);" data-translate="nav-mission">رسالتي</a>
+    <a href="#hobbies" class="mobile-link nav-link" style="color: var(--ts);" data-translate="nav-hobbies">هواياتي</a>
+    <a href="#works" class="mobile-link nav-link" style="color: var(--ts);" data-translate="nav-works">أعمالي</a>
+    <a href="#photo-day" class="mobile-link nav-link" style="color: var(--ts);" data-translate="nav-photo">صورة اليوم</a>
+    <a href="#services" class="mobile-link nav-link" style="color: var(--ts);" data-translate="nav-services">خدماتي</a>
+    <a href="#contact" class="mobile-link nav-link" style="color: var(--ts);" data-translate="nav-contact">تواصل</a>
+  </div>
+  <div class="absolute bottom-8 right-8 left-8">
+    <a href="#contact" class="mobile-link btn-gold w-full justify-center px-5 py-3 rounded-lg" data-translate="mobile-contact-btn">
+      <i class="fa-solid fa-paper-plane"></i> ابدأ التواصل
+    </a>
+  </div>
+</div>
 
 <main>
   <!-- ===== HERO ===== -->

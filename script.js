@@ -505,4 +505,25 @@ document.addEventListener('mousemove', function(e) {
   });
 });
 
-console.log('✅ تم تحميل جميع الأكواد بنجاح!');
+console.log('✅ تم تحميل جميع الأكواد بنجاح!');// ===== فتح وإغلاق القائمة الجانبية =====
+const menuBtn = document.getElementById('menu-btn');
+const closeBtn = document.getElementById('close-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+
+if (menuBtn) {
+  menuBtn.addEventListener('click', function() {
+    mobileMenu.style.transform = 'translateX(0)';
+  });
+}
+if (closeBtn) {
+  closeBtn.addEventListener('click', function() {
+    mobileMenu.style.transform = 'translateX(100%)';
+  });
+}
+// إغلاق القائمة عند الضغط على أي رابط داخلها
+document.querySelectorAll('.mobile-link').forEach(function(link) {
+  link.addEventListener('click', function() {
+    mobileMenu.style.transform = 'translateX(100%)';
+  });
+});
+```
