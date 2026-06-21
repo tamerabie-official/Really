@@ -178,13 +178,20 @@ document.addEventListener('mousemove', function(e) {
 });
 
 // ===================================================
-// 8. LANGUAGE SWITCH (باستخدام aricone.svg)
+// 8. LANGUAGE SWITCH (نسخة محسنة وقوية)
 // ===================================================
 (function() {
   const btn = document.getElementById('lang-switch');
+  if (!btn) {
+    console.warn('⚠️ زر اللغة غير موجود في الصفحة');
+    return;
+  }
+
   let currentLang = localStorage.getItem('preferredLang') || 'ar';
 
+  // قاموس الترجمة الكامل
   const translations = {
+    // ===== الهيدر والقائمة =====
     'صانع محتوي تعليمي و PRO': { en: 'Educational Content Creator & PRO', ar: 'صانع محتوي تعليمي و PRO' },
     'عني': { en: 'About', ar: 'عني' },
     'رسالتي': { en: 'My Mission', ar: 'رسالتي' },
@@ -196,73 +203,137 @@ document.addEventListener('mousemove', function(e) {
     'القائمة': { en: 'Menu', ar: 'القائمة' },
     'تواصل معي': { en: 'Contact Me', ar: 'تواصل معي' },
     'ابدأ التواصل': { en: 'Start Connecting', ar: 'ابدأ التواصل' },
+    
+    // ===== الهيرو =====
     'استكشف أعمالي': { en: 'Explore My Works', ar: 'استكشف أعمالي' },
     'اكتشف المزيد': { en: 'Discover More', ar: 'اكتشف المزيد' },
-    'صانع محتوى تعليمي · مدرّس لغة إنجليزية · مصوّر فوتوغرافي': { en: 'Educational Content Creator · English Teacher · Photographer', ar: 'صانع محتوى تعليمي · مدرّس لغة إنجليزية · مصوّر فوتوغرافي' },
+    'صانع محتوى تعليمي ·PRO': { 
+      en: 'Educational Content Creator · PRO', 
+      ar: 'صانع محتوى تعليمي · PRO' 
+    },
+    
+    // ===== عني =====
     'صانع محتوى تعليمي': { en: 'Educational Content Creator', ar: 'صانع محتوى تعليمي' },
     'وشغوفٌ بنقل المعرفة': { en: 'Passionate about transferring knowledge', ar: 'وشغوفٌ بنقل المعرفة' },
     'أنا': { en: 'I am', ar: 'أنا' },
     'تامر ربيع': { en: 'Tamer Rabie', ar: 'تامر ربيع' },
-    'صانع محتوى تعليمي متخصص في تعليم اللغة الإنجليزية، وأعمل كمستقل (Freelancer) في تقديم المحتوى التعليمي والخدمات اللغوية.': { en: 'An educational content creator specializing in teaching English, working as a freelancer in providing educational content and language services.', ar: 'صانع محتوى تعليمي متخصص في تعليم اللغة الإنجليزية، وأعمل كمستقل (Freelancer) في تقديم المحتوى التعليمي والخدمات اللغوية.' },
-    'حاصل على درجة البكالوريوس من جامعة جنوب الوادي – قسم اللغة الإنجليزية، وأؤمن أن التعليم رسالة قبل أن يكون مهنة، وأن كل طالب يستحق فرصة حقيقية لإتقان لغة جديدة.': { en: 'Holds a Bachelor\'s degree from South Valley University - English Department, and believes that education is a mission before being a profession, and that every student deserves a real opportunity to master a new language.', ar: 'حاصل على درجة البكالوريوس من جامعة جنوب الوادي – قسم اللغة الإنجليزية، وأؤمن أن التعليم رسالة قبل أن يكون مهنة، وأن كل طالب يستحق فرصة حقيقية لإتقان لغة جديدة.' },
+    'صانع محتوى تعليمي متخصص في تعليم اللغة الانجليزية.': { 
+      en: 'An educational content creator specializing in teaching English, working as a freelancer in providing educational content and language services.', 
+      ar: 'صانع محتوى تعليمي متخصص في تعليم اللغة الإنجليزية، وأعمل كمستقل (Freelancer) في تقديم المحتوى التعليمي والخدمات اللغوية.' 
+    },
+    'حاصل على درجة البكالوريوس من جامعة جنوب الوادي – قسم اللغة الإنجليزية، وأؤمن أن التعليم رسالة قبل أن يكون مهنة، وأن كل طالب يستحق فرصة حقيقية لإتقان لغة جديدة.': { 
+      en: 'Holds a Bachelor\'s degree from South Valley University - English Department, and believes that education is a mission before being a profession, and that every student deserves a real opportunity to master a new language.', 
+      ar: 'حاصل على درجة البكالوريوس من جامعة جنوب الوادي – قسم اللغة الإنجليزية، وأؤمن أن التعليم رسالة قبل أن يكون مهنة، وأن كل طالب يستحق فرصة حقيقية لإتقان لغة جديدة.' 
+    },
     'سنوات خبرة': { en: 'Years of Experience', ar: 'سنوات خبرة' },
     'طالب وطالبة': { en: 'Students', ar: 'طالب وطالبة' },
     'خريج': { en: 'Graduate', ar: 'خريج' },
     'جامعة جنوب الوادي': { en: 'South Valley University', ar: 'جامعة جنوب الوادي' },
     'قسم اللغة الإنجليزية': { en: 'English Department', ar: 'قسم اللغة الإنجليزية' },
-    'رسالتي': { en: 'My Mission', ar: 'رسالتي' },
+    
+    // ===== رسالتي =====
     'اللغة الإنجليزية ليست مجرد لغة،': { en: 'English is not just a language,', ar: 'اللغة الإنجليزية ليست مجرد لغة،' },
     'بل هي طريقة تفكير.': { en: 'it\'s a way of thinking.', ar: 'بل هي طريقة تفكير.' },
     'الهوايات هي مُتنفّس الروح وملاذ الإنسان': { en: 'Hobbies are the soul\'s escape and a haven for humans', ar: 'الهوايات هي مُتنفّس الروح وملاذ الإنسان' },
     'للهروب من ضغوط الحياة.': { en: 'to escape life\'s pressures.', ar: 'للهروب من ضغوط الحياة.' },
+
+    // ===== هواياتي =====
     'عالَمي عبر عدسة الكاميرا': { en: 'My World Through the Camera Lens', ar: 'عالَمي عبر عدسة الكاميرا' },
-    'التصوير الفوتوغرافي هو هوايتي التي أعشقها، وأرى العالم بعدسة كاميرتي. كل لقطة هي قصة، وكل إطار يحمل لحظة لا تتكرر.': { en: 'Photography is my beloved hobby. I see the world through my camera lens. Every shot is a story, and every frame carries a unique moment.', ar: 'التصوير الفوتوغرافي هو هوايتي التي أعشقها، وأرى العالم بعدسة كاميرتي. كل لقطة هي قصة، وكل إطار يحمل لحظة لا تتكرر.' },
+    'التصوير الفوتوغرافي هو هوايتي التي أعشقها، وأرى العالم بعدسة كاميرتي. كل لقطة هي قصة، وكل إطار يحمل لحظة لا تتكرر.': { 
+      en: 'Photography is my beloved hobby. I see the world through my camera lens. Every shot is a story, and every frame carries a unique moment.', 
+      ar: 'التصوير الفوتوغرافي هو هوايتي التي أعشقها، وأرى العالم بعدسة كاميرتي. كل لقطة هي قصة، وكل إطار يحمل لحظة لا تتكرر.' 
+    },
     'الجبال عند الغروب': { en: 'Mountains at Sunset', ar: 'الجبال عند الغروب' },
     'شوارع تحكي قصصاً': { en: 'Streets Telling Stories', ar: 'شوارع تحكي قصصاً' },
     'هدوء الطبيعة': { en: 'Nature\'s Peace', ar: 'هدوء الطبيعة' },
     'انعكاسات السكون': { en: 'Reflections of Silence', ar: 'انعكاسات السكون' },
     'امتداد الأرض': { en: 'Earth\'s Expanse', ar: 'امتداد الأرض' },
     'بين الأشجار': { en: 'Among the Trees', ar: 'بين الأشجار' },
-    'أرى العالم بعدسة كاميرتي، وألتقط من الحياة أجمل لحظاتها': { en: 'I see the world through my lens, capturing life\'s most beautiful moments', ar: 'أرى العالم بعدسة كاميرتي، وألتقط من الحياة أجمل لحظاتها' },
+    'أرى العالم بعدسة كاميرتي، وألتقط من الحياة أجمل لحظاتها': { 
+      en: 'I see the world through my lens, capturing life\'s most beautiful moments', 
+      ar: 'أرى العالم بعدسة كاميرتي، وألتقط من الحياة أجمل لحظاتها' 
+    },
+
+    // ===== أعمالي =====
     'مشاريع أفتخر بها': { en: 'Projects I\'m Proud Of', ar: 'مشاريع أفتخر بها' },
-    'أعمال تعليمية ورقمية أنجزتها بشغف لمساعدة المتعلمين على إتقان اللغة الإنجليزية.': { en: 'Educational and digital works I accomplished with passion to help learners master English.', ar: 'أعمال تعليمية ورقمية أنجزتها بشغف لمساعدة المتعلمين على إتقان اللغة الإنجليزية.' },
+    'أعمال تعليمية ورقمية أنجزتها بشغف لمساعدة المتعلمين على إتقان اللغة الإنجليزية.': { 
+      en: 'Educational and digital works I accomplished with passion to help learners master English.', 
+      ar: 'أعمال تعليمية ورقمية أنجزتها بشغف لمساعدة المتعلمين على إتقان اللغة الإنجليزية.' 
+    },
     'قناة يوتيوب': { en: 'YouTube Channel', ar: 'قناة يوتيوب' },
     'English Learning Hub': { en: 'English Learning Hub', ar: 'English Learning Hub' },
-    'قناة تعليمية على اليوتيوب تقدم محتوى متنوعاً لتعلم اللغة الإنجليزية بطريقة مبسطة وممتعة، تشمل دروس قواعد، محادثات، ونصائح عملية.': { en: 'An educational YouTube channel offering diverse content for learning English in a simple and enjoyable way, including grammar lessons, conversations, and practical tips.', ar: 'قناة تعليمية على اليوتيوب تقدم محتوى متنوعاً لتعلم اللغة الإنجليزية بطريقة مبسطة وممتعة، تشمل دروس قواعد، محادثات، ونصائح عملية.' },
+    'قناة تعليمية على اليوتيوب تقدم محتوى متنوعاً لتعلم اللغة الإنجليزية بطريقة مبسطة وممتعة، تشمل دروس قواعد، محادثات، ونصائح عملية.': { 
+      en: 'An educational YouTube channel offering diverse content for learning English in a simple and enjoyable way, including grammar lessons, conversations, and practical tips.', 
+      ar: 'قناة تعليمية على اليوتيوب تقدم محتوى متنوعاً لتعلم اللغة الإنجليزية بطريقة مبسطة وممتعة، تشمل دروس قواعد، محادثات، ونصائح عملية.' 
+    },
     'دروس مرئية': { en: 'Video Lessons', ar: 'دروس مرئية' },
     'للمتعلمين': { en: 'For Learners', ar: 'للمتعلمين' },
     'شاهد القناة': { en: 'Watch Channel', ar: 'شاهد القناة' },
     'اضغط هنا': { en: 'Click Here', ar: 'اضغط هنا' },
+    
+    // ===== صورة اليوم =====
     'لغز الأسبوع': { en: 'Riddle of the Week', ar: 'لغز الأسبوع' },
-    'تأمل الصورة، حلّ اللغز بالإنجليزية، واختبر مهاراتك في الملاحظة واللغة معاً.': { en: 'Contemplate the image, solve the riddle in English, and test your observation and language skills together.', ar: 'تأمل الصورة، حلّ اللغز بالإنجليزية، واختبر مهاراتك في الملاحظة واللغة معاً.' },
+    'تأمل الصورة، حلّ اللغز بالإنجليزية، واختبر مهاراتك في الملاحظة واللغة معاً.': { 
+      en: 'Contemplate the image, solve the riddle in English, and test your observation and language skills together.', 
+      ar: 'تأمل الصورة، حلّ اللغز بالإنجليزية، واختبر مهاراتك في الملاحظة واللغة معاً.' 
+    },
     'صورة الأسبوع': { en: 'Photo of the Week', ar: 'صورة الأسبوع' },
     'اكتب إجابتك بالإنجليزية:': { en: 'Write your answer in English:', ar: 'اكتب إجابتك بالإنجليزية:' },
     'إرسال الإجابة': { en: 'Submit Answer', ar: 'إرسال الإجابة' },
     'يتجدد أسبوعياً': { en: 'Renews Weekly', ar: 'يتجدد أسبوعياً' },
+
+    // ===== خدماتي =====
     'كيف يمكنني مساعدتك': { en: 'How Can I Help You?', ar: 'كيف يمكنني مساعدتك' },
-    'خدمات تعليمية مصممة بعناية لتناسب احتياجاتك وتأخذك إلى المستوى التالي في اللغة الإنجليزية.': { en: 'Educational services carefully designed to suit your needs and take you to the next level in English.', ar: 'خدمات تعليمية مصممة بعناية لتناسب احتياجاتك وتأخذك إلى المستوى التالي في اللغة الإنجليزية.' },
+    'خدمات تعليمية مصممة بعناية لتناسب احتياجاتك وتأخذك إلى المستوى التالي في اللغة الإنجليزية.': { 
+      en: 'Educational services carefully designed to suit your needs and take you to the next level in English.', 
+      ar: 'خدمات تعليمية مصممة بعناية لتناسب احتياجاتك وتأخذك إلى المستوى التالي في اللغة الإنجليزية.' 
+    },
     'كورسات لغة إنجليزية': { en: 'English Courses', ar: 'كورسات لغة إنجليزية' },
-    'كورسات متكاملة لجميع المستويات، من المبتدئ إلى المتقدم، بمنهج عملي وممتع.': { en: 'Integrated courses for all levels, from beginner to advanced, with a practical and enjoyable approach.', ar: 'كورسات متكاملة لجميع المستويات، من المبتدئ إلى المتقدم، بمنهج عملي وممتع.' },
+    'كورسات متكاملة لجميع المستويات، من المبتدئ إلى المتقدم، بمنهج عملي وممتع.': { 
+      en: 'Integrated courses for all levels, from beginner to advanced, with a practical and enjoyable approach.', 
+      ar: 'كورسات متكاملة لجميع المستويات، من المبتدئ إلى المتقدم، بمنهج عملي وممتع.' 
+    },
     'استشارات فردية': { en: 'Individual Consultations', ar: 'استشارات فردية' },
-    'جلسات استشارية خاصة لتقييم مستواك ووضع خطة تعلم تناسب أهدافك الشخصية والمهنية.': { en: 'Private consultation sessions to assess your level and create a learning plan that fits your personal and professional goals.', ar: 'جلسات استشارية خاصة لتقييم مستواك ووضع خطة تعلم تناسب أهدافك الشخصية والمهنية.' },
+    'جلسات استشارية خاصة لتقييم مستواك ووضع خطة تعلم تناسب أهدافك الشخصية والمهنية.': { 
+      en: 'Private consultation sessions to assess your level and create a learning plan that fits your personal and professional goals.', 
+      ar: 'جلسات استشارية خاصة لتقييم مستواك ووضع خطة تعلم تناسب أهدافك الشخصية والمهنية.' 
+    },
     'جلسات محادثة': { en: 'Conversation Sessions', ar: 'جلسات محادثة' },
-    'تدريب عملي على المحادثة لبناء الثقة وتطوير مهارات التحدث والاستماع بطلاقة.': { en: 'Practical conversation training to build confidence and develop speaking and listening skills fluently.', ar: 'تدريب عملي على المحادثة لبناء الثقة وتطوير مهارات التحدث والاستماع بطلاقة.' },
+    'تدريب عملي على المحادثة لبناء الثقة وتطوير مهارات التحدث والاستماع بطلاقة.': { 
+      en: 'Practical conversation training to build confidence and develop speaking and listening skills fluently.', 
+      ar: 'تدريب عملي على المحادثة لبناء الثقة وتطوير مهارات التحدث والاستماع بطلاقة.' 
+    },
     'دروس المرحلة الإعدادية': { en: 'Preparatory Stage Lessons', ar: 'دروس المرحلة الإعدادية' },
-    'دروس خاصة لطلاب المرحلة الإعدادية وفق المنهج الدراسي، مع تبسيط وشرح وافٍ.': { en: 'Private lessons for preparatory stage students according to the curriculum, with simplification and thorough explanation.', ar: 'دروس خاصة لطلاب المرحلة الإعدادية وفق المنهج الدراسي، مع تبسيط وشرح وافٍ.' },
+    'دروس خاصة لطلاب المرحلة الإعدادية وفق المنهج الدراسي، مع تبسيط وشرح وافٍ.': { 
+      en: 'Private lessons for preparatory stage students according to the curriculum, with simplification and thorough explanation.', 
+      ar: 'دروس خاصة لطلاب المرحلة الإعدادية وفق المنهج الدراسي، مع تبسيط وشرح وافٍ.' 
+    },
     'احجز خدمتك الآن': { en: 'Book Your Service Now', ar: 'احجز خدمتك الآن' },
+
+    // ===== التواصل =====
     'لنبادر بالتواصل': { en: 'Let\'s Connect', ar: 'لنبادر بالتواصل' },
-    'سواء كنت طالباً، أولياء أمور، أو صاحب مشروع، أنا هنا للإجابة على استفساراتك.': { en: 'Whether you are a student, a parent, or a project owner, I am here to answer your inquiries.', ar: 'سواء كنت طالباً، أولياء أمور، أو صاحب مشروع، أنا هنا للإجابة على استفساراتك.' },
+    'سواء كنت طالباً، أولياء أمور، أو صاحب مشروع، أنا هنا للإجابة على استفساراتك.': { 
+      en: 'Whether you are a student, a parent, or a project owner, I am here to answer your inquiries.', 
+      ar: 'سواء كنت طالباً، أولياء أمور، أو صاحب مشروع، أنا هنا للإجابة على استفساراتك.' 
+    },
     'البريد الإلكتروني': { en: 'Email', ar: 'البريد الإلكتروني' },
     'الهاتف المحمول': { en: 'Mobile Phone', ar: 'الهاتف المحمول' },
     'واتساب': { en: 'WhatsApp', ar: 'واتساب' },
     'تليجرام': { en: 'Telegram', ar: 'تليجرام' },
     'تابعني على منصات التواصل': { en: 'Follow me on Social Platforms', ar: 'تابعني على منصات التواصل' },
-    'محتوى تعليمي يومي، نصائح، ولحظات من عالمي': { en: 'Daily educational content, tips, and moments from my world', ar: 'محتوى تعليمي يومي، نصائح، ولحظات من عالمي' },
+    'محتوى تعليمي يومي، نصائح، ولحظات من عالمي': { 
+      en: 'Daily educational content, tips, and moments from my world', 
+      ar: 'محتوى تعليمي يومي، نصائح، ولحظات من عالمي' 
+    },
+
+    // ===== الفوتر =====
     'جميع الحقوق محفوظة.': { en: 'All Rights Reserved.', ar: 'جميع الحقوق محفوظة.' },
     'صُنع بـ وشغفٍ بالتعليم': { en: 'Made with Passion for Education', ar: 'صُنع بـ وشغفٍ بالتعليم' }
   };
 
+  // دالة الترجمة المحسنة
   function applyLanguage(lang) {
+    // تغيير اتجاه الصفحة
     document.documentElement.dir = (lang === 'en') ? 'ltr' : 'rtl';
     document.documentElement.lang = lang;
 
@@ -274,105 +345,62 @@ document.addEventListener('mousemove', function(e) {
         acceptNode: function(node) {
           const parent = node.parentElement;
           if (!parent) return NodeFilter.FILTER_REJECT;
-          if (parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE' || parent.tagName === 'INPUT' || parent.tagName === 'TEXTAREA') {
+          
+          // استثناء العناصر التي لا نريد ترجمتها
+          const tagsToSkip = ['SCRIPT', 'STYLE', 'INPUT', 'TEXTAREA', 'NOSCRIPT'];
+          if (tagsToSkip.includes(parent.tagName)) {
             return NodeFilter.FILTER_REJECT;
           }
+          
+          // استثناء عنصر اللغز
           if (parent.id === 'riddle-text' || parent.closest('#riddle-text')) {
             return NodeFilter.FILTER_REJECT;
           }
+          
           return NodeFilter.FILTER_ACCEPT;
         }
       }
     );
 
+    // جمع كل النصوص في مصفوفة
     const nodesToReplace = [];
     let node;
     while (node = walker.nextNode()) {
       nodesToReplace.push(node);
     }
 
+    // ترجمة النصوص
+    let translatedCount = 0;
     nodesToReplace.forEach(function(node) {
       const text = node.textContent.trim();
       if (text && translations[text]) {
         node.textContent = translations[text][lang];
+        translatedCount++;
       }
     });
 
+    console.log(`✅ تم ترجمة ${translatedCount} نص إلى ${lang === 'ar' ? 'العربية' : 'الإنجليزية'}`);
+    
+    // حفظ اللغة في المتصفح
     localStorage.setItem('preferredLang', lang);
     currentLang = lang;
   }
 
-  if (btn) {
-    btn.addEventListener('click', function() {
-      const newLang = (currentLang === 'ar') ? 'en' : 'ar';
-      applyLanguage(newLang);
-    });
-  }
+  // عند الضغط على زر اللغة
+  btn.addEventListener('click', function() {
+    const newLang = (currentLang === 'ar') ? 'en' : 'ar';
+    applyLanguage(newLang);
+  });
 
+  // تطبيق اللغة المخزنة عند تحميل الصفحة
   applyLanguage(currentLang);
+  
+  console.log('🌐 تم تحميل نظام الترجمة بنجاح');
 })();
 
 // ===================================================
-// 9. CHALLENGE REGISTRATION FORM
+// 9. CHALLENGE REGISTRATION FORM (تم الإلغاء)
 // ===================================================
-(function() {
-  const form = document.getElementById('challenge-form');
-  if (!form) return;
+console.log('ℹ️ تم إلغاء نموذج تسجيل التحدي بناءً على طلب المستخدم.');
 
-  const nameInput = document.getElementById('student-name');
-  const phoneInput = document.getElementById('student-phone');
-  const emailInput = document.getElementById('student-email');
-  const messageDiv = document.getElementById('registration-message');
-  const testLink = document.getElementById('test-link');
-
-  const YOUR_WHATSAPP = '201131413209';
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = nameInput.value.trim();
-    const phone = phoneInput.value.trim();
-    const email = emailInput.value.trim();
-
-    if (!name || !phone || !email) {
-      showToast('الرجاء تعبئة جميع الحقول أولاً.');
-      return;
-    }
-
-    const whatsappMessage = '📝 *تسجيل جديد في تحدي English Learning Hub*\n\n' +
-      '👤 *الاسم:* ' + name + '\n' +
-      '📱 *الجوال:* ' + phone + '\n' +
-      '📧 *البريد:* ' + email + '\n\n' +
-      '📅 *تاريخ التسجيل:* ' + new Date().toLocaleDateString('ar-EG') + '\n' +
-      '🕐 *الوقت:* ' + new Date().toLocaleTimeString('ar-EG');
-
-    const encodedMessage = encodeURIComponent(whatsappMessage);
-    const whatsappURL = 'https://wa.me/' + YOUR_WHATSAPP + '?text=' + encodedMessage;
-    window.open(whatsappURL, '_blank');
-
-    const studentEmailSubject = encodeURIComponent('نتيجة تحدي English Learning Hub');
-    const studentEmailBody = encodeURIComponent(
-      'مرحباً ' + name + '،\n\n' +
-      'شكراً لتسجيلك في تحدي English Learning Hub.\n\n' +
-      '📋 بيانات تسجيلك:\n' +
-      '👤 الاسم: ' + name + '\n' +
-      '📱 الجوال: ' + phone + '\n' +
-      '📧 البريد: ' + email + '\n\n' +
-      '🔗 رابط الاختبار:\n' +
-      'https://tamerrabie8-cmyk.github.io/Professional-placement-test/\n\n' +
-      'بعد إنهاء الاختبار، سيتم إرسال نتيجتك إلى هذا البريد الإلكتروني.\n\n' +
-      'مع تمنياتي لك بالتوفيق،\n' +
-      'تامر ربيع\n' +
-      'صانع محتوى تعليمي و PRO'
-    );
-
-    window.open('mailto:' + email + '?subject=' + studentEmailSubject + '&body=' + studentEmailBody, '_blank');
-
-    if (messageDiv) messageDiv.style.display = 'block';
-    if (testLink) testLink.style.display = 'block';
-
-    showToast('🎉 تم التسجيل بنجاح! سيتم إرسال النتيجة إلى بريدك.');
-
-    console.log('📝 بيانات التسجيل:');
-    console.log('الاسم:', name);
-    console.log('الجوال:', phone);
-    console.log('البريد:', email);
-    console.log('✅ تم إرسال إشعار واتساب إ
+console.log('✅ تم تحميل جميع الأكواد بنجاح!');
