@@ -207,9 +207,9 @@ document.addEventListener('mousemove', function(e) {
     // ===== الهيرو =====
     'استكشف أعمالي': { en: 'Explore My Works', ar: 'استكشف أعمالي' },
     'اكتشف المزيد': { en: 'Discover More', ar: 'اكتشف المزيد' },
-    'صانع محتوى تعليمي ·PRO': { 
-      en: 'Educational Content Creator · PRO', 
-      ar: 'صانع محتوى تعليمي · PRO' 
+    'صانع محتوى تعليمي · مدرّس لغة إنجليزية · مصوّر فوتوغرافي': { 
+      en: 'Educational Content Creator · English Teacher · Photographer', 
+      ar: 'صانع محتوى تعليمي · مدرّس لغة إنجليزية · مصوّر فوتوغرافي' 
     },
     
     // ===== عني =====
@@ -217,7 +217,7 @@ document.addEventListener('mousemove', function(e) {
     'وشغوفٌ بنقل المعرفة': { en: 'Passionate about transferring knowledge', ar: 'وشغوفٌ بنقل المعرفة' },
     'أنا': { en: 'I am', ar: 'أنا' },
     'تامر ربيع': { en: 'Tamer Rabie', ar: 'تامر ربيع' },
-    'صانع محتوى تعليمي متخصص في تعليم اللغة الانجليزية.': { 
+    'صانع محتوى تعليمي متخصص في تعليم اللغة الإنجليزية، وأعمل كمستقل (Freelancer) في تقديم المحتوى التعليمي والخدمات اللغوية.': { 
       en: 'An educational content creator specializing in teaching English, working as a freelancer in providing educational content and language services.', 
       ar: 'صانع محتوى تعليمي متخصص في تعليم اللغة الإنجليزية، وأعمل كمستقل (Freelancer) في تقديم المحتوى التعليمي والخدمات اللغوية.' 
     },
