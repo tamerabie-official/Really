@@ -5,9 +5,21 @@
   <title>تامر ربيع | صانع محتوى تعليمي</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="تامر ربيع - صانع محتوى تعليمي في اللغة الإنجليزية، يقدم محتوى مبسطاً ودورات واستشارات لمساعدتك على إتقان الإنجليزية.">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-omM1u5EwVwG1zYz3nqHKoPlQvD0mM1kt8k0oZrG8rOSqTfG7Yth0XfpQtFqFQfhNAdWJ8EIBgzHuLlHotE5HUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Reem+Kufi:wght@600;700&display=swap">
 
   <style>
+  body {
+  margin: 0;
+  font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #151521 0, #050509 50%, #02010a 100%);
+  color: var(--tp);
+  min-height: 100vh;
+}
+
+.hero-name,
+.font-kufi {
+  font-family: "Reem Kufi", "Cairo", sans-serif;
+}
     html {
       scroll-behavior: smooth;
     }
@@ -34,7 +46,7 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+     -family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: radial-gradient(circle at top, #151521 0, #050509 50%, #02010a 100%);
       color: var(--tp);
       min-height: 100vh;
@@ -73,17 +85,17 @@
     .gap-16 { gap: 4rem; }
 
     .text-center { text-align: center; }
-    .text-sm { font-size: .875rem; }
-    .text-base { font-size: 1rem; }
-    .text-lg { font-size: 1.125rem; }
-    .text-xl { font-size: 1.25rem; }
-    .text-2xl { font-size: 1.5rem; }
-    .text-3xl { font-size: 1.875rem; }
-    .text-4xl { font-size: 2.25rem; }
-    .text-5xl { font-size: 3rem; }
+    .text-sm {-size: .875rem; }
+    .text-base {-size: 1rem; }
+    .text-lg {-size: 1.125rem; }
+    .text-xl {-size: 1.25rem; }
+    .text-2xl {-size: 1.5rem; }
+    .text-3xl {-size: 1.875rem; }
+    .text-4xl {-size: 2.25rem; }
+    .text-5xl {-size: 3rem; }
 
-    .font-bold { font-weight: 700; }
-    .font-medium { font-weight: 500; }
+    .font-bold {-weight: 700; }
+    .font-medium {-weight: 500; }
 
     .rounded-lg { border-radius: .75rem; }
     .rounded-xl { border-radius: 1rem; }
@@ -129,7 +141,7 @@
       gap: .5rem;
       background: linear-gradient(135deg, var(--gold-light), var(--gold));
       color: #050509;
-      font-weight: 600;
+     -weight: 600;
       border: none;
       cursor: pointer;
       box-shadow: 0 16px 40px -20px rgba(201,169,97,0.9);
@@ -170,7 +182,7 @@
       border: 1px solid rgba(201,169,97,0.5);
       background: rgba(15,23,42,0.85);
       color: var(--gold-light);
-      font-size: .75rem;
+     -size: .75rem;
       letter-spacing: .18em;
       text-transform: uppercase;
       margin-bottom: 1.25rem;
@@ -223,13 +235,13 @@
       position: relative;
     }
     .hero-name {
-      font-family: 'Reem Kufi', sans-serif;
-      font-size: clamp(3rem, 5vw, 4rem);
+     -family: 'Reem Kufi', sans-serif;
+     -size: clamp(3rem, 5vw, 4rem);
       letter-spacing: .05em;
     }
     .hero-verse {
-      font-family: 'Amiri', serif;
-      font-size: 1.2rem;
+     -family: 'Amiri', serif;
+     -size: 1.2rem;
       color: var(--cream);
       line-height: 2;
       text-align: center;
@@ -329,7 +341,7 @@
       color: var(--bg-primary);
       padding: 1rem 1.75rem;
       border-radius: .75rem;
-      font-weight: 700;
+     -weight: 700;
       transform: translateY(150%);
       transition: transform .4s cubic-bezier(0.4,0,0.2,1);
       z-index: 1000;
@@ -380,7 +392,7 @@
       right: 1rem;
       left: 1rem;
       color: var(--cream);
-      font-size: .875rem;
+     -size: .875rem;
       opacity: 0;
       transform: translateY(10px);
       transition: all .4s ease;
@@ -415,12 +427,12 @@
       justify-content: center;
       background: linear-gradient(135deg, rgba(201,169,97,0.18), rgba(201,169,97,0.05));
       color: var(--gold);
-      font-size: 1.25rem;
+     -size: 1.25rem;
       flex-shrink: 0;
     }
 
     .stat-num {
-      font-family: 'Reem Kufi', sans-serif;
+     -family: 'Reem Kufi', sans-serif;
     }
 
     .verse-frame {
@@ -452,7 +464,7 @@
       border-right: none;
       border-radius: 0 0 0 1rem;
     }@media (max-width: 768px) {
-  section { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+  section { padding-top: 2rem !important; padding-bottom: 2rem !important; }
   .card { padding: 1.25rem !important; }
   .hero-name { font-size: clamp(2.5rem, 10vw, 3.5rem) !important; }
   .hero-verse { font-size: 1rem !important; line-height: 1.8 !important; }
@@ -460,12 +472,12 @@
   .text-5xl { font-size: 2.2rem !important; }
   .shimmer-text { font-size: 1rem !important; }
 
-  /* هنا التعديل */
   .grid {
     gap: 1rem !important;
+    grid-template-columns: 1fr !important;
   }
 
-  .profile-img { height: 280px !important; }
+  .profile-img { height: 240px !important; }
   .gallery-item { aspect-ratio: 1/1 !important; }
   .gallery-item img { height: 100% !important; }
   .contact-pill { padding: .75rem 1rem !important; }
@@ -480,6 +492,19 @@
     height: 40px !important;
     bottom: 1rem !important;
     left: 1rem !important;
+  }
+}
+
+/* تابلت */
+@media (min-width: 640px) and (max-width: 1024px) {
+  #about .grid,
+  #services .grid,
+  #works .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #hobbies .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
   </style>
@@ -497,20 +522,29 @@
 </div>
 
 <!-- ===== HEADER ===== -->
+<div id="scroll-progress" style="
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #e8c987, #c9a961);
+  width: 0;
+  z-index: 60;
+"></div>
 <header class="fixed top-0 inset-x-0 z-50 glass">
   <nav class="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
     <a href="#home" class="flex items-center gap-3">
-      <div class="w-11 h-11 rounded-xl gold-bg flex items-center justify-center font-bold text-lg shadow-lg" style="color: var(--bg-primary);">
+      <div class="w-11 h-11 rounded-xl gold-bg flex items-center justify-center-bold text-lg shadow-lg" style="color: var(--bg-primary);">
         <span style="font-family: 'Reem Kufi', sans-serif;">ت</span>
       </div>
       <div class="hidden sm:block">
-        <div style="font-family: 'Reem Kufi', sans-serif; font-size: 1.125rem; font-weight: 700;" class="gold-text leading-none">تامر ربيع</div>
+        <div style="-family: 'Reem Kufi', sans-serif;-size: 1.125rem;-weight: 700;" class="gold-text leading-none">تامر ربيع</div>
         <div class="text-[10px] tracking-widest mt-0.5" style="color: var(--ts);">TAMER RABIE</div>
-        <div class="text-[9px] tracking-wider mt-0.5 gold-text font-bold">صانع محتوي تعليمي و PRO</div>
+        <div class="text-[9px] tracking-wider mt-0.5 gold-text-bold">صانع محتوي تعليمي و PRO</div>
       </div>
     </a>
 
-    <div class="hidden lg:flex items-center gap-9 font-tajawal text-sm font-medium">
+    <div class="hidden lg:flex items-center gap-9-tajawal text-sm-medium">
       <a href="#about" class="nav-link" style="color: var(--ts);">عني</a>
       <a href="#mission" class="nav-link" style="color: var(--ts);">رسالتي</a>
       <a href="#hobbies" class="nav-link" style="color: var(--ts);">هواياتي</a>
@@ -521,9 +555,30 @@
     </div>
 
     <div class="flex items-center gap-3">
-      <button id="lang-switch" class="lang-toggle" aria-label="تبديل اللغة" style="width: 44px; height: 44px; border-radius: 50%; padding: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #e8c987, #c9a961); border: none; cursor: pointer; box-shadow: 0 0 15px rgba(201,169,97,0.3); transition: all 0.3s.ease;">
-        <img src="aricone.svg" alt="تبديل اللغة" style="width: 26px; height: 26px; display: block; filter: brightness(0) invert(1);">
-      </button>
+      <button id="lang-switch" aria-label="تبديل اللغة" style="
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(201,169,97,0.6);
+  padding: 2px;
+  background: rgba(10,10,15,0.95);
+  cursor: pointer;
+  font-size: 11px;
+  color: var(--tp);
+">
+  <span id="lang-ar" style="
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: var(--gold);
+    color: #050509;
+    font-weight: 600;
+  ">عربي</span>
+  <span id="lang-en" style="
+    padding: 4px 8px;
+    border-radius: 999px;
+    opacity: .7;
+  ">English</span>
+</button>
 
       <a href="#contact" class="hidden md:inline-flex btn-gold px-5 py-2.5 rounded-lg text-sm">
         <i class="fa-solid fa-paper-plane"></i> تواصل معي
@@ -537,12 +592,12 @@
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="mobile-menu lg:hidden fixed top-0 right-0 h-screen w-72 z-50 p-8" style="background: var(--bg-secondary); border-left: 1px solid var(--border);">
     <div class="flex justify-between items-center mb-12">
-      <span style="font-family: 'Reem Kufi', sans-serif; font-size: 1.25rem;" class="gold-text">القائمة</span>
+      <span style="font-family: 'Reem Kufi', sans-serif;-size: 1.25rem;" class="gold-text">القائمة</span>
       <button id="close-btn" class="text-2xl" style="color: var(--gold);" aria-label="إغلاق">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
-    <div class="flex flex-col gap-7 font-tajawal text-lg">
+    <div class="flex flex-col gap-7-tajawal text-lg">
       <a href="#about" class="mobile-link nav-link" style="color: var(--ts);">عني</a>
       <a href="#mission" class="mobile-link nav-link" style="color: var(--ts);">رسالتي</a>
       <a href="#hobbies" class="mobile-link nav-link" style="color: var(--ts);">هواياتي</a>
@@ -586,18 +641,22 @@
           <i class="fa-solid fa-feather-pointed" style="color: var(--gold);"></i>
           <div class="line"></div>
         </div>
-        <p class="font-tajawal text-base md:text-xl shimmer-text font-medium">صانع محتوى تعليمي</p>
-        <p class="font-tajawal text-sm md:text-base mt-2 gold-text font-bold">PRO</p>
+        <p class="font-tajawal text-base md:text-xl shimmer-text-medium">صانع محتوى تعليمي</p>
+        <p class="font-tajawal text-sm md:text-base mt-2 gold-text-bold">PRO</p>
       </div>
 
       <div class="flex flex-wrap items-center justify-center gap-4 mt-12 reveal">
-        <a href="#works" class="btn-gold px-8 py-3.5 rounded-xl"><i class="fa-solid fa-briefcase"></i> استكشف أعمالي</a>
-        <a href="#contact" class="btn-outline px-8 py-3.5 rounded-xl"><i class="fa-solid fa-envelope"></i> تواصل معي</a>
-      </div>
+  <a href="https://tamerrabie8-cmyk.github.io/Professional-placement-test/" target="_blank" class="btn-gold px-8 py-3.5 rounded-xl">
+    <i class="fa-solid fa-clipboard-check"></i> ابدأ اختبار المستوى الآن
+  </a>
+  <a href="https://youtube.com/@englishhub-f1z?si=EWb90fKYBeJi-S7H" target="_blank" class="btn-outline px-8 py-3.5 rounded-xl">
+    <i class="fa-brands fa-youtube"></i> شاهد قناتي على يوتيوب
+  </a>
+</div>
     </div>
 
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 hidden md:flex">
-      <span class="text-[11px] font-tajawal tracking-widest" style="color: var(--tm);">اكتشف المزيد</span>
+      <span class="text-[11px]-tajawal tracking-widest" style="color: var(--tm);">اكتشف المزيد</span>
       <div class="w-6 h-10 rounded-full border flex items-start justify-center p-1.5" style="border-color: var(--gold); opacity: 0.5;">
         <div class="w-1 h-2 rounded-full animate-bounce gold-bg"></div>
       </div>
@@ -620,7 +679,7 @@
                 </div>
                 <div>
                   <div class="text-xs mb-0.5" style="color: var(--ts);">خريج</div>
-                  <div class="text-sm font-bold leading-tight" style="color: var(--tp);">جامعة جنوب الوادي<br>قسم اللغة الإنجليزية</div>
+                  <div class="text-sm-bold leading-tight" style="color: var(--tp);">جامعة جنوب الوادي<br>قسم اللغة الإنجليزية</div>
                 </div>
               </div>
             </div>
@@ -630,30 +689,30 @@
 
         <div class="reveal order-1 lg:order-2">
           <span class="section-label"><span style="font-family: 'Reem Kufi', sans-serif;">عني</span></span>
-          <h2 class="font-kufi text-4xl md:text-5xl font-bold mb-6 leading-tight" style="font-family: 'Reem Kufi', sans-serif;">
+          <h2 class="font-kufi text-4xl md:text-5xl-bold mb-6 leading-tight" style="font-family: 'Reem Kufi', sans-serif;">
             صانع محتوى <span class="gold-text">تعليمي</span><br>وشغوفٌ بنقل المعرفة
           </h2>
           <p class="text-lg leading-relaxed mb-6" style="color: var(--ts);">
-            أنا <span style="color: var(--gold-light); font-weight: 700;">تامر ربيع</span>، صانع محتوى تعليمي.
+            أنا <span style="color: var(--gold-light);-weight: 700;">تامر ربيع</span>، صانع محتوى تعليمي.
           </p>
           <p class="text-base leading-relaxed mb-8" style="color: var(--ts);">
-            حاصل على درجة البكالوريوس من <span style="color: var(--tp); font-weight: 500;">جامعة جنوب الوادي – قسم اللغة الإنجليزية</span>، وأؤمن أن التعليم رسالة قبل أن يكون مهنة، وأن كل طالب يستحق فرصة حقيقية لإتقان لغة جديدة.
+            حاصل على درجة البكالوريوس من <span style="color: var(--tp);-weight: 500;">جامعة جنوب الوادي – قسم اللغة الإنجليزية</span>، وأؤمن أن التعليم رسالة قبل أن يكون مهنة، وأن كل طالب يستحق فرصة حقيقية لإتقان لغة جديدة.
           </p>
           <div class="grid grid-cols-2 gap-4 mb-8">
             <div class="card p-5">
-              <div class="text-3xl font-bold gold-text stat-num">+5</div>
+              <div class="text-3xl-bold gold-text stat-num">+5</div>
               <div class="text-sm mt-1" style="color: var(--ts);">سنوات خبرة</div>
             </div>
             <div class="card p-5">
-              <div class="text-3xl font-bold gold-text stat-num">+1000</div>
+              <div class="text-3xl-bold gold-text stat-num">+1000</div>
               <div class="text-sm mt-1" style="color: var(--ts);">طالب وطالبة</div>
             </div>
           </div>
           <div class="flex flex-wrap gap-3">
-            <span class="px-4 py-2 rounded-full text-sm font-medium" style="background: rgba(201,169,97,0.1); border: 1px solid var(--border); color: var(--gold-light);">
+            <span class="px-4 py-2 rounded-full text-sm-medium" style="background: rgba(201,169,97,0.1); border: 1px solid var(--border); color: var(--gold-light);">
               <i class="fa-solid fa-chalkboard-user ml-1.5"></i> صانع محتوى تعليمي
             </span>
-            <span class="px-4 py-2 rounded-full text-sm font-medium" style="background: rgba(201,169,97,0.1); border: 1px solid var(--border); color: var(--gold-light);">
+            <span class="px-4 py-2 rounded-full text-sm-medium" style="background: rgba(201,169,97,0.1); border: 1px solid var(--border); color: var(--gold-light);">
               <i class="fa-solid fa-laptop-code ml-1.5"></i> Freelancer
             </span>
           </div>
@@ -664,11 +723,11 @@
   <section id="mission" class="py-24 lg:py-32 px-5 lg:px-8 relative">
     <div class="max-w-4xl mx-auto text-center">
       <div class="reveal">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6 gold-text" style="font-family: 'Reem Kufi', sans-serif;">رسالتي</h2>
+        <h2 class="text-3xl md:text-4xl-bold mb-6 gold-text" style="font-family: 'Reem Kufi', sans-serif;">رسالتي</h2>
         <span class="section-label"><span style="font-family: 'Reem Kufi', sans-serif;">رسالتي</span></span>
         <i class="fa-solid fa-quote-right text-5xl mb-8 block" style="color: var(--gold); opacity: 0.4;"></i>
         <blockquote class="font-amiri text-2xl md:text-4xl leading-relaxed mb-8" style="color: var(--cream);">
-          اللغة الإنجليزية ليست مجرد <span class="gold-text font-bold">لغة</span>،<br>بل هي <span class="gold-text font-bold">طريقة تفكير</span>.
+          اللغة الإنجليزية ليست مجرد <span class="gold-text-bold">لغة</span>،<br>بل هي <span class="gold-text-bold">طريقة تفكير</span>.
         </blockquote>
         <div class="divider max-w-md mx-auto mb-8">
           <div class="line"></div>
@@ -676,11 +735,11 @@
           <div class="line"></div>
         </div>
         <blockquote class="font-amiri text-xl md:text-3xl leading-relaxed" style="color: var(--ts);">
-          الهوايات هي <span class="gold-text font-bold">مُتنفّس الروح</span> وملاذ الإنسان<br>للهروب من ضغوط الحياة.
+          الهوايات هي <span class="gold-text-bold">مُتنفّس الروح</span> وملاذ الإنسان<br>للهروب من ضغوط الحياة.
         </blockquote>
         <div class="mt-12 flex items-center justify-center gap-4">
           <div class="h-px w-12" style="background: linear-gradient(90deg, transparent, var(--gold));"></div>
-          <span style="font-family: 'Reem Kufi', sans-serif; font-size: 0.875rem; color: var(--gold);">تامر ربيع</span>
+          <span style="font-family: 'Reem Kufi', sans-serif;-size: 0.875rem; color: var(--gold);">تامر ربيع</span>
           <div class="h-px w-12" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
         </div>
       </div>
@@ -692,7 +751,7 @@
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16 reveal">
         <span class="section-label"><span style="font-family: 'Reem Kufi', sans-serif;">هواياتي</span></span>
-        <h2 class="font-kufi text-4xl md:text-5xl font-bold mb-5" style="font-family: 'Reem Kufi', sans-serif;">
+        <h2 class="font-kufi text-4xl md:text-5xl-bold mb-5" style="font-family: 'Reem Kufi', sans-serif;">
           عالَمي عبر <span class="gold-text">عدسة الكاميرا</span>
         </h2>
         <p class="max-w-2xl mx-auto text-lg leading-relaxed" style="color: var(--ts);">
@@ -736,7 +795,7 @@
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16 reveal">
         <span class="section-label"><span style="font-family: 'Reem Kufi', sans-serif;" data-translate="works-label">أعمالي</span></span>
-        <h2 class="font-kufi text-4xl md:text-5xl font-bold mb-5" style="font-family: 'Reem Kufi', sans-serif;">
+        <h2 class="font-kufi text-4xl md:text-5xl-bold mb-5" style="font-family: 'Reem Kufi', sans-serif;">
           <span data-translate="works-title-1">مشاريع</span> <span class="gold-text" data-translate="works-title-2">أفتخر بها</span>
         </h2>
         <p class="max-w-2xl mx-auto text-lg leading-relaxed" style="color: var(--ts);" data-translate="works-desc">
@@ -749,9 +808,9 @@
         <div class="card p-8 reveal">
           <div class="flex items-start justify-between mb-6">
             <div class="service-icon"><i class="fa-brands fa-youtube"></i></div>
-            <span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(255,80,80,0.1); color: #ff5050; border: 1px solid rgba(255,80,80,0.3);" data-translate="works-youtube-badge">قناة يوتيوب</span>
+            <span class="px-3 py-1 rounded-full text-xs-medium" style="background: rgba(255,80,80,0.1); color: #ff5050; border: 1px solid rgba(255,80,80,0.3);" data-translate="works-youtube-badge">قناة يوتيوب</span>
           </div>
-          <h3 class="font-kufi text-2xl font-bold mb-3" style="font-family: 'Reem Kufi', sans-serif;">English Learning Hub</h3>
+          <h3 class="font-kufi text-2xl-bold mb-3" style="font-family: 'Reem Kufi', sans-serif;">English Learning Hub</h3>
           <p class="leading-relaxed mb-6" style="color: var(--ts);" data-translate="works-youtube-desc">
             قناة تعليمية على اليوتيوب تقدم محتوى متنوعاً لتعلم اللغة الإنجليزية بطريقة مبسطة وممتعة، تشمل دروس قواعد، محادثات، ونصائح عملية.
           </p>
@@ -774,7 +833,7 @@
             </div>
             <div class="mt-6">
               <a href="https://tamerrabie8-cmyk.github.io/Professional-placement-test/" target="_blank" rel="noopener"
-                 class="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-full text-lg font-bold gold-bg transition-all duration-300 shadow-2xl hover:scale-105"
+                 class="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-full text-lg-bold gold-bg transition-all duration-300 shadow-2xl hover:scale-105"
                  style="color: var(--bg-primary); box-shadow: 0 0 50px rgba(201,169,97,0.4); min-width: 200px;" data-translate="works-challenge-btn">
                 <i class="fa-solid fa-arrow-right"></i>
                 <span>ابدأ اختبار المستوى الآن</span>
@@ -791,7 +850,7 @@
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-12 reveal">
         <span class="section-label"><span style="font-family: 'Reem Kufi', sans-serif;">صورة اليوم</span></span>
-        <h2 class="font-kufi text-4xl md:text-5xl font-bold mb-5" style="font-family: 'Reem Kufi', sans-serif;">
+        <h2 class="font-kufi text-4xl md:text-5xl-bold mb-5" style="font-family: 'Reem Kufi', sans-serif;">
           لغز <span class="gold-text">الأسبوع</span>
         </h2>
         <p class="max-w-2xl mx-auto text-lg leading-relaxed" style="color: var(--ts);">
@@ -803,7 +862,7 @@
           <div class="photo-frame">
             <img id="puzzle-image" src="https://images.unsplash.com/photo-1473507539-13eb9b7e8c2e?q=80&w=900&auto=format&fit=crop" alt="صورة الأسبوع" class="w-full h-[400px] lg:h-[480px] object-cover rounded-xl">
           </div>
-          <div class="absolute -top-4 -right-4 px-4 py-2 rounded-full gold-bg text-sm font-bold shadow-lg" style="color: var(--bg-primary);">
+          <div class="absolute -top-4 -right-4 px-4 py-2 rounded-full gold-bg text-sm-bold shadow-lg" style="color: var(--bg-primary);">
             <i class="fa-solid fa-camera-retro ml-1.5"></i> صورة الأسبوع
           </div>
         </div>
@@ -812,17 +871,17 @@
             <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: rgba(201,169,97,0.15); border: 1px solid var(--border);">
               <i class="fa-solid fa-puzzle-piece" style="color: var(--gold);"></i>
             </div>
-            <span class="text-sm font-medium tracking-wider" style="color: var(--gold);">RIDDLE OF THE WEEK</span>
+            <span class="text-sm-medium tracking-wider" style="color: var(--gold);">RIDDLE OF THE WEEK</span>
           </div>
           <blockquote class="font-amiri italic text-xl md:text-2xl leading-relaxed mb-8" style="color: var(--cream);" id="riddle-text">
             "I stand tall by the sea, guiding ships through the dark. My light cuts through the fog, yet I never move. What am I?"
           </blockquote>
           <div class="mb-6">
-            <label class="block text-sm font-medium mb-3" style="color: var(--ts);">
+            <label class="block text-sm-medium mb-3" style="color: var(--ts);">
               <i class="fa-solid fa-pen ml-1.5" style="color: var(--gold);"></i>
               اكتب إجابتك بالإنجليزية:
             </label>
-            <input id="puzzle-answer" type="text" placeholder="Type your answer here..." class="puzzle-input w-full px-5 py-3.5 rounded-xl font-medium" dir="ltr">
+            <input id="puzzle-answer" type="text" placeholder="Type your answer here..." class="puzzle-input w-full px-5 py-3.5 rounded-xl-medium" dir="ltr">
           </div>
           <button id="submit-answer" class="btn-gold px-6 py-3 rounded-lg w-full justify-center mb-4">
             <i class="fa-solid fa-paper-plane"></i> إرسال الإجابة
@@ -840,7 +899,7 @@
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16 reveal">
         <span class="section-label"><span style="font-family: 'Reem Kufi', sans-serif;">خدماتي</span></span>
-        <h2 class="font-kufi text-4xl md:text-5xl font-bold mb-5" style="font-family: 'Reem Kufi', sans-serif;">
+        <h2 class="font-kufi text-4xl md:text-5xl-bold mb-5" style="font-family: 'Reem Kufi', sans-serif;">
           كيف يمكنني <span class="gold-text">مساعدتك؟</span>
         </h2>
         <p class="max-w-2xl mx-auto text-lg leading-relaxed" style="color: var(--ts);">
@@ -851,22 +910,22 @@
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 reveal">
         <div class="card p-6">
           <div class="service-icon mb-4"><i class="fa-solid fa-book-open"></i></div>
-          <h3 class="font-kufi text-xl font-bold mb-3" style="font-family: 'Reem Kufi', sans-serif;">كورسات لغة إنجليزية</h3>
+          <h3 class="font-kufi text-xl-bold mb-3" style="font-family: 'Reem Kufi', sans-serif;">كورسات لغة إنجليزية</h3>
           <p style="color: var(--ts);">كورسات متكاملة لجميع المستويات، من المبتدئ إلى المتقدم، بمنهج عملي وممتع.</p>
         </div>
         <div class="card p-6">
           <div class="service-icon mb-4"><i class="fa-solid fa-user-tie"></i></div>
-          <h3 class="font-kufi text-xl font-bold mb-3" style="font-family: 'Reem Kufi', sans-serif;">استشارات فردية</h3>
+          <h3 class="font-kufi text-xl-bold mb-3" style="font-family: 'Reem Kufi', sans-serif;">استشارات فردية</h3>
           <p style="color: var(--ts);">جلسات استشارية خاصة لتقييم مستواك ووضع خطة تعلم تناسب أهدافك الشخصية والمهنية.</p>
         </div>
         <div class="card p-6">
           <div class="service-icon mb-4"><i class="fa-solid fa-comments"></i></div>
-          <h3 class="font-kufi text-xl font-bold mb-3" style="font-family: 'Reem Kufi', sans-serif;">جلسات محادثة</h3>
+          <h3 class="font-kufi text-xl-bold mb-3" style="font-family: 'Reem Kufi', sans-serif;">جلسات محادثة</h3>
           <p style="color: var(--ts);">تدريب عملي على المحادثة لبناء الثقة وتطوير مهارات التحدث والاستماع بطلاقة.</p>
         </div>
         <div class="card p-6">
           <div class="service-icon mb-4"><i class="fa-solid fa-school"></i></div>
-          <h3 class="font-kufi text-xl font-bold mb-3" style="font-family: 'Reem Kufi', sans-serif;">دروس المرحلة الإعدادية</h3>
+          <h3 class="font-kufi text-xl-bold mb-3" style="font-family: 'Reem Kufi', sans-serif;">دروس المرحلة الإعدادية</h3>
           <p style="color: var(--ts);">دروس خاصة لطلاب المرحلة الإعدادية وفق المنهج الدراسي، مع تبسيط وشرح وافٍ.</p>
         </div>
       </div>
@@ -883,7 +942,7 @@
       <div class="grid lg:grid-cols-2 gap-16 items-start">
         <div class="reveal">
           <span class="section-label"><span style="font-family: 'Reem Kufi', sans-serif;">تواصل</span></span>
-          <h2 class="font-kufi text-4xl md:text-5xl font-bold mb-6" style="font-family: 'Reem Kufi', sans-serif;">
+          <h2 class="font-kufi text-4xl md:text-5xl-bold mb-6" style="font-family: 'Reem Kufi', sans-serif;">
             لنبادر <span class="gold-text">بالتواصل</span>
           </h2>
           <p class="text-lg leading-relaxed mb-8" style="color: var(--ts);">
@@ -895,27 +954,27 @@
               <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
               <div>
                 <div class="text-sm" style="color: var(--tm);">البريد الإلكتروني</div>
-                <div class="text-base font-medium" style="color: var(--tp);">tamerabie@example.com</div>
+                <div class="text-base-medium" style="color: var(--tp);">tamerabie@example.com</div>
               </div>
             </div>
             <div class="contact-pill">
               <div class="icon-box"><i class="fa-solid fa-phone"></i></div>
               <div>
                 <div class="text-sm" style="color: var(--tm);">الهاتف المحمول</div>
-                <div class="text-base font-medium" style="color: var(--tp);">+20 1X XXX XXXX</div>
+                <div class="text-base-medium" style="color: var(--tp);">+20 1X XXX XXXX</div>
               </div>
             </div>
             <div class="contact-pill">
               <div class="icon-box"><i class="fa-brands fa-whatsapp"></i></div>
               <div>
                 <div class="text-sm" style="color: var(--tm);">واتساب</div>
-                <div class="text-base font-medium" style="color: var(--tp);">اترك رسالة وسأرد عليك في أقرب وقت</div>
+                <div class="text-base-medium" style="color: var(--tp);">اترك رسالة وسأرد عليك في أقرب وقت</div>
               </div>
             </div>
           </div>
 
           <div class="reveal">
-            <h3 class="font-kufi text-2xl font-bold mb-4" style="font-family: 'Reem Kufi', sans-serif;">تابعني على منصات التواصل</h3>
+            <h3 class="font-kufi text-2xl-bold mb-4" style="font-family: 'Reem Kufi', sans-serif;">تابعني على منصات التواصل</h3>
             <p class="text-sm mb-4" style="color: var(--tm);">محتوى تعليمي يومي، نصائح، ولحظات من عالمي.</p>
             <div class="flex flex-wrap items-center gap-3">
               <a href="#" class="btn-outline px-4 py-2 rounded-full text-sm"><i class="fa-brands fa-facebook-f"></i> فيسبوك</a>
@@ -927,24 +986,33 @@
 
         <div class="reveal">
           <div class="card p-8 lg:p-10">
-            <h3 class="font-kufi text-2xl font-bold mb-6" style="font-family: 'Reem Kufi', sans-serif;">أرسل رسالة سريعة</h3>
-            <form>
-              <div class="mb-4">
-                <label class="block text-sm mb-2" style="color: var(--ts);">الاسم الكامل</label>
-                <input type="text" class="w-full px-4 py-3 rounded-lg" style="background: rgba(15,23,42,0.9); border: 1px solid var(--border); color: var(--tp);">
-              </div>
-              <div class="mb-4">
-                <label class="block text-sm mb-2" style="color: var(--ts);">البريد الإلكتروني</label>
-                <input type="email" class="w-full px-4 py-3 rounded-lg" style="background: rgba(15,23,42,0.9); border: 1px solid var(--border); color: var(--tp);">
-              </div>
-              <div class="mb-6">
-                <label class="block text-sm mb-2" style="color: var(--ts);">رسالتك</label>
-                <textarea rows="4" class="w-full px-4 py-3 rounded-lg" style="background: rgba(15,23,42,0.9); border: 1px solid var(--border); color: var(--tp);"></textarea>
-              </div>
-              <button type="button" class="btn-gold w-full py-3 rounded-lg">
-                <i class="fa-solid fa-paper-plane"></i> إرسال
-              </button>
-            </form>
+            <h3 class="font-kufi text-2xl-bold mb-6" style="font-family: 'Reem Kufi', sans-serif;">أرسل رسالة سريعة</h3>
+            <form id="contact-form">
+  <div class="mb-4">
+    <label class="block text-sm mb-2" style="color: var(--ts);">الاسم الكامل</label>
+    <input name="name" type="text" required class="w-full px-4 py-3 rounded-lg" style="background: rgba(15,23,42,0.9); border: 1px solid var(--border); color: var(--tp);">
+  </div>
+  <div class="mb-4">
+    <label class="block text-sm mb-2" style="color: var(--ts);">البريد الإلكتروني</label>
+    <input name="email" type="email" required class="w-full px-4 py-3 rounded-lg" style="background: rgba(15,23,42,0.9); border: 1px solid var(--border); color: var(--tp);">
+  </div>
+  <div class="mb-4">
+    <label class="block text-sm mb-2" style="color: var(--ts);">سبب التواصل</label>
+    <select name="reason" class="w-full px-4 py-3 rounded-lg" style="background: rgba(15,23,42,0.9); border: 1px solid var(--border); color: var(--tp);">
+      <option value="استفسار عن كورسات">استفسار عن كورسات</option>
+      <option value="اختبار مستوى">اختبار مستوى</option>
+      <option value="استشارة خاصة">استشارة خاصة</option>
+      <option value="أخرى">أخرى</option>
+    </select>
+  </div>
+  <div class="mb-6">
+    <label class="block text-sm mb-2" style="color: var(--ts);">رسالتك</label>
+    <textarea name="message" rows="4" required class="w-full px-4 py-3 rounded-lg" style="background: rgba(15,23,42,0.9); border: 1px solid var(--border); color: var(--tp);"></textarea>
+  </div>
+  <button type="submit" class="btn-gold w-full py-3 rounded-lg">
+    <i class="fa-solid fa-paper-plane"></i> إرسال
+  </button>
+</form>
           </div>
         </div>
       </div>
