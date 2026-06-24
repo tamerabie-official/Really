@@ -214,31 +214,40 @@
           </div>
 
           <!-- Challenge / Test -->
-<div class="reveal" style="position: relative; overflow: hidden; padding: 20px 0;">
-            <div class="relative z-10 text-center">
-              
-              <div style="text-align: center; margin: 30px auto; max-width: 100%; padding: 0 15px;">
-                  <img src="EnglishLH.svg" alt="English Learning Hub Challenge" class="test-avatar" style="width: 100%; max-width: 380px; height: auto; aspect-ratio: 1 / 1; border-radius: 50%; object-fit: cover; object-position: center; border: 5px solid var(--gold, #c9a961); box-shadow: 0px 12px 24px rgba(0,0,0,0.25); transition: transform 0.3s ease; display: inline-block;">
-              </div>
+<section id="riddle-section" class="py-20" style="background: var(--bg-secondary);">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12 reveal">
+      <h2 class="text-4xl lg:text-5xl font-bold gold-text mb-4">RIDDLE OF THE WEEK</h2>
+      <div class="w-24 h-1 gold-bg mx-auto rounded-full"></div>
+    </div>
 
-              <div class="mt-8">
-                <a href="https://tamerrabie8-cmyk.github.io/Professional-placement-test/" target="_blank" rel="noopener"
-                   class="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-full text-lg-bold gold-bg transition-all duration-300 shadow-2xl hover:scale-105"
-                   style="color: var(--bg-primary); box-shadow: 0 0 50px rgba(201,169,97,0.4); min-width: 200px;">
-                  <i class="fa-solid fa-arrow-right"></i>
-                  <span>ابدأ اختبار المستوى الآن</span>
-                  <i class="fa-solid fa-arrow-left"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
+    <div class="card p-8 lg:p-10 reveal" style="max-width: 800px; margin: 0 auto; border: 2px solid rgba(201, 169, 97, 0.3); background: linear-gradient(145deg, rgba(22,22,31,0.95), rgba(10,10,15,0.98)); border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+      <div class="text-center">
+        
+        <div style="text-align: center; margin-bottom: 25px;">
+          <img id="riddle-image" src="" alt="Riddle of the week" style="width: 100%; max-width: 450px; height: auto; border-radius: 15px; border: 3px solid var(--gold, #c9a961); box-shadow: 0px 8px 16px rgba(0,0,0,0.3); display: inline-block;">
         </div>
-      </div>
-    </section>
-  
 
-  
+        <p id="riddle-text" class="text-xl lg:text-2xl text-gray-300 font-medium leading-relaxed my-6 px-4">
+          جاري تحميل لغز الأسبوع...
+        </p>
+
+        <div class="mt-8" style="max-width: 500px; margin-left: auto; margin-right: auto;">
+          <label for="user-answer" class="block text-sm font-medium text-gray-400 mb-2 text-right">اكتب إجابتك هنا:</label>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <input type="text" id="user-answer" placeholder="اكتب الحل هنا..." style="flex: 1; padding: 12px 20px; border-radius: 50px; border: 2px solid rgba(201, 169, 97, 0.4); background: rgba(10,10,15,0.6); color: #fff; outline: none; transition: all 0.3s;" onfocus="this.style.borderColor='#c9a961'" onblur="this.style.borderColor='rgba(201, 169, 97, 0.4)'">
+            
+            <button onclick="sendRiddleAnswer()" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-bold gold-bg text-black transition-all duration-300 hover:scale-105 shadow-lg" style="white-space: nowrap; cursor: pointer;">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>إرسال الحل</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- ===== PHOTO OF THE DAY / RIDDLE ===== -->
     <section id="photo-day" class="py-24 lg:py-32 px-5 lg:px-8">
