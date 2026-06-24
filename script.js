@@ -57,72 +57,66 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Riddle (Arabic & English)
-  const correctAnswer = 'lighthouse';
+  <script>
+// تخزين نص اللغز الحالي لإرساله مع الواتساب
+let currentRiddleTextForWa = "";
 
-  const riddleArInput = document.getElementById('puzzle-answer');
-  const riddleArBtn = document.getElementById('submit-answer');
-  const riddleArFeedback = document.getElementById('feedback');
+document.addEventListener("DOMContentLoaded", function() {
+    // جدول الـ 52 أسبوعاً ممتد لعام كامل ويعيد نفسه تلقائياً كل سنة جديدة
+    // يمكنك تعديل النصوص وأسماء الصور بما يناسبك في أي وقت
+    const riddlesYearDatabase = [
+        { image: "riddle1.jpeg", text: "الأسبوع 1: ما هو الشيء الذي يتحدث جميع لغات العالم؟" },
+        { image: "riddle2.jpeg", text: "الأسبوع 2: كلمة إنجليزية إذا حذفت أول حرفين تصبح كلمة تدل على مكان؟" },
+        { image: "riddle3.jpeg", text: "الأسبوع 3: اختر الإجابة الصحيحة من القواعد المعروضة في الصورة!" },
+        { image: "riddle4.jpeg", text: "الأسبوع 4: ما هو الشيء الذي يملك عيناً واحدة لكنه لا يرى بها؟" },
+        { image: "riddle1.jpeg", text: "الأسبوع 5: لغز جديد مخصص لهذا الأسبوع، ترقبو الحل!" },
+        // الكود ذكي؛ إذا لم تملاً الـ 52 خانة كاملة، سيقوم بالدوران التلقائي (auto-loop) بناءً على العدد المتاح لديه
+    ];
 
-  if (riddleArBtn && riddleArInput && riddleArFeedback) {
-    riddleArBtn.addEventListener('click', () => {
-      const value = riddleArInput.value.trim().toLowerCase();
-      if (!value) return;
-      if (value === correctAnswer) {
-        riddleArFeedback.style.color = '#4ade80';
-        riddleArFeedback.textContent = 'إجابة صحيحة! أحسنت.';
-      } else {
-        riddleArFeedback.style.color = '#f97373';
-        riddleArFeedback.textContent = 'قريبة، جرّب مرة أخرى 😉';
-      }
-    });
-  }
+    // دالة احترافية لحساب رقم الأسبوع الحالي في السنة (من 1 إلى 52)
+    function getCurrentWeekNumber() {
+        const today = new Date();
+        const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
+        const pastDaysOfYear = (today - firstDayOfYear) / 86400000;
+        return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+    }
 
-  const riddleEnInput = document.getElementById('puzzle-answer-en');
-  const riddleEnBtn = document.getElementById('submit-answer-en');
-  const riddleEnFeedback = document.getElementById('feedback-en');
+    const riddleImgElement = document.getElementById("riddle-image");
+    const riddleTextElement = document.getElementById("riddle-text");
 
-  if (riddleEnBtn && riddleEnInput && riddleEnFeedback) {
-    riddleEnBtn.addEventListener('click', () => {
-      const value = riddleEnInput.value.trim().toLowerCase();
-      if (!value) return;
-      if (value === correctAnswer) {
-        riddleEnFeedback.style.color = '#4ade80';
-        riddleEnFeedback.textContent = 'Correct answer! Well done.';
-      } else {
-        riddleEnFeedback.style.color = '#f97373';
-        riddleEnFeedback.textContent = 'Close, try again 😉';
-      }
-    });
-  }
+    if (riddleImgElement && riddleTextElement) {
+        const weekNum = getCurrentWeekNumber();
+        
+        // اختيار اللغز بناءً على رقم الأسبوع الحالي مع ميزة الحماية والتدوير (Modulo)
+        const currentIdx = (weekNum - 1) % riddlesYearDatabase.length;
+        const currentRiddle = riddlesYearDatabase[currentIdx];
 
-  // Toast helper
-  const toast = document.getElementById('toast');
-  const toastMsg = document.getElementById('toast-message');
-  const showToast = msg => {
-    if (!toast) return;
-    if (toastMsg && msg) toastMsg.textContent = msg;
-    toast.classList.add('show');
-    setTimeout(() => {
-      toast.classList.remove('show');
-    }, 3500);
-  };
-
-  // Contact forms (prevent default submit and show toast)
-  const formAr = document.getElementById('contact-form');
-  if (formAr) {
-    formAr.addEventListener('submit', e => {
-      e.preventDefault();
-      showToast('تم إرسال الرسالة بنجاح!');
-      formAr.reset();
-    });
-  }
-
-  const formEn = document.getElementById('contact-form-en');
-  if (formEn) {
-    formEn.addEventListener('submit', e => {
-      e.preventDefault();
-      showToast('Message sent successfully!');
-      formEn.reset();
-    });
-  }
+        // تحديث المحتوى على الصفحة فوراً
+        riddleImgElement.src = currentRiddle.image;
+        riddleTextElement.innerText = currentRiddle.text;
+        currentRiddleTextForWa = currentRiddle.text; // حفظ النص للواتساب
+    }
 });
+
+// دالة شريط الإجابة لإرسال النص مباشرة إلى الواتساب الخاص بك
+function sendRiddleAnswer() {
+    const answerInput = document.getElementById("user-answer");
+    if (!answerInput || answerInput.value.trim() === "") {
+        alert("من فضلك اكتب إجابتك أولاً في الشريط قبل الإرسال!");
+        return;
+    }
+    
+    const userAns = answerInput.value.trim();
+    const yourPhoneNumber = "201234567890"; // قم بتغيير هذا الرقم إلى رقم الواتساب الخاص بك بالرمز الدولي
+    
+    // تجهيز نص الرسالة بشكل منسق وفخم للمستر
+    const message = "أهلاً مستر، أنا مشترك في الموقع وجاهز بـ حل لغز الأسبوع!\n\n" + 
+                    "📌 اللغز: " + currentRiddleTextForWa + "\n" +
+                    "💡 إجابتي هي: " + userAns;
+    
+    // فتح الرابط فوراً
+    const whatsappUrl = "https://wa.me/" + yourPhoneNumber + "?text=" + encodeURIComponent(message);
+    window.open(whatsappUrl, "_blank");
+}
+</script>
+          
