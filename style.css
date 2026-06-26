@@ -32,7 +32,7 @@ body.lang-en {
 /* زر تبديل اللغة العائم في أعلى الصفحة */
 .lang-switcher-btn {
     position: fixed;
-    top: 20px;
+    top: 80px;
     left: 20px;
     z-index: 1000;
     background-color: var(--accent-orange);
