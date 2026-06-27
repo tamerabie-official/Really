@@ -500,56 +500,60 @@ body.lang-en .blog-card::before {
     }
     .mission-section h2 { font-size: 2rem; }
 }
-/* --- واجهة المساعد الذكي moaid --- */
+/* --- واجهة المساعد الذكي moaid العائمة والأنيقة --- */
 .chat-widget-container {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 2000;
+    bottom: 25px;
+    left: 25px; /* تم نقله لليسار ليصبح مكانه غاية في الأناقة ولا يضايق الزائر */
+    z-index: 9999;
 }
+/* عند تحويل الموقع للغة الإنجليزية ينقلب مكان الزر تلقائياً لليمين لراحة العين */
 body.lang-en .chat-widget-container {
-    right: auto;
-    left: 30px;
+    left: auto;
+    right: 25px;
 }
 
-/* زر الفتح العائم */
+/* تصميم الزر العائم الدائري */
 .chat-trigger-btn {
-    background-color: var(--accent-orange);
+    background: linear-gradient(135deg, var(--accent-orange), #b83f12);
     color: white;
     border: none;
-    padding: 15px 25px;
-    font-weight: bold;
-    border-radius: 50px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 5px 20px rgba(217, 83, 30, 0.4);
+    box-shadow: 0 8px 24px rgba(217, 83, 30, 0.4);
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 1rem;
+    justify-content: center;
+    font-size: 1.6rem;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
 }
 
-.chat-trigger-btn i {
-    font-size: 1.2rem;
+/* تأثيرات حركية خفيفة عند تمرير الماوس */
+.chat-trigger-btn:hover {
+    transform: scale(1.08) translateY(-3px);
+    box-shadow: 0 12px 28px rgba(217, 83, 30, 0.6);
 }
 
-/* صندوق نافذة المحادثة */
+/* صندوق نافذة المحادثة وانبثاقه من فوق الزر تماماً */
 .chat-window {
     display: none;
     position: absolute;
-    bottom: 80px;
-    right: 0;
+    bottom: 75px;
+    left: 0;
     width: 360px;
-    height: 500px;
+    height: 520px;
     background-color: var(--card-dark);
     border: 1px solid #2c313c;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
     flex-direction: column;
     overflow: hidden;
 }
 body.lang-en .chat-window {
-    right: auto;
-    left: 0;
+    left: auto;
+    right: 0;
 }
 
 /* هيدر الشات */
@@ -593,6 +597,7 @@ body.lang-en .chat-window {
     color: var(--text-muted);
     font-size: 1.5rem;
     cursor: pointer;
+    transition: color 0.2s;
 }
 .chat-close-btn:hover { color: white; }
 
@@ -617,7 +622,6 @@ body.lang-en .chat-window {
     white-space: pre-line;
 }
 
-/* رسالة البوت (رمادي فاتح متناسق) */
 .chat-bubble.bot-msg {
     background-color: #22252e;
     color: #e5e5e5;
@@ -626,13 +630,11 @@ body.lang-en .chat-window {
     text-align: right;
 }
 body.lang-en .chat-bubble.bot-msg {
-    align-self: flex-start;
     border-bottom-right-radius: 14px;
     border-bottom-left-radius: 2px;
     text-align: left;
 }
 
-/* رسالة المستخدم (برتقالية) */
 .chat-bubble.user-msg {
     background-color: var(--accent-orange);
     color: white;
@@ -641,7 +643,6 @@ body.lang-en .chat-bubble.bot-msg {
     text-align: right;
 }
 body.lang-en .chat-bubble.user-msg {
-    align-self: flex-end;
     border-bottom-left-radius: 14px;
     border-bottom-right-radius: 2px;
     text-align: left;
@@ -662,8 +663,12 @@ body.lang-en .chat-bubble.user-msg {
     border: 1px solid #2c313c;
     color: white;
     padding: 10px 15px;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 0.9rem;
+}
+.chat-input-area input:focus {
+    outline: none;
+    border-color: var(--accent-orange);
 }
 
 .chat-input-area button {
@@ -672,18 +677,20 @@ body.lang-en .chat-bubble.user-msg {
     border: none;
     width: 40px;
     height: 40px;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1rem;
+    transition: background 0.2s;
 }
 .chat-input-area button:hover { background-color: #b83f12; }
 
+/* تجاوب الشاشات الصغيرة جداً */
 @media (max-width: 400px) {
     .chat-window {
         width: 300px;
-        height: 400px;
+        height: 430px;
     }
 }
