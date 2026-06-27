@@ -163,5 +163,40 @@
 
     <!-- ربط ملف البرمجة والتفاعل الخارجي JS قبل إغلاق الـ body مباشرة -->
     <script src="script.js"></script>
+        <!-- واجهة المساعد الذكي moaid العائمة -->
+    <div class="chat-widget-container">
+        <!-- زر فتح وإغلاق الشات -->
+        <button class="chat-trigger-btn" onclick="toggleChatWindow()">
+            <i class="fa-solid fa-comments"></i> <span id="chat-btn-text">تحدث مع moaid</span>
+        </button>
+
+        <!-- نافذة المحادثة -->
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-avatar"><i class="fa-solid fa-robot"></i></div>
+                <div class="chat-status-info">
+                    <h4>moaid</h4>
+                    <p>المساعد الذكي لـ Mr. Tamer</p>
+                </div>
+                <button class="chat-close-btn" onclick="toggleChatWindow()">&times;</button>
+            </div>
+            
+            <!-- منطقة عرض الرسائل -->
+            <div class="chat-messages-body" id="chatMessages">
+                <div class="chat-bubble bot-msg">
+                    أهلاً بك! أرسل أي كلمة لبدء المحادثة مع moaid.
+                </div>
+            </div>
+
+            <!-- منطقة إدخال النص -->
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="اكتب رسالتك هنا..." onkeypress="handleChatKeyPress(event)">
+                <button onclick="sendUserMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ربط ملف البرمجة الخارجي -->
+    <script src="script.js"></script>
 </body>
 </html>
