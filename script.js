@@ -271,3 +271,77 @@ function saveChatSessionLocally() {
     localStorage.setItem('moaid_chat_history', JSON.stringify(allChats));
     console.log("تمت أرشفة المحادثة بنجاح في سجلات LocalStorage لقسم moaid.");
 }
+// دالة التحكم بتدفق بيانات استمارة التسجيل الأربعة خطوة بخطوة
+function handleRegistrationFlow(inputText) {
+    if (chatState.regStep === 1) {
+        chatState.studentData.name = inputText;
+        chatState.regStep = 2;
+        appendMessage("2- السنة الدراسية:", "bot");
+    } else if (chatState.regStep === 2) {
+        chatState.studentData.grade = inputText;
+        chatState.regStep = 3;
+        appendMessage("3- رقم جوال ولي الأمر:", "bot");
+    } else if (chatState.regStep === 3) {
+        chatState.studentData.phone = inputText;
+        chatState.regStep = 4;
+        appendMessage("4- وسيلة التواصل المفضلة:", "bot");
+    } else if (chatState.regStep === 4) {
+        // استقبال الخطوة الرابعة والأخيرة
+        chatState.studentData.preference = inputText;
+        
+        // 1. الرد الإلزامي الفوري للبوت moaid
+        appendMessage("سيتم إرسال رسالة برقم تسجيل المتعلم/ الطالب عند الانتهاء من مراجعته", "bot");
+        
+        // 2. تنفيذ التعديل فوراً: إنشاء وتنزيل الملف النصي تلقائياً
+        generateAndDownloadTxtFile(chatState.studentData);
+        
+        // 3. أرشفة المحادثة محلياً وإعادة ضبط عداد الحجز لمتصل جديد
+        saveChatSessionLocally();
+        chatState.isRegistering = false;
+        chatState.regStep = 0;
+    }
+}
+
+// دالة إنشاء ملف الـ Txt عبر تقنية Blob ومحاكاة التحميل التلقائي
+function generateAndDownloadTxtFile(data) {
+    // جلب التاريخ والوقت الحالي بتوقيت مصر المحلي وبشكل مقروء
+    const currentDateTime = new Date().toLocaleString('ar-EG', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        hour12: true 
+    });
+    
+    // تنسيق محتوى الملف النصي المنظم الذي سيظهر داخل المجلد
+    const fileContent = `==================================================
+إستمارة تسجيل طالب جديد - المساعد الذكي moaid
+==================================================
+تاريخ ووقت التسجيل : ${currentDateTime}
+
+1- اسم المتعلم/الطالب  : ${data.name}
+2- السنة الدراسية      : ${data.grade}
+3- رقم جوال ولي الأمر  : ${data.phone}
+4- وسيلة التواصل المفضلة: ${data.preference}
+==================================================
+تم الحفظ تلقائياً بواسطة منصة Mr. Tamer Rabie التعليمية`;
+
+    // خطوة إنشاء الـ Blob (Binary Large Object) لتحويل النص لملف حقيقي في الذاكرة المؤقتة
+    const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
+    
+    // خطوة إنشاء رابط تحميل وهمي وغير مرئي في الصفحة
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(blob);
+    
+    // تسمية الملف باسم الطالب تلقائياً لسهولة فرزه داخل مجلد moaid (مع استبدال المسافات بشرطات)
+    const formattedName = data.name.trim().replace(/\s+/g, '_');
+    downloadLink.download = `student_${formattedName}.txt`;
+    
+    // إدراج الرابط في الصفحة مؤقتاً ومحاكاة "ضغطة زر تحميل" تلقائية
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    
+    // تنظيف الصفحة وحذف الرابط الوهمي بعد إتمام التحميل بنجاح
+    document.body.removeChild(downloadLink);
+}
