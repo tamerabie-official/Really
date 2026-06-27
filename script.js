@@ -6,7 +6,8 @@ const content = {
         heroBtn: "التواصل الرسمي", missionTitle: "رسالتي", projMainTitle: "أعمالي ومشاريعي",
         p1Desc: "قناة تعليمية على اليوتيوب لشرح منهج المرحلة الإعدادية (الاول والثاني والثالث الاعدادي) بطريقة عصرية تقيم وتصنف قدرات الدارسين لاختيار أفضل طريقة استيعاب لكل طالب.",
         p2Title: "إختبار تحديد المستوى (التحدي)", p2Desc: "بمثابة المصافحة الأولى بيني وبين الدارس. اختبار شامل يعطي فكرة تعليمية دقيقة ومكتملة عن مستوى المتعلم الحالي ليعرف أين يقف بوضوح ونرسم معاً مسار التطوير.",
-        p3Title: "التصوير الفوتوغرافي", p3Desc: "هوايتي المفضلة التي أسعى لـ احترافها قريباً. معرضي الفوتوغرافي الأول الجاهز سيكون بعنوان \"صباح الخير يا القاهرة\".",
+        p3Title: "التصوير الفوتوغرافي", 
+        p3Desc: "بأول صورة من منتجاتي تنتشر علي الانترنت أنتي بتعيشي لحظات تاريخية وما يثير في نفسي الشجن والحنين ان الصورة من مسقط رأسي باسوان الحبيبة.",
         p3Status: "حلمي قريباً ⏳", p3Link: "رابط مؤقت للمتابعة", riddleTitle: "لغز الأسبوع", riddleBtn: "إرسال الإجابة",
         blogTitle: "مدونة هلوسات", post1Title: "أولى الهلوسات: خربشة على جدار الفكر",
         post1Excerpt: "هنا مساحة حرة تماماً خارج قيود المناهج وقواعد التعليم. أشارككم فيها بعض الأفكار العابرة والتأملات الشخصية في مجريات الحياة والمجتمع...", post1Link: "اقرأ المزيد ←",
@@ -19,7 +20,8 @@ const content = {
         heroBtn: "Official Contact", missionTitle: "My Mission", projMainTitle: "My Projects & Portfolio",
         p1Desc: "An educational YouTube channel dedicated to explaining the English curriculum for Middle School (1st, 2nd, and 3rd prep) utilizing modern adaptive learning strategies based on student assessments.",
         p2Title: "English Placement Test (The Challenge)", p2Desc: "Considered the first handshake between me and the learner. A comprehensive test that gives a complete analytical insight into the student's scale and level to initiate a growth map.",
-        p3Title: "Photography Portfolio", p3Desc: "My favorite hobby that I aim to specialize in soon. My first ready gallery will be named 'Good Morning Cairo'.",
+        p3Title: "Photography Portfolio", 
+        p3Desc: "With the first photo of my work spreading online, you live historical moments. What triggers nostalgia in me is that this photo is from my beloved birthplace, Aswan.",
         p3Status: "My Dream Soon ⏳", p3Link: "Temporary Channel Link", riddleTitle: "Riddle of the Week", riddleBtn: "Submit Answer",
         blogTitle: "Halosat Blog (My Ramblings)", post1Title: "First Rambling: Scribbles on the Wall of Thought",
         post1Excerpt: "A completely free space outside the constraints of curricula and teaching rules, where I share transient thoughts and personal reflections on life...", post1Link: "Read More →",
@@ -130,7 +132,6 @@ function appendMessage(text, sender) {
     chatMessages.appendChild(bubble);
     chatMessages.scrollTop = chatMessages.scrollHeight;
     
-    // حفظ المحادثة في الذاكرة الحالية
     chatState.historyLogs.push(`${sender === 'user' ? 'المتصل' : 'moaid'}: ${text}`);
 }
 
@@ -142,7 +143,6 @@ function sendUserMessage() {
     appendMessage(userText, 'user');
     inputEl.value = '';
 
-    // معالجة الردود بناءً على القواعد الصارمة المطلوبة
     setTimeout(() => {
         processBotResponse(userText);
     }, 600);
@@ -151,28 +151,24 @@ function sendUserMessage() {
 function processBotResponse(inputText) {
     const lowerText = inputText.toLowerCase();
 
-    // 1. قاعدة بدء المحادثة الإلزامية (لأول رسالة أياً كانت)
     if (!chatState.isStarted) {
         chatState.isStarted = true;
         appendMessage("السلام عليكم ورحمة الله وبركاته. انا moaid المساعد الذكي لـ Mr. Tamer Rabie\nآزاي ممكن اخدمك؟", "bot");
         return;
     }
 
-    // 2. سيناريو إنهاء التواصل
     if (inputText === 'سلام' || lowerText === 'باي' || lowerText === 'bye') {
         appendMessage("رافقتك السلامة", "bot");
-        saveChatSessionLocally(); // حفظ المحادثة عند المغادرة
-        chatState.isStarted = false; // إعادة ضبط الحالة لبدء جديد لاحقاً
+        saveChatSessionLocally();
+        chatState.isStarted = false;
         return;
     }
 
-    // 3. سيناريو تدفق التسجيل والحجز (خطوة بخطوة)
     if (chatState.isRegistering) {
         handleRegistrationFlow(inputText);
         return;
     }
 
-    // بدء طلب الحجز الجديد
     if (inputText.includes('حجز') || inputText.includes('تسجيل') || inputText.includes('اشترك')) {
         chatState.isRegistering = true;
         chatState.regStep = 1;
@@ -180,19 +176,16 @@ function processBotResponse(inputText) {
         return;
     }
 
-    // 4. سيناريو الشرح والامتحانات والمناهج (New Hello / Aim High)
     if (inputText.includes('شرح') || inputText.includes('امتحان') || inputText.includes('منهج') || lowerText.includes('hello') || lowerText.includes('aim high')) {
         appendMessage("نعم يا فندم، الكورس يغطي شرح القواعد (Grammar) والكلمات بالكامل، مع حل امتحانات المحافظات السابقة بانتظام والتدريب على سؤال المحادثة والباراجراف لضمان الاستيعاب الكامل.", "bot");
         return;
     }
 
-    // 5. سيناريو متابعة المستوى والدرجات
     if (inputText.includes('متابعة') || inputText.includes('المستوى') || inputText.includes('المستوي') || inputText.includes('درجات')) {
         appendMessage("أكيد حضرتك العنصر الاساسي المعني بالمعرفة هيكون باكثر من وسيلة.\n1. اختاري وسيلة تواصل مناسبة ليك/ اسمي؟ ودى هتكون مرجع لحضرتك.\nالمساعد الذكي moaid هيطلعك علي كل مواعيد الدروس، رسائل تاكيد للحضور، رسائل تاكيد الغياب، الدرجات، المستوي، السلوك..... كل شئ مباشر.", "bot");
         return;
     }
 
-    // 6. تزويد المتصل بوسائل التواصل الاجتماعي إذا طلب روابط السوشيال ميديا
     if (inputText.includes('تواصل') || inputText.includes('رقم') || inputText.includes('روابط') || inputText.includes('سوشيال')) {
         appendMessage("إليك كافة وسائل التواصل الرسمية لـ Mr. Tamer:\n" +
             "✉️ البريد: Mr.tamer2026@outlook.com\n" +
@@ -206,11 +199,9 @@ function processBotResponse(inputText) {
         return;
     }
 
-    // 7. سيناريو السؤال المبهم أو غير المعلوم (الافتراضي الحذر)
     appendMessage("آسف لست مخولا عن الحديث في هذا الأمر", "bot");
 }
 
-// دالة التحكم بتدفق بيانات استمارة التسجيل الأربعة
 function handleRegistrationFlow(inputText) {
     if (chatState.regStep === 1) {
         chatState.studentData.name = inputText;
@@ -226,42 +217,31 @@ function handleRegistrationFlow(inputText) {
         appendMessage("4- وسيلة التواصل المفضلة:", "bot");
     } else if (chatState.regStep === 4) {
         chatState.studentData.preference = inputText;
-        
-        // الرد النهائي بعد اكتمال الخطوة الرابعة
         appendMessage("سيتم إرسال رسالة برقم تسجيل المتعلم/ الطالب عند الانتهاء من مراجعته", "bot");
-        
-        // تنفيذ الحفظ الآلي
-        saveRegistrationData();
-        
-        // إعادة تهيئة حالة الحجز
+        generateAndDownloadTxtFile(chatState.studentData);
+        saveChatSessionLocally();
         chatState.isRegistering = false;
         chatState.regStep = 0;
     }
 }
 
-// دالة حفظ بيانات حجز الطالب وتحميلها آلياً لمحاكة مجلد moaid
-function saveRegistrationData() {
-    const dataString = `استمارة تسجيل طالب جديد:\n` +
-                       `الاسم: ${chatState.studentData.name}\n` +
-                       `السنة الدراسية: ${chatState.studentData.grade}\n` +
-                       `جوال ولي الأمر: ${chatState.studentData.phone}\n` +
-                       `الوسيلة المفضلة: ${chatState.studentData.preference}\n` +
-                       `التاريخ: ${new Date().toLocaleString()}`;
+function generateAndDownloadTxtFile(data) {
+    const currentDateTime = new Date().toLocaleString('ar-EG', { 
+        year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true 
+    });
+    
+    const fileContent = `==================================================\nإستمارة تسجيل طالب جديد - المساعد الذكي moaid\n==================================================\nتاريخ ووقت التسجيل : ${currentDateTime}\n\n1- اسم المتعلم/الطالب  : ${data.name}\n2- السنة الدراسية      : ${data.grade}\n3- رقم جوال ولي الأمر  : ${data.phone}\n4- وسيلة التواصل المفضلة: ${data.preference}\n==================================================\nتم الحفظ تلقائياً بواسطة منصة Mr. Tamer Rabie التعليمية`;
 
-    // 1. الحفظ داخل LocalStorage للمتصفح
-    let currentRecords = JSON.parse(localStorage.getItem('moaid_registrations')) || [];
-    currentRecords.push(chatState.studentData);
-    localStorage.setItem('moaid_registrations', JSON.stringify(currentRecords));
-
-    // 2. تفعيل تحميل الملف التلقائي باسم الطالب لحفظه فوراً في جهازك (مجلد moaid)
-    const blob = new Blob([dataString], { type: 'text/plain;charset=utf-8' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `student_${chatState.studentData.name}.txt`;
-    link.click();
+    const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(blob);
+    const formattedName = data.name.trim().replace(/\s+/g, '_');
+    downloadLink.download = `student_${formattedName}.txt`;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
 }
 
-// دالة حفظ سجل المحادثات الكاملة عند الانتهاء
 function saveChatSessionLocally() {
     let allChats = JSON.parse(localStorage.getItem('moaid_chat_history')) || [];
     allChats.push({
@@ -269,79 +249,4 @@ function saveChatSessionLocally() {
         log: chatState.historyLogs
     });
     localStorage.setItem('moaid_chat_history', JSON.stringify(allChats));
-    console.log("تمت أرشفة المحادثة بنجاح في سجلات LocalStorage لقسم moaid.");
-}
-// دالة التحكم بتدفق بيانات استمارة التسجيل الأربعة خطوة بخطوة
-function handleRegistrationFlow(inputText) {
-    if (chatState.regStep === 1) {
-        chatState.studentData.name = inputText;
-        chatState.regStep = 2;
-        appendMessage("2- السنة الدراسية:", "bot");
-    } else if (chatState.regStep === 2) {
-        chatState.studentData.grade = inputText;
-        chatState.regStep = 3;
-        appendMessage("3- رقم جوال ولي الأمر:", "bot");
-    } else if (chatState.regStep === 3) {
-        chatState.studentData.phone = inputText;
-        chatState.regStep = 4;
-        appendMessage("4- وسيلة التواصل المفضلة:", "bot");
-    } else if (chatState.regStep === 4) {
-        // استقبال الخطوة الرابعة والأخيرة
-        chatState.studentData.preference = inputText;
-        
-        // 1. الرد الإلزامي الفوري للبوت moaid
-        appendMessage("سيتم إرسال رسالة برقم تسجيل المتعلم/ الطالب عند الانتهاء من مراجعته", "bot");
-        
-        // 2. تنفيذ التعديل فوراً: إنشاء وتنزيل الملف النصي تلقائياً
-        generateAndDownloadTxtFile(chatState.studentData);
-        
-        // 3. أرشفة المحادثة محلياً وإعادة ضبط عداد الحجز لمتصل جديد
-        saveChatSessionLocally();
-        chatState.isRegistering = false;
-        chatState.regStep = 0;
-    }
-}
-
-// دالة إنشاء ملف الـ Txt عبر تقنية Blob ومحاكاة التحميل التلقائي
-function generateAndDownloadTxtFile(data) {
-    // جلب التاريخ والوقت الحالي بتوقيت مصر المحلي وبشكل مقروء
-    const currentDateTime = new Date().toLocaleString('ar-EG', { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric', 
-        hour: '2-digit', 
-        minute: '2-digit', 
-        hour12: true 
-    });
-    
-    // تنسيق محتوى الملف النصي المنظم الذي سيظهر داخل المجلد
-    const fileContent = `==================================================
-إستمارة تسجيل طالب جديد - المساعد الذكي moaid
-==================================================
-تاريخ ووقت التسجيل : ${currentDateTime}
-
-1- اسم المتعلم/الطالب  : ${data.name}
-2- السنة الدراسية      : ${data.grade}
-3- رقم جوال ولي الأمر  : ${data.phone}
-4- وسيلة التواصل المفضلة: ${data.preference}
-==================================================
-تم الحفظ تلقائياً بواسطة منصة Mr. Tamer Rabie التعليمية`;
-
-    // خطوة إنشاء الـ Blob (Binary Large Object) لتحويل النص لملف حقيقي في الذاكرة المؤقتة
-    const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
-    
-    // خطوة إنشاء رابط تحميل وهمي وغير مرئي في الصفحة
-    const downloadLink = document.createElement('a');
-    downloadLink.href = URL.createObjectURL(blob);
-    
-    // تسمية الملف باسم الطالب تلقائياً لسهولة فرزه داخل مجلد moaid (مع استبدال المسافات بشرطات)
-    const formattedName = data.name.trim().replace(/\s+/g, '_');
-    downloadLink.download = `student_${formattedName}.txt`;
-    
-    // إدراج الرابط في الصفحة مؤقتاً ومحاكاة "ضغطة زر تحميل" تلقائية
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    
-    // تنظيف الصفحة وحذف الرابط الوهمي بعد إتمام التحميل بنجاح
-    document.body.removeChild(downloadLink);
 }
