@@ -397,43 +397,53 @@ body.lang-en .project-footer { text-align: left; }
     transform: translateY(-5px);
 }
 /* --- قسم مدونة هلوسات --- */
-.blog-section {
-    padding: 80px 20px;
-    background-color: var(--bg-dark);
+
+.
+/* الشريط البرتقالي الجانبي الأنيق للمقال */
+.blog-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--accent-orange);
+}
+body.lang-en .blog-card::before {
+    right: auto;
+    left: 0;
 }
 
-.blog-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    text-align: center;
+.blog-date {
+    font-size: 0.85rem;
+    color: var(--accent-orange);
+    margin-bottom: 10px;
+    font-weight: bold;
 }
 
-.blog-container h2 {
-    font-size: 2.3rem;
-    margin-bottom: 40px;
+.blog-post-title {
+    font-size: 1.3rem;
     color: var(--text-white);
+    margin-bottom: 15px;
 }
 
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+.blog-post-excerpt {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.6;
 }
 
-.blog-card {
-    background-color: var(--card-dark);
-    border: 1px solid #22252e;
-    padding: 30px;
-    border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
+.read-more-btn {
+    color: var(--accent-orange);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: inline-block;
 }
-body:not(.lang-en) .blog-card { text-align: right; }
-body.lang-en .blog-card { text-align: left; }
-
+.read-more-btn:hover {
+    text-decoration: underline;
+}
 /* الشريط البرتقالي الجانبي الأنيق للمقال */
 .blog-card::before {
     content: '';
