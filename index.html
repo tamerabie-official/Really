@@ -1,36 +1,48 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tamer Rabie | تامر ربيع</title>
-    <!-- استدعاء أيقونات FontAwesome للتواصل الاجتماعي -->
+    
+    <!-- إعدادات SEO الاحترافية لتصدر نتائج البحث -->
+    <title id="meta-title">تامر ربيع | خبير تعليم اللغة الإنجليزية وصانع محتوى تعليمي</title>
+    <meta name="description" id="meta-desc" content="منصة تامر ربيع التعليمية: متخصص في شرح منهج الإنجليزية للمرحلة الإعدادية، اختبارات تحديد مستوى احترافية، وكورسات محادثة. خبرة 15 عاماً في تقديم محتوى تعليمي عصري.">
+    <meta name="keywords" content="تامر ربيع, مستر ربيع, دروس لغة إنجليزية, اختبار تحديد مستوى, English Learning Hub, تعليم إنجليزي إعدادي, كورس محادثة إنجليزي">
+    <meta name="author" content="تامر ربيع - Tamer Rabie">
+    
+    <!-- وسوم Open Graph لإظهار صورتك الفخمة عند مشاركة الرابط -->
+    <meta property="og:title" content="Tamer Rabie - English Learning Hub">
+    <meta property="og:description" content="تعلم الإنجليزية بأسلوب عصري مع مستر تامر ربيع. دروس، اختبارات، وتطوير مهارات.">
+    <meta property="og:image" content="profile.jpeg">
+    <meta property="og:url" content="https://tamerrabie-official.github.io/Really/">
+    
+    <!-- روابط الخطوط والأيقونات -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- ربط ملف التنسيق الخارجي CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- زر تبديل اللغة الاحترافي -->
+    <!-- زر تبديل اللغة -->
     <button class="lang-switcher-btn" onclick="toggleLanguage()" id="langBtn">English</button>
 
-    <!-- الآية القرآنية الثابتة في الأعلى -->
-    
+    <!-- الآية القرآنية (تم إصلاح وسم البداية) -->
+    <div class="quran-header">
         ‏﴿قَالَ رَبِّ اشْرَحْ لِي صَدْرِي ۝ وَيَسِّرْ لِي أَمْرِي ۝ وَاحْلُلْ عُقْدَةً مِّن لِّسَانِي ۝ يَفْقَهُوا قَوْلِي﴾
     </div>
 
-    <!-- قسم الهيرو الشخصي والتعريفي -->
+    <!-- قسم الهيرو الشخصي -->
     <section class="hero-section">
         <div class="hero-container">
             <div class="image-wrapper">
-                <img src="profile.jpeg" alt="Tamer Rabie" class="hero-image">
+                <!-- خاصية Lazy Loading لتسريع الموقع -->
+                <img src="profile.jpeg" alt="Tamer Rabie" class="hero-image" loading="lazy">
                 
                 <div class="hero-card">
-                    <h1 id="hero-name">Tamer Rabie</h1>
+                    <h1 id="hero-name">تامر ربيع</h1>
                     <div class="subtitle" id="hero-title">Mr.Rabie</div>
-                    <p id="hero-desc">
-                        صانع محتوى تعليمي
-                    </p>
+                    <p id="hero-desc">صانع محتوى تعليمي</p>
                     <a href="#contact" class="btn-orange" id="hero-btn">التواصل الرسمي</a>
                 </div>
             </div>
@@ -41,52 +53,44 @@
     <section class="mission-section">
         <h2 id="mission-title">رسالتي</h2>
         <p id="mission-text1">"اللغة الإنجليزية ليست مجرد لغة، بل طريقة تفكير."</p>
-        <p id="mission-text2" style="font-size: 1.1rem; color: var(--text-muted); margin-top: 10px;">
-            "الهوايات هي مُتنفّس الروح وملاذ الإنسان للهروب من ضغوط الحياة."
-        </p>
     </section>
 
-    <!-- قسم أعمالي ومشاريعي الاستراتيجية -->
+    <!-- قسم أعمالي ومشاريعي -->
     <section class="projects-section" id="projects">
         <h2 id="projects-main-title">أعمالي ومشاريعي</h2>
         <div class="projects-grid">
             
-            <!-- المشروع الأول: قناة اليوتيوب -->
             <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=500" alt="English Learning Hub">
+                <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7" alt="English Learning Hub" loading="lazy">
                 <div class="project-footer">
                     <div>
                         <h3>English Learning Hub</h3>
-                        <p id="p1-desc">قناة تعليمية على اليوتيوب لشرح منهج المرحلة الإعدادية (الاول والثاني والثالث الاعدادي) بطريقة عصرية تقيم وتصنف قدرات الدارسين لاختيار أفضل طريقة استيعاب لكل طالب.</p>
+                        <p id="p1-desc">قناة تعليمية لشرح منهج المرحلة الإعدادية بطريقة عصرية.</p>
                     </div>
-                    <a href="https://youtube.com/@englishhub-f1z?si=EWb90fKYBeJi-S7H" target="_blank" class="project-link">زيارة القناة <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a href="https://youtube.com/@englishhub-f1z" target="_blank" class="project-link">زيارة القناة <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
             </div>
 
-            <!-- المشروع الثاني: اختبار تحديد المستوى -->
             <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=500" alt="Placement Test">
+                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173" alt="Placement Test" loading="lazy">
                 <div class="project-footer">
                     <div>
                         <h3 id="p2-title">إختبار تحديد المستوى (التحدي)</h3>
-                        <p id="p2-desc">بمثابة المصافحة الأولى بيني وبين الدارس. اختبار شامل يعطي فكرة تعليمية دقيقة ومكتملة عن مستوى المتعلم الحالي ليعرف أين يقف بوضوح ونرسم معاً مسار التطوير.</p>
+                        <p id="p2-desc">اختبار شامل يعطي فكرة دقيقة عن مستوى المتعلم الحالي.</p>
                     </div>
                     <a href="https://tamerrabie8-cmyk.github.io/Professional-placement-test/" target="_blank" class="project-link">ابدأ التحدي <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
             </div>
 
-            <!-- المشروع الثالث: معرض التصوير الفوتوغرافي -->
             <div class="project-card">
-    <img src="Aswan.webp" alt="Photography Portfolio">
-    <div class="project-footer">
-        <h3 id="p3-title">التصوير الفوتوغرافي</h3>
-        <p id="p3-desc">اول صورة من منتجاتي تنشر علي الانترنت وما يثير في نفسي الشجن والحنين ان الصورة من مسقط رأسي باسوان الحبيبة</p>
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span id="p3-status" class="project-status">حلمي قريباً ⏳</span>
-            <a href="#" id="p3-link" class="project-link">رابط مؤقت للمتابعة</a>
-        </div>
-    </div>
-</div>
+                <img src="Aswan.webp" alt="Photography" loading="lazy">
+                <div class="project-footer">
+                    <h3 id="p3-title">التصوير الفوتوغرافي</h3>
+                    <p id="p3-desc">من مسقط رأسي بأسوان الحبيبة.</p>
+                    <span id="p3-status" class="project-status">حلمي قريباً ⏳</span>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -95,12 +99,10 @@
         <div class="riddle-container">
             <h2 id="riddle-title">لغز الأسبوع</h2>
             <div class="riddle-box">
-                <img src="puzzle1.webp" alt="Weekly Puzzle" id="puzzleImg">
-                <div class="riddle-text">
-                    "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?"
-                </div>
-                <input type="text" class="answer-area" placeholder="Type your answer in English here..." id="riddleInput">
-                <button class="btn-orange" onclick="alert('Thank you for your answer!')" id="riddle-btn">إرسال الإجابة</button>
+                <img src="puzzle1.webp" alt="Weekly Puzzle" id="puzzleImg" loading="lazy">
+                <div class="riddle-text">"I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?"</div>
+                <input type="text" class="answer-area" placeholder="Type answer in English..." id="riddleInput">
+                <button class="btn-orange" onclick="checkRiddleAnswer()" id="riddle-btn">إرسال الإجابة</button>
             </div>
         </div>
     </section>
@@ -111,87 +113,50 @@
         <div class="services-list">
             <div class="service-item" id="srv-1">كورسات لغة إنجليزية</div>
             <div class="service-item" id="srv-2">جلسات محادثة</div>
-            <div class="service-item" id="srv-3">دروس لغة إنجليزية (المرحلة الإعدادية)</div>
+            <div class="service-item" id="srv-3">دروس المرحلة الإعدادية</div>
         </div>
     </section>
 
-    <!-- تذييل الصفحة: التواصل الرسمي والشبكات الاجتماعية -->
+    <!-- تذييل الصفحة -->
     <footer class="footer-section" id="contact">
         <div class="contact-info">
             <a href="mailto:Mr.tamer2026@outlook.com"><i class="fa-solid fa-envelope"></i> Mr.tamer2026@outlook.com</a>
             <a href="tel:0020113141320"><i class="fa-solid fa-phone"></i> 0020113141320</a>
-            <a href="https://wa.me/00201131413209" target="_blank"><i class="fa-brands fa-whatsapp"></i> 00201131413209</a>
-            <a href="https://t.me/Tamerelnoby" target="_blank"><i class="fa-solid fa-paper-plane"></i> t.me/Tamerelnoby</a>
         </div>
-
         <div class="social-icons">
-            <a href="https://www.tiktok.com/@mr.rabie50?_r=1&_t=ZS-979RJTzIqkp" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://www.linkedin.com/in/tamerrabie62?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://www.facebook.com/share/196NNPq4QS/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://www.reddit.com/u/Happy-Alternative188/s/KvqAQadX5o" target="_blank" title="Reddit"><i class="fa-brands fa-reddit-alien"></i></a>
-            <a href="https://x.com/TamerRabie62" target="_blank" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://www.instagram.com/tamer50523?igsh=MTBpaGZrNDk2ZHRpYg==" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@mr.rabie50" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.linkedin.com/in/tamerrabie62" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com/share/196NNPq4QS/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
-        
-        <p style="font-size: 0.85rem; color: var(--text-muted);">&copy; 2026 Tamer Rabie. All rights reserved.</p>
+        <p>&copy; <span id="year-span"></span> Tamer Rabie. All rights reserved.</p>
     </footer>
 
-    <!-- ربط ملف البرمجة والتفاعل الخارجي JS قبل إغلاق الـ body مباشرة -->
-    <script src="script.js"></script>
-        
-        <!-- واجهة المساعد الذكي moaid العائمة المطورة -->
+    <!-- المساعد الذكي moaid -->
     <div class="chat-widget-container">
-        <!-- زر عائم دائرى أنيق -->
-        <button class="chat-trigger-btn" onclick="toggleChatWindow()" title="تحدث مع moaid">
+        <button class="chat-trigger-btn" onclick="toggleChatWindow()">
             <i class="fa-solid fa-comment-dots"></i>
         </button>
-
-        <!-- نافذة المحادثة -->
         <div class="chat-window" id="chatWindow">
             <div class="chat-header">
                 <div class="chat-avatar"><i class="fa-solid fa-robot"></i></div>
                 <div class="chat-status-info">
                     <h4>moaid</h4>
-                    <p>المساعد الذكي لـ Mr. Tamer</p>
+                    <p>المساعد لـ Mr. Tamer</p>
                 </div>
                 <button class="chat-close-btn" onclick="toggleChatWindow()">&times;</button>
             </div>
-            
-            <!-- منطقة عرض الرسائل -->
             <div class="chat-messages-body" id="chatMessages">
-                <div class="chat-bubble bot-msg">
-                    أهلاً بك! أرسل أي كلمة لبدء المحادثة مع moaid.
-                </div>
+                <div class="chat-bubble bot-msg">أهلاً بك! أرسل أي كلمة لبدء المحادثة.</div>
             </div>
-
-            <!-- منطقة إدخال النص -->
             <div class="chat-input-area">
-                <input type="text" id="chatInput" placeholder="اكتب رسالتك هنا..." onkeypress="handleChatKeyPress(event)">
+                <input type="text" id="chatInput" placeholder="اكتب هنا..." onkeypress="handleChatKeyPress(event)">
                 <button onclick="sendUserMessage()"><i class="fa-solid fa-paper-plane"></i></button>
             </div>
         </div>
     </div>
-    <!-- ربط ملف البرمجة الخارجي -->
+
+    <!-- استدعاء ملف البرمجة مرة واحدة فقط -->
     <script src="script.js"></script>
-    <section class="blog-section" id="blog">
-
-    <div class="blog-header">
-        <h2>هلوسات ✍️</h2>
-        <p>مساحة صغيرة للأفكار والكلمات</p>
-    </div>
-
-    <div class="thought-card">
-
-        <div class="thought-date">
-            ٢٧ يونيو ٢٠٢٦
-        </div>
-
-        <p class="thought-text">
-            اكتب هنا أول هلوسة لك...
-        </p>
-
-    </div>
-
-</section>
+    <script src="riddle-system.js"></script>
 </body>
 </html>

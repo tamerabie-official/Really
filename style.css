@@ -1,19 +1,20 @@
-/* --- الإعدادات العامة والألوان المستوحاة من 23831.jpg --- */
+
+/* --- الهوية البصرية والألوان المعتمدة لـ Mr. Rabie --- */
 :root {
     --bg-dark: #14161b;       /* اللون الفحمي الداكن للخلفية */
-    --accent-orange: #d9531e; /* البرتقالي الحيوي الممتد في التصميم */
-    --card-light: #e5e5e5;    /* خلفية الكارت الفاتح المتداخل */
+    --accent-orange: #d9531e; /* البرتقالي الحيوي للهوية */
+    --card-light: #e5e5e5;    /* خلفية الكروت الفاتحة */
     --card-dark: #1e222b;     /* خلفية كروت المشاريع */
     --text-white: #ffffff;
-    --text-dark: #14161b;
     --text-muted: #a0a5b0;
 }
 
+/* إعدادات عامة وخط Cairo المودرن */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Cairo', sans-serif;
     transition: all 0.3s ease;
 }
 
@@ -25,46 +26,42 @@ body {
 }
 
 /* دعم تبديل الاتجاهات للغة الإنجليزية */
-body.lang-en {
-    direction: ltr !important;
-}
+body.lang-en { direction: ltr !important; }
 
-/* زر تبديل اللغة العائم في أعلى الصفحة */
+/* زر تبديل اللغة العائم */
 .lang-switcher-btn {
     position: fixed;
-    top: 40px;
+    top: 20px;
     left: 20px;
     z-index: 1000;
     background-color: var(--accent-orange);
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 18px;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 4px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
 }
-body.lang-en .lang-switcher-btn {
-    left: auto;
-    right: 20px;
-}
+body.lang-en .lang-switcher-btn { left: auto; right: 20px; }
 
-/* آية الاستهلال في رأس الصفحة */
+/* آية الاستهلال الفخمة */
 .quran-header {
     text-align: center;
-    padding: 30px 20px 10px 20px;
+    padding: 40px 20px 20px;
     font-size: 1.2rem;
     color: var(--accent-orange);
     font-style: italic;
+    font-weight: 700;
 }
 
-/* --- قسم الهيرو الرئيسي --- */
+/* --- قسم الهيرو (صورة البروفايل والكارت) --- */
 .hero-section {
-    padding: 40px 20px 100px 20px;
+    padding: 60px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 85vh;
+    min-height: 80vh;
 }
 
 .hero-container {
@@ -73,634 +70,96 @@ body.lang-en .lang-switcher-btn {
     position: relative;
 }
 
-/* غلاف الصورة مع الزوايا والأشكال البرتقالية المتداخلة */
-.image-wrapper {
-    position: relative;
-    border-radius: 25px;
-    overflow: hidden;
-}
-
-/* الزاوية البرتقالية العلوية */
-.image-wrapper::before {
-    content: "";
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    width: 140px;
-    height: 140px;
-    border-top: 15px solid var(--accent-orange);
-    border-left: 15px solid var(--accent-orange);
-    z-index: 1;
-}
-body.lang-en .image-wrapper::before {
-    left: auto;
-    right: -20px;
-    border-left: none;
-    border-right: 15px solid var(--accent-orange);
-}
-
-/* المربع البرتقالي المصمت السفلي */
-.image-wrapper::after {
-    content: "";
-    position: absolute;
-    bottom: -20px;
-    right: -20px;
-    width: 120px;
-    height: 120px;
-    background-color: var(--accent-orange);
-    z-index: 0;
-}
-body.lang-en .image-wrapper::after {
-    right: auto;
-    left: -20px;
-}
 .hero-image {
     width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
+    max-width: 380px; /* المقاس الفخم المعتمد */
     border-radius: 25px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.45);
-    transition: transform 0.4s ease;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.5);
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+    object-position: top center; /* لضمان ظهور الرأس كاملة */
 }
 
-.hero-image:hover {
-    transform: scale(1.03);
-}
-
-/* الكارت الفاتح المتداخل المتطاير */
 .hero-card {
-    position: absolute;
-    bottom: -50px;
     background-color: var(--card-light);
-    color: var(--text-dark);
-    padding: 45px;
-    width: 65%;
-    z-index: 3;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-}
-
-body:not(.lang-en) .hero-card { left: 5%; text-align: right; }
-body.lang-en .hero-card { right: 5%; text-align: left; }
-
-.hero-card h1 {
-    font-size: 2.2rem;
-    margin-bottom: 10px;
-    color: var(--text-dark);
-}
-
-.hero-card .subtitle {
-    font-size: 1.1rem;
-    color: var(--accent-orange);
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.hero-card p {
-    font-size: 0.95rem;
-    color: #333;
-    margin-bottom: 20px;
+    color: #14161b;
+    padding: 35px;
+    border-radius: 15px;
+    margin-top: -40px;
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .btn-orange {
-    display: inline-block;
     background-color: var(--accent-orange);
-    color: var(--text-white);
+    color: white;
     padding: 12px 30px;
     text-decoration: none;
     font-weight: bold;
-    font-size: 0.9rem;
-    border: none;
-    cursor: pointer;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 15px;
 }
 
-.btn-orange:hover {
-    background-color: #b83f12;
-}
-
-/* --- قسم رسالتي --- */
-.mission-section {
-    text-align: center;
-    padding: 120px 20px 60px 20px;
-    max-width: 850px;
-    margin: 0 auto;
-}
-
-.mission-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-.mission-section p {
-    color: var(--text-muted);
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    font-style: italic;
-}
-
-/* --- قسم مشاريعي وأعمالي --- */
-.projects-section {
-    padding: 60px 20px 80px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.projects-section h2 {
-    font-size: 2.3rem;
-    margin-bottom: 40px;
-}
-
+/* --- قسم الألغاز والمشاريع --- */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    gap: 25px;
+    padding: 40px 20px;
 }
 
 .project-card {
     background-color: var(--card-dark);
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    border-radius: 12px;
     overflow: hidden;
-    border-radius: 4px;
+    border: 1px solid #2c313c;
 }
 
-.project-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-
-.project-footer {
-    background-color: var(--accent-orange);
-    color: var(--text-white);
-    padding: 25px 20px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-body:not(.lang-en) .project-footer { text-align: right; }
-body.lang-en .project-footer { text-align: left; }
-
-.project-footer h3 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-}
-
-.project-footer p {
-    font-size: 0.9rem;
-    opacity: 0.95;
-    margin-bottom: 15px;
-}
-
-.project-link {
-    color: white;
-    text-decoration: underline;
-    font-weight: bold;
-    font-size: 0.85rem;
-}
-
-/* --- قسم لغز الأسبوع --- */
-.riddle-section {
-    background-color: #1b1e25;
-    padding: 80px 20px;
-}
-
-.riddle-container {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.riddle-container h2 {
-    font-size: 2.3rem;
-    margin-bottom: 30px;
-}
+.project-card img { width: 100%; height: 220px; object-fit: cover; }
 
 .riddle-box {
     background-color: var(--card-dark);
     padding: 30px;
     border: 2px solid var(--accent-orange);
-    border-radius: 6px;
-    margin-top: 20px;
-}
-
-.riddle-image {
-    width: 100%;
-    max-height: 350px;
-    object-fit: cover;
-    margin-bottom: 20px;
-    border-radius: 4px;
-}
-
-.riddle-text {
-    font-size: 1.3rem;
-    color: #ffffff;
-    margin-bottom: 25px;
-    font-weight: bold;
-    direction: ltr;
+    border-radius: 15px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 800px;
 }
 
 .answer-area {
-    width: 100%;
-    padding: 15px;
-    background-color: var(--bg-dark);
+    width: 90%;
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 5px;
     border: 1px solid #3a3f4d;
+    background: #14161b;
     color: white;
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-    border-radius: 4px;
-    direction: ltr;
 }
 
-/* --- قسم الخدمات --- */
-.services-section {
-    padding: 80px 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.services-section h2 {
-    font-size: 2.2rem;
-    margin-bottom: 40px;
-}
-
-.services-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.service-item {
-    background-color: var(--card-dark);
-    padding: 20px 40px;
-    border-inline-start: 5px solid var(--accent-orange);
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-/* --- قسم التواصل والشبكات الاجتماعية --- */
-.footer-section {
-    background-color: #0f1013;
-    padding: 60px 20px;
-    text-align: center;
-    border-top: 1px solid #22252e;
-}
-
-.contact-info {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 40px;
-    font-size: 1rem;
-}
-
-.contact-info a {
-    color: var(--text-muted);
-    text-decoration: none;
-}
-.contact-info a:hover { color: var(--accent-orange); }
-
-.contact-info i {
-    color: var(--accent-orange);
-    margin-inline-end: 8px;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.social-icons a {
-    color: var(--text-white);
-    background-color: var(--card-dark);
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    text-decoration: none;
-}
-
-.social-icons a:hover {
-    background-color: var(--accent-orange);
-    transform: translateY(-5px);
-}
-/* --- قسم مدونة هلوسات --- */
-
-.
-/* الشريط البرتقالي الجانبي الأنيق للمقال */
-.blog-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 4px;
-    height: 100%;
-    background-color: var(--accent-orange);
-}
-body.lang-en .blog-card::before {
-    right: auto;
-    left: 0;
-}
-
-.blog-date {
-    font-size: 0.85rem;
-    color: var(--accent-orange);
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-.blog-post-title {
-    font-size: 1.3rem;
-    color: var(--text-white);
-    margin-bottom: 15px;
-}
-
-.blog-post-excerpt {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.read-more-btn {
-    color: var(--accent-orange);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.9rem;
-    display: inline-block;
-}
-.read-more-btn:hover {
-    text-decoration: underline;
-}
-/* الشريط البرتقالي الجانبي الأنيق للمقال */
-.blog-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 4px;
-    height: 100%;
-    background-color: var(--accent-orange);
-}
-body.lang-en .blog-card::before {
-    right: auto;
-    left: 0;
-}
-
-.blog-date {
-    font-size: 0.85rem;
-    color: var(--accent-orange);
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-.blog-post-title {
-    font-size: 1.3rem;
-    color: var(--text-white);
-    margin-bottom: 15px;
-}
-
-.blog-post-excerpt {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.read-more-btn {
-    color: var(--accent-orange);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.9rem;
-    display: inline-block;
-}
-.read-more-btn:hover {
-    text-decoration: underline;
-}
-/* --- التجاوب والشاشات الصغيرة (Responsive) --- */
-@media (max-width: 900px) {
-    .image-wrapper {
-        width: 100%;
-        margin-inline-start: 0;
-    }
-    .hero-card {
-        position: relative;
-        width: 100%;
-        bottom: 0;
-        margin-top: 20px;
-        box-shadow: none;
-    }
-    body:not(.lang-en) .hero-card, body.lang-en .hero-card {
-        left: 0; right: 0; text-align: center;
-    }
-    .image-wrapper::before, .image-wrapper::after {
-        display: none;
-    }
-    .mission-section h2 { font-size: 2rem; }
-}
-/* --- واجهة المساعد الذكي moaid العائمة والأنيقة --- */
-.chat-widget-container {
+/* --- واجهة المساعد moaid العائمة --- */
+.chat-trigger-btn {
     position: fixed;
     bottom: 25px;
-    left: 25px; /* تم نقله لليسار ليصبح مكانه غاية في الأناقة ولا يضايق الزائر */
-    z-index: 9999;
-}
-/* عند تحويل الموقع للغة الإنجليزية ينقلب مكان الزر تلقائياً لليمين لراحة العين */
-body.lang-en .chat-widget-container {
-    left: auto;
     right: 25px;
-}
-
-/* تصميم الزر العائم الدائري */
-.chat-trigger-btn {
     background: linear-gradient(135deg, var(--accent-orange), #b83f12);
-    color: white;
-    border: none;
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 8px 24px rgba(217, 83, 30, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.6rem;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
-}
-
-/* تأثيرات حركية خفيفة عند تمرير الماوس */
-.chat-trigger-btn:hover {
-    transform: scale(1.08) translateY(-3px);
-    box-shadow: 0 12px 28px rgba(217, 83, 30, 0.6);
-}
-
-/* صندوق نافذة المحادثة وانبثاقه من فوق الزر تماماً */
-.chat-window {
-    display: none;
-    position: absolute;
-    bottom: 75px;
-    left: 0;
-    width: 360px;
-    height: 520px;
-    background-color: var(--card-dark);
-    border: 1px solid #2c313c;
-    border-radius: 12px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-    flex-direction: column;
-    overflow: hidden;
-}
-body.lang-en .chat-window {
-    left: auto;
-    right: 0;
-}
-
-/* هيدر الشات */
-.chat-header {
-    background-color: #0f1013;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #22252e;
-}
-
-.chat-avatar {
-    background-color: var(--accent-orange);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    color: white;
-    margin-inline-end: 12px;
-}
-
-.chat-status-info h4 {
-    color: white;
-    font-size: 1rem;
-    margin: 0;
-}
-
-.chat-status-info p {
-    color: var(--text-muted);
-    font-size: 0.75rem;
-    margin: 0;
-}
-
-.chat-close-btn {
-    margin-inline-start: auto;
-    background: none;
     border: none;
-    color: var(--text-muted);
+    color: white;
     font-size: 1.5rem;
     cursor: pointer;
-    transition: color 0.2s;
-}
-.chat-close-btn:hover { color: white; }
-
-/* جسم المحادثة والرسائل */
-.chat-messages-body {
-    flex-grow: 1;
-    padding: 15px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    background-color: #15171e;
+    box-shadow: 0 8px 20px rgba(217, 83, 30, 0.4);
 }
 
-.chat-bubble {
-    padding: 12px 16px;
-    border-radius: 14px;
-    max-width: 85%;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    word-wrap: break-word;
-    white-space: pre-line;
-}
-
-.chat-bubble.bot-msg {
-    background-color: #22252e;
-    color: #e5e5e5;
-    align-self: flex-start;
-    border-bottom-right-radius: 2px;
-    text-align: right;
-}
-body.lang-en .chat-bubble.bot-msg {
-    border-bottom-right-radius: 14px;
-    border-bottom-left-radius: 2px;
-    text-align: left;
-}
-
-.chat-bubble.user-msg {
-    background-color: var(--accent-orange);
-    color: white;
-    align-self: flex-end;
-    border-bottom-left-radius: 2px;
-    text-align: right;
-}
-body.lang-en .chat-bubble.user-msg {
-    border-bottom-left-radius: 14px;
-    border-bottom-right-radius: 2px;
-    text-align: left;
-}
-
-/* منطقة الإدخال السفلي */
-.chat-input-area {
-    padding: 12px;
-    background-color: #0f1013;
-    display: flex;
-    gap: 10px;
-    border-top: 1px solid #22252e;
-}
-
-.chat-input-area input {
-    flex-grow: 1;
-    background-color: #1a1c23;
-    border: 1px solid #2c313c;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-}
-.chat-input-area input:focus {
-    outline: none;
-    border-color: var(--accent-orange);
-}
-
-.chat-input-area button {
-    background-color: var(--accent-orange);
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 6px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    transition: background 0.2s;
-}
-.chat-input-area button:hover { background-color: #b83f12; }
-
-/* تجاوب الشاشات الصغيرة جداً */
-@media (max-width: 400px) {
-    .chat-window {
-        width: 300px;
-        height: 430px;
-    }
+/* --- التجاوب مع الجوال --- */
+@media (max-width: 768px) {
+    .hero-image { max-width: 300px; }
+    .hero-card { width: 90%; margin: -30px auto 0; }
+    .quran-header { font-size: 1rem; }
 }
