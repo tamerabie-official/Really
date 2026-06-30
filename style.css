@@ -435,3 +435,14 @@ body.lang-en .lang-switcher-btn { left: auto; right: 20px; }
         width: 90vw;
     }
 }
+/* --- إصلاح تراكب زر اللغة فوق آية الاستهلال في الجوال --- */
+@media (max-width: 768px) {
+    .lang-switcher-btn {
+        top: 12px;
+        padding: 8px 14px;
+        font-size: 0.85rem;
+    }
+    .quran-header {
+        padding-top: 70px;
+    }
+}
